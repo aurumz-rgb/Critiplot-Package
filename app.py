@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-from nos_tlplot import process_detailed_nos, professional_plot
+from nos_plot import process_detailed_nos, professional_plot
 import tempfile
 import os
 import shutil
@@ -164,7 +164,7 @@ add_background_png("./assets/background.png")
 st.markdown('<div class="top-padding-container">', unsafe_allow_html=True)
 display_logo_png_top_touch("./assets/logo.png", height=180)
 st.markdown('<div class="main-content">', unsafe_allow_html=True)
-st.markdown('<h1 class="centered-title">NOSPlot</h1>', unsafe_allow_html=True)
+st.markdown('<h1 class="centered-title">NOS-Plot</h1>', unsafe_allow_html=True)
 st.markdown('<p class="centered-subtitle">A Traffic light Plot Visualiser for NOS.</p>', unsafe_allow_html=True)
 st.markdown('</div>', unsafe_allow_html=True)
 st.markdown('<div class="lowered-section">', unsafe_allow_html=True)
