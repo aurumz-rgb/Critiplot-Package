@@ -2,7 +2,7 @@ import streamlit as st
 import os
 import base64
 
-st.set_page_config(page_title="NOSPlot / Info", page_icon="./assets/icon.png", layout="wide")
+st.set_page_config(page_title="NOS-Plot / Info", page_icon="./assets/icon.png", layout="wide")
 
 
 hide_streamlit_style = """
@@ -87,14 +87,14 @@ add_background_png("./assets/background.png")
 
 # Page Content
 st.markdown('<div style="margin-top: 120px; text-align:center;">', unsafe_allow_html=True)
-st.markdown('<h1 style="font-size:3rem; font-weight:800; color:#ffffff;">NOSPlot — Information & Support</h1>', unsafe_allow_html=True)
+st.markdown('<h1 style="font-size:3rem; font-weight:800; color:#ffffff;">NOS-Plot — Information & Support</h1>', unsafe_allow_html=True)
 
 
 # General Information Section 
 st.markdown("""
 ## General Information
 
-**NOSPlot** is a reproducible, professional web application for visualizing Newcastle–Ottawa Scale (NOS) risk-of-bias assessments.
+**NOS-Plot** is a reproducible, professional web application for visualizing Newcastle–Ottawa Scale (NOS) risk-of-bias assessments.
 
 It allows researchers to generate:
 
@@ -103,13 +103,13 @@ It allows researchers to generate:
 
 This tool is built on **Python** and complements evidence synthesis workflows. It is designed for reproducibility, enabling users to consistently visualize NOS assessments for their datasets.
 
-**NOSPlot**, like **robvis**, is inspired by the **Evidence Synthesis Hackathon philosophy**: creating open, reproducible, and publication-ready visualizations. The underlying methodology ensures that your results can be shared and reproduced with minimal effort.
+**NOS-Plot**, like **robvis**, is inspired by the **Evidence Synthesis Hackathon philosophy**: creating open, reproducible, and publication-ready visualizations. The underlying methodology ensures that your results can be shared and reproduced with minimal effort.
 """, unsafe_allow_html=True)
 
 # Example image from folder
 if os.path.exists("./example/result.png"):
     st.markdown('<div style="text-align:center; margin-top:20px;">', unsafe_allow_html=True)
-    st.image("./example/result.png", caption="Example NOSPlot Result", use_container_width=True)
+    st.image("./example/result.png", caption="Example NOS-Plot Result", use_container_width=True)
     st.markdown('</div>', unsafe_allow_html=True)
 
 
@@ -120,7 +120,7 @@ st.markdown("""
 
 If you encounter any issues or need support, you can:
 
-- Open a GitHub Issue: [GitHub](https://github.com/aurumz-rgb/nosplot)
+- Open a GitHub Issue: [GitHub](https://github.com/aurumz-rgb/nos-plot)
 - Send me an email: [Mail](mailto:pteroisvolitans12@gmail.com)
 
 Feel free to reach out via either method.
@@ -135,9 +135,9 @@ st.markdown("""
         <div>Licensed under the Apache License, Version 2.0</div>
     </div>
     <div style="display:flex; gap:40px; justify-content:center; align-items:center;">
-        <span>NOSPlot</span>
+        <span>NOS-Plot</span>
         <span>Professional NOS Visualization Tool</span>
-        <a href='https://github.com/aurumz-rgb/nosplot' target='_blank' style='color:#3498db; text-decoration:none;'>GitHub Repository</a>
+        <a href='https://github.com/aurumz-rgb/nos-plot' target='_blank' style='color:#3498db; text-decoration:none;'>GitHub Repository</a>
     </div>
 </div>
 """, unsafe_allow_html=True)

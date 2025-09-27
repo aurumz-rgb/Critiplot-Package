@@ -1,4 +1,4 @@
-app = "nosplot"
+app = "nos-plot"
 primary_region = "bom"
 
 [build]

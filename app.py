@@ -11,7 +11,7 @@ import streamlit.components.v1 as components
 
 
 st.set_page_config(
-    page_title="NOSPlot / Home",
+    page_title="NOS-Plot / Home",
     layout="wide",
     page_icon="./assets/icon.png"  
 )
@@ -175,7 +175,7 @@ st.markdown('<div style="font-size: 1.6rem; font-weight: bold; margin-bottom: 10
 with st.expander("**Setting Up Your Data**", expanded=True):
     st.markdown('<div class="quickstart" style="margin-top:-1rem;">', unsafe_allow_html=True)
     st.write("""
-✨  **NOSPlot** is a web app for visualizing Newcastle–Ottawa Scale (NOS) risk-of-bias assessments.
+✨  **NOS-Plot** is a web app for visualizing Newcastle–Ottawa Scale (NOS) risk-of-bias assessments.
 It generates:
 
 * **Traffic light plots** showing domain-level judgements for each study.
@@ -185,7 +185,7 @@ All figures are **publication-ready** and formatted to match NOS assessment stan
 
 ---        
              
-To work correctly with **NOSPlot**, your uploaded table should follow this structure:
+To work correctly with **NOS-Plot**, your uploaded table should follow this structure:
     
 - **First column:** Study details (Author, Year)
     - **Domain columns:** Each additional column corresponds to a specific NOS domain:
@@ -253,7 +253,7 @@ if uploaded_file is not None:
         # Download buttons
         st.markdown("###  Download Visualization")
 
-        st.markdown('<p style="color: #ffff; font-size: 1.1rem;">Download your NOSPlot visualisation in formats like:</p>', unsafe_allow_html=True)
+        st.markdown('<p style="color: #ffff; font-size: 1.1rem;">Download your NOS-Plot visualisation in formats like:</p>', unsafe_allow_html=True)
 
         download_html = '<div style="display:flex; gap:10px; margin-bottom:10px;">'
         for out_ext, path in output_files.items():
@@ -273,45 +273,45 @@ st.markdown("## Citation")
 
 # Predefined citation formats
 apa_citation = (
-    "Sahu, V. (2025). NOSPlot: Visualization Tool for Newcastle–Ottawa Scale in Meta-Analysis (v1.0.0). "
+    "Sahu, V. (2025). NOS-Plot: Visualization Tool for Newcastle–Ottawa Scale in Meta-Analysis (v1.0.0). "
     "Zenodo. https://doi.org/10.5281/zenodo.17065215"
 )
 
 harvard_citation = (
-    "Sahu, V., 2025. NOSPlot: Visualization Tool for Newcastle–Ottawa Scale in Meta-Analysis (v1.0.0). "
+    "Sahu, V., 2025. NOS-Plot: Visualization Tool for Newcastle–Ottawa Scale in Meta-Analysis (v1.0.0). "
     "Zenodo. Available at: https://doi.org/10.5281/zenodo.17065215"
 )
 
 mla_citation = (
-    "Sahu, Vihaan. \"NOSPlot: Visualization Tool for Newcastle–Ottawa Scale in Meta-Analysis (v1.0.0).\" "
+    "Sahu, Vihaan. \"NOS-Plot: Visualization Tool for Newcastle–Ottawa Scale in Meta-Analysis (v1.0.0).\" "
     "2025, Zenodo, https://doi.org/10.5281/zenodo.17065215."
 )
 
 chicago_citation = (
-    "Sahu, Vihaan. 2025. \"NOSPlot: Visualization Tool for Newcastle–Ottawa Scale in Meta-Analysis (v1.0.0).\" "
+    "Sahu, Vihaan. 2025. \"NOS-Plot: Visualization Tool for Newcastle–Ottawa Scale in Meta-Analysis (v1.0.0).\" "
     "Zenodo. https://doi.org/10.5281/zenodo.17065215."
 )
 
 ieee_citation = (
-    "V. Sahu, \"NOSPlot: Visualization Tool for Newcastle–Ottawa Scale in Meta-Analysis (v1.0.0),\" "
+    "V. Sahu, \"NOS-Plot: Visualization Tool for Newcastle–Ottawa Scale in Meta-Analysis (v1.0.0),\" "
     "Zenodo, 2025. doi: 10.5281/zenodo.17065215."
 )
 
 vancouver_citation = (
-    "Sahu V. NOSPlot: Visualization Tool for Newcastle–Ottawa Scale in Meta-Analysis (v1.0.0). "
+    "Sahu V. NOS-Plot: Visualization Tool for Newcastle–Ottawa Scale in Meta-Analysis (v1.0.0). "
     "Zenodo. 2025. doi:10.5281/zenodo.17065215"
 )
 
 ris_data = """TY  - JOUR
 AU  - Sahu, V
-TI  - NOSPlot: Visualization Tool for Newcastle–Ottawa Scale in Meta-Analysis (v1.0.0)
+TI  - NOS-Plot: Visualization Tool for Newcastle–Ottawa Scale in Meta-Analysis (v1.0.0)
 PY  - 2025
 DO  - 10.5281/zenodo.17065215
 ER  -"""
 
 bib_data = """@misc{Sahu2025,
   author={Sahu, V.},
-  title={NOSPlot: Visualization Tool for Newcastle–Ottawa Scale in Meta-Analysis (v1.0.0)},
+  title={NOS-Plot: Visualization Tool for Newcastle–Ottawa Scale in Meta-Analysis (v1.0.0)},
   year={2025},
   doi={10.5281/zenodo.17065215}
 }"""
@@ -339,7 +339,7 @@ elif citation_style == "Vancouver":
 
 
 
-st.markdown(f'<p style="margin:0; color:#ffff; font-size:1.1rem;"><i>If you use NOSPlot to create risk-of-bias plots for your study, please remember to cite the tool.</i></p>', unsafe_allow_html=True)
+st.markdown(f'<p style="margin:0; color:#ffff; font-size:1.1rem;"><i>If you use NOS-Plot to create risk-of-bias plots for your study, please remember to cite the tool.</i></p>', unsafe_allow_html=True)
 st.markdown(f'<div class="citation-box"><p style="margin:0; color: #000;">{citation_text}</p></div>', unsafe_allow_html=True)
 
 copy_button_html = f"""
@@ -364,8 +364,8 @@ copy_button_html = f"""
 
 <div style="display:flex; gap:10px; margin-top:10px; margin-bottom:10px; position:relative;" id="button-container">
     <a id="copy-btn" class="custom-button">Copy Citation</a>
-    <a download="NOSPlot_citation.ris" href="data:application/x-research-info-systems;base64,{base64.b64encode(ris_data.encode()).decode()}" class="custom-button">RIS Format</a>
-    <a download="NOSPlot_citation.bib" href="data:application/x-bibtex;base64,{base64.b64encode(bib_data.encode()).decode()}" class="custom-button">BibTeX Format</a>
+    <a download="NOS-Plot_citation.ris" href="data:application/x-research-info-systems;base64,{base64.b64encode(ris_data.encode()).decode()}" class="custom-button">RIS Format</a>
+    <a download="NOS-Plot_citation.bib" href="data:application/x-bibtex;base64,{base64.b64encode(bib_data.encode()).decode()}" class="custom-button">BibTeX Format</a>
 </div>
 
 <script>
@@ -406,9 +406,9 @@ st.markdown("""
         <div>Licensed under the Apache License, Version 2.0</div>
     </div>
     <div class="footer-center">
-        <span>NOSPlot</span>
+        <span>NOS-Plot</span>
         <span>Professional NOS Visualization Tool</span>
-        <a href='https://github.com/aurumz-rgb/nosplot' target='_blank' class='footer-link'>GitHub Repository</a>
+        <a href='https://github.com/aurumz-rgb/nos-plot-main' target='_blank' class='footer-link'>GitHub Repository</a>
     </div>
 </div>
 """, unsafe_allow_html=True)

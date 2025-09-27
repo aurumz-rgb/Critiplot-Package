@@ -187,7 +187,7 @@ def read_input_file(file_path: str) -> pd.DataFrame:
 # Main
 if __name__ == "__main__":
     if len(sys.argv) not in [3,4]:
-        print("Usage: python3 nos_tlplot.py input_file output_file.(png|pdf|svg|eps) [theme]")
+        print("Usage: python3 nos_plot.py input_file output_file.(png|pdf|svg|eps) [theme]")
         sys.exit(1)
 
     input_file, output_file = sys.argv[1], sys.argv[2]
