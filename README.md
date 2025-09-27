@@ -1,16 +1,15 @@
-# NOS-TLPlot 
+# NOSPlot 
 
 [![Python Version](https://img.shields.io/badge/python-3.10+-blue)](https://www.python.org/)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![Streamlit Demo](https://img.shields.io/badge/Streamlit-Demo-orange)](https://nos-tlplot.streamlit.app)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17065215.svg)](https://doi.org/10.5281/zenodo.17065215)
 
 
 
-**NOS-TLPlot** is an open-source Python tool for **visualising Newcastle-Ottawa Scale (NOS) risk-of-bias assessments**.
+**NOSPlot** is an open-source Python tool for **visualising Newcastle-Ottawa Scale (NOS) risk-of-bias assessments**.
 It converts NOS star ratings into **publication-ready traffic-light plots**, allowing reviewers and readers to quickly interpret study-level risk-of-bias in systematic reviews and meta-analyses.
 
-🔗 **Interactive web app:** [nos-tlplot.vercel.app](https://nos-tlplot.vercel.app)
+🔗 **Interactive web app:** [nosplot.vercel.app](https://nosplot.vercel.app)
 
 📂 **Code & archive (Zenodo DOI):** [10.5281/zenodo.17065215](https://doi.org/10.5281/zenodo.17065215)
 
@@ -29,8 +28,8 @@ It converts NOS star ratings into **publication-ready traffic-light plots**, all
 ## 📥 Installation
 
 ```bash
-git clone https://github.com/aurumz-rgb/NOS-TLPlot.git
-cd NOS-TLPlot
+git clone https://github.com/aurumz-rgb/NOSPlot.git
+cd NOSPlot
 pip install -r requirements.txt
 ```
 
@@ -84,10 +83,10 @@ streamlit run app.py
 ## 📖 Methods Notes (for SRMA)
 
 * **Risk-of-bias assessment:** Conducted using the **Newcastle-Ottawa Scale (NOS)**.
-* **Visualisation:** Generated using **NOS-TLPlot**, an open-source plotting tool.
+* **Visualisation:** Generated using **NOSPlot**, an open-source plotting tool.
 * **Transparency:** Raw NOS scores are provided in **Supplementary Table Sx**.
 * **Reproducibility:** Code and example CSV archived at **Zenodo DOI**, ensuring figures can be reproduced exactly.
-* **Scope:** NOS-TLPlot is a **visualisation tool only**; it does **not modify NOS scoring**.
+* **Scope:** NOSPlot is a **visualisation tool only**; it does **not modify NOS scoring**.
 
 > This ensures reviewers can independently verify the **methods, data, and output** of the traffic-light plots.
 
@@ -95,9 +94,9 @@ streamlit run app.py
 
 ## Citation
 
-If you use NOS-TLPlot, please cite:
+If you use NOSPlot, please cite:
 
-Sahu, V. (2025). NOS-TLPlot: Visualization Tool for Newcastle–Ottawa Scale in Meta-Analysis (v1.0.0). Zenodo. [https://doi.org/10.5281/zenodo.17065215](https://doi.org/10.5281/zenodo.17065215)
+Sahu, V. (2025). NOSPlot: Visualization Tool for Newcastle–Ottawa Scale in Meta-Analysis (v1.0.0). Zenodo. [https://doi.org/10.5281/zenodo.17065215](https://doi.org/10.5281/zenodo.17065215)
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17065215.svg)](https://doi.org/10.5281/zenodo.17065215)
 
@@ -106,7 +105,7 @@ Sahu, V. (2025). NOS-TLPlot: Visualization Tool for Newcastle–Ottawa Scale in 
 
 ## Reviewer-Friendly Notes
 
-* Clearly states that NOS-TLPlot is **visualisation-only**, not a bias assessment tool.
+* Clearly states that NOSPlot is **visualisation-only**, not a bias assessment tool.
 * Emphasises **reproducibility** with example CSV + archived code (Zenodo DOI).
 * Raw NOS scores are referenced for **supplementary materials**.
 * Limited to NOS, avoiding general applicability confusion.
@@ -124,11 +123,11 @@ Use the `sample_data` folder.
 
 ![Example Result](example/result.png)
 
-Here’s an example traffic-light plot generated using NOS-TLPlot.
+Here’s an example traffic-light plot generated using NOSPlot.
 
 ---
 
-## NOS-TLPlot
+## NOSPlot
 
 ![Preview](assets/preview.png)
 
@@ -138,7 +137,7 @@ Here’s an example traffic-light plot generated using NOS-TLPlot.
 
 ## 🔹 How NOS Scores Are Converted to Risk-of-Bias (RoB)
 
-NOS-TLPlot converts domain-specific NOS star ratings into **Low, Moderate, or High risk-of-bias** using the following rules:
+NOSPlot converts domain-specific NOS star ratings into **Low, Moderate, or High risk-of-bias** using the following rules:
 
 * **Selection domain (max 4 stars)**  
   * 3–4 stars → Low RoB  
