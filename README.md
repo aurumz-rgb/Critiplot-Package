@@ -153,7 +153,7 @@ streamlit run app.py
 
 ## Critiplot
 
-![Preview](assets/preview.png)
+![Preview](assets/preview1.png)
 
 ---
 
