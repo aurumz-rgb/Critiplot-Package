@@ -1,4 +1,4 @@
-app = "nos-plot"
+app = "critiplot"
 primary_region = "bom"
 
 [build]

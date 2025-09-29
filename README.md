@@ -1,35 +1,39 @@
-# NOS-Plot 
+# Critiplot
 
 [![Python Version](https://img.shields.io/badge/python-3.10+-blue)](https://www.python.org/)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17065215.svg)](https://doi.org/10.5281/zenodo.17065215)
 
+**Critiplot** is an open-source Python tool and **interactive web app** for **visualizing risk-of-bias (RoB) assessments** across multiple evidence synthesis tools:
 
+* **Newcastle-Ottawa Scale (NOS)**
+* **JBI Critical Appraisal Checklists** (Case Report / Case Series)
+* **GRADE certainty of evidence**
+* **ROBIS for systematic reviews**
 
-**NOS-Plot** is an open-source Python tool for **visualising Newcastle-Ottawa Scale (NOS) risk-of-bias assessments**.
-It converts NOS star ratings into **publication-ready traffic-light plots**, allowing reviewers and readers to quickly interpret study-level risk-of-bias in systematic reviews and meta-analyses.
+It produces **publication-ready traffic-light plots** and **stacked bar charts**, allowing researchers to summarize study quality clearly in systematic reviews and meta-analyses.
 
-🔗 **Interactive web app:** [nos-plot.vercel.app](https://nos-plot.vercel.app)
-
+🔗 **Interactive web app:** [critiplot.vercel.app](https://critiplot.vercel.app)
 📂 **Code & archive (Zenodo DOI):** [10.5281/zenodo.17065215](https://doi.org/10.5281/zenodo.17065215)
 
 ---
 
 ## ✨ Key Features
 
-* Converts NOS star ratings into **traffic-light plots**.
-* Generates **publication-quality figures** (`.png`,`.pdf`,`.svg`,`.eps` ) with stacked domain-level percentages.
-* Open-source, fully reproducible, usable via **Python script** or **Streamlit app**.
-* Adjustable figure size, line thickness, and legends.
-* Scope limited to **NOS assessments of non-randomised studies**.
+* Converts risk-of-bias ratings into **traffic-light plots**.
+* Generates **publication-quality figures** in multiple formats: `.png`, `.pdf`, `.svg`, `.eps`.
+* Supports **NOS, JBI (Case Report / Case Series), GRADE, and ROBIS**.
+* Open-source, fully reproducible, usable via **Python scripts** or **Streamlit web app**.
+* Adjustable **themes, figure sizes, line thickness, and legends**.
 
 ---
+
 
 ## 📥 Installation
 
 ```bash
-git clone https://github.com/aurumz-rgb/NOS-Plot.git
-cd NOS-Plot
+git clone https://github.com/aurumz-rgb/Critiplot-main.git
+cd Critiplot
 pip install -r requirements.txt
 ```
 
@@ -39,33 +43,64 @@ pip install -r requirements.txt
 
 ## ⚡ Usage
 
-### 1️⃣ Python Script
+### 1️⃣ Python Scripts
+
+Separate scripts are available for each assessment tool:
+
+| Script                    | Input                    | Output          | Notes                                             |
+| ------------------------- | ------------------------ | --------------- | ------------------------------------------------- |
+| `nos_plot.py`             | NOS CSV/XLSX             | PNG/PDF/SVG/EPS | Traffic-light & stacked bar plots for NOS studies |
+| `jbi_case_report_plot.py` | JBI Case Report CSV/XLSX | PNG/PDF/SVG/EPS | For individual case reports                       |
+| `jbi_case_series_plot.py` | JBI Case Series CSV/XLSX | PNG/PDF/SVG/EPS | For case series studies                           |
+| `grade_plot.py`           | GRADE CSV/XLSX           | PNG/PDF/SVG/EPS | Summarizes certainty of evidence                  |
+| `robis_plot.py`           | ROBIS CSV/XLSX           | PNG/PDF/SVG/EPS | Summarizes systematic review risk-of-bias         |
+
+#### Example Commands
 
 ```bash
-python nos_plot.py input.csv output.png
+# NOS
+python3 nos_plot.py nos_data.csv nos_plot.png
+python3 nos_plot.py nos_data.xlsx nos_plot.png
+
+# JBI Case Report
+python3 jbi_case_report_plot.py case_report.csv report_plot.png
+python3 jbi_case_report_plot.py case_report.xlsx report_plot.png
+
+# JBI Case Series
+python3 jbi_case_series_plot.py case_series.csv series_plot.png
+python3 jbi_case_series_plot.py case_series.xlsx series_plot.png
+
+# GRADE
+python3 grade_plot.py grade_data.csv grade_plot.png
+python3 grade_plot.py grade_data.xlsx grade_plot.png
+
+# ROBIS
+python3 robis_plot.py robis_data.csv robis_plot.png
+python3 robis_plot.py robis_data.xlsx robis_plot.png
 ```
 
-* `input.csv` – CSV containing your NOS assessment data.
-* `output.png` – File path to save the generated traffic-light figure.
+---
 
-**CSV column requirements:**
+> Optional `[theme]` argument for **NOS, JBI Case Report / Case Series, and ROBIS**:
+> `"default"`, `"blue"`, `"gray"`, `"smiley"`, `"smiley_blue"`
+>
+> ⚠️ **Note:** For **GRADE**, these themes are not available. Instead, GRADE supports:
+> `"default"`, `"green"`, `"blue"`
 
-| Column Name                | Description           |
-| -------------------------- | --------------------- |
-| Author, Year               | Study author and year |
-| Representativeness         | NOS stars (0–1)       |
-| Non-exposed Selection      | NOS stars (0–1)       |
-| Exposure Ascertainment     | NOS stars (0–1)       |
-| Outcome Absent at Start    | NOS stars (0–1)       |
-| Comparability (Age/Gender) | NOS stars (0–2)       |
-| Comparability (Other)      | NOS stars (0–2)       |
-| Outcome Assessment         | NOS stars (0–1)       |
-| Follow-up Length           | NOS stars (0–1)       |
-| Follow-up Adequacy         | NOS stars (0–1)       |
-| Total Score                | Computed total stars  |
-| Overall RoB                | Low / Moderate / High |
+**Example Usage:**
 
-> **Tip for reviewers:** Include the raw NOS scoring table in supplementary material for full reproducibility.
+```bash
+# NOS
+python3 nos_plot.py nos_data.csv nos_plot.png smiley_blue
+
+# ROBIS
+python3 robis_plot.py robis_data.xlsx robis_plot.png blue
+
+# GRADE (only default/green/blue)
+python3 grade_plot.py grade_data.csv grade_plot.png green
+```
+
+> If the theme argument is omitted, the **default** theme will be used.
 
 ---
 
@@ -75,89 +110,92 @@ python nos_plot.py input.csv output.png
 streamlit run app.py
 ```
 
-* Upload your CSV / XLSX to instantly visualize **traffic-light plots**.
-* Adjust figure parameters for **publication-ready output**.
+* Upload your CSV/XLSX file to visualize **traffic-light plots**.
+* Select the **risk-of-bias tool**: NOS, JBI, GRADE, or ROBIS.
+* Choose your **plot theme** for a publication-ready figure.
+* Download plots in **PNG, PDF, SVG, or EPS formats** directly.
+
+> The app provides **example CSV/XLSX templates** for each tool to guide formatting.
 
 ---
 
-## 📖 Methods Notes (for SRMA)
+## 📖 Methods Notes
 
-* **Risk-of-bias assessment:** Conducted using the **Newcastle-Ottawa Scale (NOS)**.
-* **Visualisation:** Generated using **NOS-Plot**, an open-source plotting tool.
-* **Transparency:** Raw NOS scores are provided in **Supplementary Table Sx**.
-* **Reproducibility:** Code and example CSV archived at **Zenodo DOI**, ensuring figures can be reproduced exactly.
-* **Scope:** NOS-Plot is a **visualisation tool only**; it does **not modify NOS scoring**.
-
-> This ensures reviewers can independently verify the **methods, data, and output** of the traffic-light plots.
+* **RoB assessment:** Follows the original scoring/checklists of each tool.
+* **Visualisation:** Traffic-light and weighted bar plots generated with **Matplotlib / Seaborn**.
+* **Transparency:** Raw scores should be included in supplementary tables.
+* **Reproducibility:** Code and sample datasets archived via **Zenodo DOI**.
+* **Scope:** Critiplot is a **visualisation tool only**; it does **not compute risk-of-bias**.
 
 ---
 
-## Citation
+## 🔹 How Scores Are Converted to Risk-of-Bias (RoB)
 
-If you use NOS-Plot, please cite:
+### NOS
 
-Sahu, V. (2025). NOS-Plot: Visualization Tool for Newcastle–Ottawa Scale in Meta-Analysis (v1.0.0). Zenodo. [https://doi.org/10.5281/zenodo.17065215](https://doi.org/10.5281/zenodo.17065215)
+* **Selection domain (0–4 stars):** 3–4 → Low, 2 → Moderate, 0–1 → High
+* **Comparability domain (0–2 stars):** 2 → Low, 1 → Moderate, 0 → High
+* **Outcome/Exposure domain (0–3 stars):** 3 → Low, 2 → Moderate, 0–1 → High
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17065215.svg)](https://doi.org/10.5281/zenodo.17065215)
+### JBI
 
+* Each domain is binary: `1 = low risk`, `0 = high risk` (case reports & series).
+
+### GRADE
+
+* High / Moderate / Low / Very Low certainty mapped to traffic-light colors.
+
+### ROBIS
+
+* Domains evaluated as Low / High / Unclear risk and visualized similarly.
 
 ---
 
-## Reviewer-Friendly Notes
+## Critiplot
 
-* Clearly states that NOS-Plot is **visualisation-only**, not a bias assessment tool.
-* Emphasises **reproducibility** with example CSV + archived code (Zenodo DOI).
-* Raw NOS scores are referenced for **supplementary materials**.
-* Limited to NOS, avoiding general applicability confusion.
-* Minimal, copy-paste ready installation and usage instructions.
-
----
-
-I have also **draft the supplementary table + methods snippet** exactly as **BMJ or Cochrane reviewers expect**, including a dummy CSV (`sample.csv` / `sample.xlsx`) ready to drop into your SRMA for reproducibility.
-Use the `sample_data` folder.
+![Preview](assets/preview.png)
 
 ---
 
 ## 📸 Example / Result
-
+Here’s an example traffic-light plot generated using Critiplot using different themes.
 
 ![Example Result](example/result.png)
-
-Here’s an example traffic-light plot generated using NOS-Plot.
-
----
-
-## NOS-Plot
-
-![Preview](assets/preview.png)
+NOS
 
 
+![Example Result1](example/grade_result2.png)
+GRADE
 
----
 
-## 🔹 How NOS Scores Are Converted to Risk-of-Bias (RoB)
+![Example Result2](example/robis_result5.png)
+ROBIS
 
-NOS-Plot converts domain-specific NOS star ratings into **Low, Moderate, or High risk-of-bias** using the following rules:
 
-* **Selection domain (max 4 stars)**  
-  * 3–4 stars → Low RoB  
-  * 2 stars → Moderate RoB  
-  * 0–1 stars → High RoB  
+![Example Result3](example/case_report3.png)
+JBI Case Report
 
-* **Comparability domain (max 2 stars)**  
-  * 2 stars → Low RoB  
-  * 1 star → Moderate RoB  
-  * 0 stars → High RoB  
 
-* **Outcome/Exposure domain (max 3 stars)**  
-  * 3 stars → Low RoB  
-  * 2 stars → Moderate RoB  
-  * 0–1 stars → High RoB  
+![Example Result4](example/series_plot1.png)
+JBI Case Series
 
-This ensures consistent domain-level judgements across all studies, which are then visualized in the traffic-light plots.
 
 ---
 
-## 📄 License
+## 📄 Citation
+
+If you use **Critiplot** in your work, please cite:
+
+**APA:**
+Sahu, V. (2025). *Critiplot: Visualization Tool for Risk of Bias Assessments (v1.0.0)*. Zenodo. [https://doi.org/10.5281/zenodo.17065215](https://doi.org/10.5281/zenodo.17065215)
+
+**Other formats:** Harvard, MLA, Chicago, IEEE, Vancouver (see full app for options).
+
+> Download RIS/BibTeX citation files directly from the app.
+
+---
+
+## 📜 License
 
 Apache 2.0 © 2025 Vihaan Sahu
+

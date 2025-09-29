@@ -1,0 +1,152 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import sys
+from matplotlib.gridspec import GridSpec
+from matplotlib.patches import Patch
+
+def process_grade(df: pd.DataFrame) -> pd.DataFrame:
+    # Map CSV columns to expected ones
+    column_map = {
+        "Other Considerations": "Publication Bias"
+    }
+    df = df.rename(columns=column_map)
+
+    # Fill missing / None values in Publication Bias with string "None"
+    if "Publication Bias" in df.columns:
+        df["Publication Bias"] = df["Publication Bias"].fillna("None")
+
+    required_columns = ["Outcome","Study","Risk of Bias","Inconsistency","Indirectness","Imprecision","Publication Bias","Overall Certainty"]
+    missing = [c for c in required_columns if c not in df.columns]
+    if missing:
+        raise ValueError(f"Missing required columns: {missing}")
+
+    # Combine Outcome and Study for y-axis display
+    df["Outcome_Display"] = df["Outcome"] + " (" + df["Study"] + ")"
+    return df
+
+def map_color(certainty, colors):
+    return colors.get(certainty, "grey")
+
+def grade_plot(df: pd.DataFrame, output_file: str, theme="default"):
+    # Define color themes
+    theme_options = {
+        "green": {  
+            "High":"#2E8B57",
+            "Moderate":"#9ACD32",
+            "Low":"#4682B4",
+            "Very Low":"#696969",
+            "None":"#B0B0B0"
+        },
+        "default": {  
+            "High":"#228B22",
+            "Moderate":"#9ACD32",
+            "Low":"#FFD700",
+            "Very Low":"#B22222",
+            "None":"#808080"
+        },
+        "blue": {  
+            "High":"#006699",
+            "Moderate":"#3399CC",
+            "Low":"#FFCC66",
+            "Very Low":"#CC3333",
+            "None":"#B0B0B0"
+        }
+    }
+
+    if theme not in theme_options:
+        raise ValueError("Invalid theme.")
+    colors = theme_options[theme]
+
+    fig_height = max(6, 0.7*len(df) + 5)
+    fig = plt.figure(figsize=(18, fig_height))
+    gs = GridSpec(2,1, height_ratios=[len(df)*0.7, 1.5], hspace=0.4)
+
+    # Traffic-light plot
+    ax0 = fig.add_subplot(gs[0])
+    domains = ["Risk of Bias","Inconsistency","Indirectness","Imprecision","Publication Bias"]
+    plot_df = df.melt(id_vars=["Outcome_Display"], value_vars=domains, var_name="Domain", value_name="Certainty")
+    
+    plot_df["Color"] = plot_df["Certainty"].apply(lambda x: map_color(x, colors))
+    sns.scatterplot(data=plot_df, x="Domain", y="Outcome_Display",
+                    hue="Color", palette={c:c for c in plot_df["Color"].unique()},
+                    s=350, marker="s", legend=False, ax=ax0)
+    outcome_pos = {out:i for i,out in enumerate(df["Outcome_Display"].tolist())}
+
+    # Horizontal lines
+    for y in range(len(outcome_pos)+1):
+        ax0.axhline(y-0.5, color='lightgray', linewidth=0.8, zorder=0)
+
+    ax0.set_xticks(range(len(domains)))
+    ax0.set_xticklabels(domains, fontsize=12, fontweight="bold")
+    ax0.set_yticks(list(outcome_pos.values()))
+    ax0.set_yticklabels(list(outcome_pos.keys()), fontsize=10, fontweight="bold")
+    ax0.set_ylim(-0.5, len(outcome_pos)-0.5)
+    ax0.set_xlim(-0.5, len(domains)-0.5)
+    ax0.set_facecolor("white")
+
+    ax0.set_title("GRADE Traffic-Light Plot", fontsize=18, fontweight="bold")
+    ax0.set_xlabel("GRADE Domains", fontsize=12, fontweight="bold")
+    ax0.set_ylabel("", fontsize=12, fontweight="bold")
+    ax0.tick_params(axis='y', labelsize=10)
+
+    legend_elements = [Patch(facecolor=colors[c], edgecolor='black', label=c) for c in ["High","Moderate","Low","Very Low","None"]]
+    leg = ax0.legend(handles=legend_elements, title="Certainty", bbox_to_anchor=(1.02,1), loc='upper left', frameon=True, borderpad=1)
+    plt.setp(leg.get_texts(), fontweight="bold")
+    plt.setp(leg.get_title(), fontweight="bold")
+
+    # Summary bar plot
+    ax1 = fig.add_subplot(gs[1])
+    counts = plot_df.groupby(["Domain","Certainty"]).size().unstack(fill_value=0)
+    counts_percent = counts.div(counts.sum(axis=1), axis=0)*100
+    bottom=None
+
+    for cert in ["Very Low","Low","Moderate","High","None"]:
+        if cert in counts_percent.columns:
+            ax1.barh(counts_percent.index, counts_percent[cert], left=bottom,
+                     color=colors[cert], edgecolor="black", linewidth=1.5, label=cert)
+            # percentage labels
+            for i, val in enumerate(counts_percent[cert]):
+                if val > 0:
+                    left_val = 0 if bottom is None else bottom.iloc[i]
+                    ax1.text(left_val + val/2, i, f"{val:.1f}%", va='center', ha='center', fontsize=10, color='black', fontweight="bold")
+            bottom = counts_percent[cert] if bottom is None else bottom + counts_percent[cert]
+
+    ax1.set_xlim(0,100)
+    ax1.set_xlabel("Percentage (%)", fontsize=12, fontweight="bold")
+    ax1.set_ylabel("", fontsize=12, fontweight="bold")
+    ax1.set_title("Distribution of GRADE Judgments by Domain", fontsize=18, fontweight="bold")
+    
+    # Horizontal lines
+    for y in range(len(domains)):
+        ax1.axhline(y-0.5, color='lightgray', linewidth=0.8, zorder=0)
+
+    # Bold axis tick labels
+    for label in ax1.get_xticklabels():
+        label.set_fontweight("bold")
+    for label in ax1.get_yticklabels():
+        label.set_fontweight("bold")
+
+    fig.subplots_adjust(left=0.05, right=0.78, top=0.95, bottom=0.05, hspace=0.4)
+
+    plt.savefig(output_file, dpi=300, bbox_inches='tight')
+    plt.close()
+    print(f"✅ GRADE plot saved to {output_file}")
+
+def read_input_file(input_file: str) -> pd.DataFrame:
+    if input_file.endswith(".csv"):
+        return pd.read_csv(input_file)
+    elif input_file.endswith(".xlsx") or input_file.endswith(".xls"):
+        return pd.read_excel(input_file)
+    else:
+        raise ValueError("Unsupported file format. Please use .csv or .xlsx/.xls")
+
+if __name__ == "__main__":
+    if len(sys.argv) not in [3,4]:
+        print("Usage: python3 grade_plot.py input_file output_file.(png|pdf|svg|eps) [theme]")
+        sys.exit(1)
+    input_file, output_file = sys.argv[1], sys.argv[2]
+    theme = sys.argv[3] if len(sys.argv)==4 else "default"
+    df = read_input_file(input_file)
+    df = process_grade(df)
+    grade_plot(df, output_file, theme)
