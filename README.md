@@ -115,7 +115,7 @@ streamlit run app.py
 * Choose your **plot theme** for a publication-ready figure.
 * Download plots in **PNG, PDF, SVG, or EPS formats** directly.
 
-> The app provides **example CSV/XLSX templates** for each tool to guide formatting.
+> The web provides **example CSV/XLSX templates** for each tool to guide formatting.
 
 ---
 
@@ -189,9 +189,9 @@ If you use **Critiplot** in your work, please cite:
 **APA:**
 Sahu, V. (2025). *Critiplot: Visualization Tool for Risk of Bias Assessments (v1.0.0)*. Zenodo. [https://doi.org/10.5281/zenodo.17065215](https://doi.org/10.5281/zenodo.17065215)
 
-**Other formats:** Harvard, MLA, Chicago, IEEE, Vancouver (see full app for options).
+**Other formats:** Harvard, MLA, Chicago, IEEE, Vancouver (see full web for options).
 
-> Download RIS/BibTeX citation files directly from the app.
+> Download RIS/BibTeX citation files directly from the web.
 
 ---
 
