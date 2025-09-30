@@ -188,9 +188,12 @@ JBI Case Series
 If you use **Critiplot** in your work, please cite:
 
 **APA:**
+
 Sahu, V. (2025). *Critiplot: A Critical Appraisal Plot Visualiser for Risk of Bias in Systematic Reviews and Meta-Analyses (v1.0.1)*. (https://doi.org/10.5281/zenodo.17236600)
 
-**Other formats:** Harvard, MLA, Chicago, IEEE, Vancouver (see full web for options).
+**Other formats:**
+
+Harvard, MLA, Chicago, IEEE, Vancouver (see full web for options).
 
 > Download RIS/BibTeX citation files directly from the web.
 
