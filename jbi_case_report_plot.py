@@ -6,11 +6,10 @@ import os
 from matplotlib.gridspec import GridSpec
 from matplotlib.lines import Line2D
 
-# -----------------------------
+
 # Processing JBI Case Report
-# -----------------------------
 def process_jbi_case_report(df: pd.DataFrame) -> pd.DataFrame:
-    # Handle flexible Author/Year columns
+    
     if "Author,Year" not in df.columns:
         if "Author, Year" in df.columns:
             df = df.rename(columns={"Author, Year": "Author,Year"})
@@ -48,18 +47,16 @@ def process_jbi_case_report(df: pd.DataFrame) -> pd.DataFrame:
 
     return df
 
-# -----------------------------
+
 # Map numeric to risk categories
-# -----------------------------
 def stars_to_rob(score):
     return "Low" if score == 1 else "High"
 
 def map_color(score, colors):
     return colors.get(stars_to_rob(score), "#BBBBBB")
 
-# -----------------------------
+
 # Professional JBI plot
-# -----------------------------
 def professional_jbi_plot(df: pd.DataFrame, output_file: str, theme: str = "default"):
     theme_options = {
         "default": {"Low":"#06923E","High":"#DC2525"},
@@ -80,9 +77,8 @@ def professional_jbi_plot(df: pd.DataFrame, output_file: str, theme: str = "defa
     fig = plt.figure(figsize=(18, fig_height))
     gs = GridSpec(2, 1, height_ratios=[len(df)*0.7, 1.5], hspace=0.4)
 
-    # -----------------------------
+
     # Traffic-Light / Smiley Plot
-    # -----------------------------
     ax0 = fig.add_subplot(gs[0])
     plot_df = df.melt(id_vars=["Author,Year"], 
                       value_vars=domains,
@@ -133,9 +129,8 @@ def professional_jbi_plot(df: pd.DataFrame, output_file: str, theme: str = "defa
     ax0.set_ylabel("")
     ax0.grid(axis='x', linestyle='--', alpha=0.25)
 
-    # -----------------------------
+
     # Horizontal Stacked Bar Plot
-    # -----------------------------
     ax1 = fig.add_subplot(gs[1])
     stacked_df = pd.DataFrame()
     for domain in domains:
@@ -174,9 +169,8 @@ def professional_jbi_plot(df: pd.DataFrame, output_file: str, theme: str = "defa
     for y in range(len(domains)):
         ax1.axhline(y-0.5, color='lightgray', linewidth=0.8, zorder=0)
 
-    # -----------------------------
-    # Legend
-    # -----------------------------
+
+
     legend_elements = [
         Line2D([0],[0], marker='s', color='w', label='Low Risk', markerfacecolor=colors["Low"], markersize=12),
         Line2D([0],[0], marker='s', color='w', label='High Risk', markerfacecolor=colors["High"], markersize=12)
@@ -193,9 +187,8 @@ def professional_jbi_plot(df: pd.DataFrame, output_file: str, theme: str = "defa
         edgecolor='black'
     )
 
-    # -----------------------------
+
     # Save figure
-    # -----------------------------
     valid_ext = [".png", ".pdf", ".svg", ".eps"]
     ext = os.path.splitext(output_file)[1].lower()
     if ext not in valid_ext:
@@ -204,9 +197,8 @@ def professional_jbi_plot(df: pd.DataFrame, output_file: str, theme: str = "defa
     plt.close()
     print(f"✅ Professional JBI plot saved to {output_file}")
 
-# -----------------------------
+
 # Helper: Read CSV or Excel
-# -----------------------------
 def read_input_file(file_path: str) -> pd.DataFrame:
     ext = os.path.splitext(file_path)[1].lower()
     if ext in [".csv"]:
@@ -216,9 +208,8 @@ def read_input_file(file_path: str) -> pd.DataFrame:
     else:
         raise ValueError(f"Unsupported file format: {ext}. Provide a CSV or Excel file.")
 
-# -----------------------------
+
 # Main
-# -----------------------------
 if __name__ == "__main__":
     if len(sys.argv) not in [3,4]:
         print("Usage: python3 jbi_plot.py input_file output_file.(png|pdf|svg|eps) [theme]")

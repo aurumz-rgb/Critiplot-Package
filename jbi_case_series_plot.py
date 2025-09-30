@@ -7,9 +7,8 @@ from matplotlib.gridspec import GridSpec
 from matplotlib.lines import Line2D
 import re
 
-# -----------------------------
+
 # Processing JBI Case Series
-# -----------------------------
 def process_jbi_case_series(df: pd.DataFrame) -> pd.DataFrame:
     if "Author,Year" not in df.columns:
         if "Author, Year" in df.columns:
@@ -49,33 +48,29 @@ def process_jbi_case_series(df: pd.DataFrame) -> pd.DataFrame:
 
     return df
 
-# -----------------------------
+
 # Map numeric to risk categories
-# -----------------------------
 def stars_to_rob(score):
     return "Low" if score == 1 else "High"
 
 def map_color(score, colors):
     return colors.get(stars_to_rob(score), "#BBBBBB")
 
-# -----------------------------
-# Helper: Make camel-case words readable
-# -----------------------------
+
+
 def make_readable(name: str) -> str:
-    # Add space before capital letters, except the first letter
     s1 = re.sub('([a-z])([A-Z])', r'\1 \2', name)
     return s1
 
-# -----------------------------
+
 # Professional JBI Case Series Plot
-# -----------------------------
 def professional_jbi_series_plot(df: pd.DataFrame, output_file: str, theme: str = "default"):
     theme_options = {
-        "default": {"Low":"#06923E","High":"#DC2525"},  # traffic-light green/red
+        "default": {"Low":"#06923E","High":"#DC2525"}, 
         "blue": {"Low":"#3a83b7","High":"#084582"},
         "gray": {"Low":"#7f7f7f","High":"#3b3b3b"},
-        "smiley": {"Low":"#06923E","High":"#DC2525"},  # updated colors
-        "smiley_blue": {"Low":"#3a83b7","High":"#084582"}  # updated colors
+        "smiley": {"Low":"#06923E","High":"#DC2525"},  
+        "smiley_blue": {"Low":"#3a83b7","High":"#084582"}  
     }
 
     if theme not in theme_options:
@@ -89,17 +84,15 @@ def professional_jbi_series_plot(df: pd.DataFrame, output_file: str, theme: str 
     ]
     readable_domains = [make_readable(d) for d in domains]
 
-    # -----------------------------
-    # Figure setup
-    # -----------------------------
+  
+
     fig_height = max(8, 0.9*len(df)+6)
     bar_height = max(6, len(domains)*0.8)
     fig = plt.figure(figsize=(22, fig_height + bar_height))
     gs = GridSpec(3, 1, height_ratios=[len(df)*0.9, 0.2, bar_height], hspace=0.4)
 
-    # -----------------------------
+
     # Traffic-Light / Smiley Plot
-    # -----------------------------
     ax0 = fig.add_subplot(gs[0])
     plot_df = df.melt(id_vars=["Author,Year"], value_vars=domains, var_name="Domain", value_name="Score")
     plot_df["DomainReadable"] = plot_df["Domain"].apply(make_readable)
@@ -152,15 +145,12 @@ def professional_jbi_series_plot(df: pd.DataFrame, output_file: str, theme: str 
     ax0.set_ylabel("")
     ax0.grid(axis='x', linestyle='--', alpha=0.25)
 
-    # -----------------------------
-    # Spacer
-    # -----------------------------
+
     ax_space = fig.add_subplot(gs[1])
     ax_space.axis('off')
 
-    # -----------------------------
+
     # Horizontal Stacked Bar Plot
-    # -----------------------------
     ax1 = fig.add_subplot(gs[2])
     stacked_df = pd.DataFrame()
     for domain in domains:
@@ -200,12 +190,10 @@ def professional_jbi_series_plot(df: pd.DataFrame, output_file: str, theme: str 
     for y in range(len(readable_domains)):
         ax1.axhline(y-0.5, color='lightgray', linewidth=0.8, zorder=0)
 
-    # Shift bar plot to the right
+
     plt.subplots_adjust(left=0.15, right=0.95)
 
-    # -----------------------------
-    # Legend (bold labels, top-right outside)
-    # -----------------------------
+
     legend_elements = [
         Line2D([0],[0], marker='s', color='w', label='Low Risk', markerfacecolor=colors["Low"], markersize=12),
         Line2D([0],[0], marker='s', color='w', label='High Risk', markerfacecolor=colors["High"], markersize=12)
@@ -221,13 +209,12 @@ def professional_jbi_series_plot(df: pd.DataFrame, output_file: str, theme: str 
         loc='upper left',
         bbox_to_anchor=(1.02,1)
     )
-    leg.get_title().set_fontweight('bold')   # bold legend title
+    leg.get_title().set_fontweight('bold')   
     for text in leg.get_texts():
-        text.set_fontweight('bold')          # bold legend labels
+        text.set_fontweight('bold')         
 
-    # -----------------------------
+
     # Save figure
-    # -----------------------------
     valid_ext = [".png",".pdf",".svg",".eps"]
     ext = os.path.splitext(output_file)[1].lower()
     if ext not in valid_ext:
@@ -236,9 +223,8 @@ def professional_jbi_series_plot(df: pd.DataFrame, output_file: str, theme: str 
     plt.close()
     print(f"✅ Professional JBI Case Series plot saved to {output_file}")
 
-# -----------------------------
+
 # Helper: Read CSV/Excel
-# -----------------------------
 def read_input_file(file_path: str) -> pd.DataFrame:
     ext = os.path.splitext(file_path)[1].lower()
     if ext == ".csv":
@@ -248,9 +234,8 @@ def read_input_file(file_path: str) -> pd.DataFrame:
     else:
         raise ValueError(f"Unsupported file format: {ext}")
 
-# -----------------------------
+
 # Main
-# -----------------------------
 if __name__ == "__main__":
     if len(sys.argv) not in [3,4]:
         print("Usage: python3 jbi_case_series_plot.py input_file output_file.(png|pdf|svg|eps) [theme]")

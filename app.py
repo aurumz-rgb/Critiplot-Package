@@ -14,14 +14,14 @@ from matplotlib.lines import Line2D
 from matplotlib.patches import Patch
 import re
 
-# Import functions from the provided Python files
+
 from nos_plot import process_detailed_nos, professional_plot, read_input_file as read_nos_file
 from grade_plot import process_grade, grade_plot, read_input_file as read_grade_file
 from robis_plot import process_robis, professional_robis_plot, read_input_file as read_robis_file
 from jbi_case_report_plot import process_jbi_case_report, professional_jbi_plot, read_input_file as read_jbi_case_file
 from jbi_case_series_plot import process_jbi_case_series, professional_jbi_series_plot, read_input_file as read_jbi_series_file
 
-# Set page configuration
+# page configuration
 st.set_page_config(
     page_title="Critiplot / Home",
     layout="wide",
@@ -39,7 +39,7 @@ hide_streamlit_style = """
 """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
-# Custom CSS 
+
 st.markdown("""
 <style>
     .stApp { background-color: #111111; }
@@ -150,7 +150,7 @@ add_background_png("./assets/background.png")
 st.markdown('<div class="top-padding-container">', unsafe_allow_html=True)
 display_logo_png_top_touch("./assets/logo.png", height=180)
 st.markdown('<div class="main-content">', unsafe_allow_html=True)
-st.markdown('<h1 class="centered-title">CritiPlot.</h1>', unsafe_allow_html=True)
+st.markdown('<h1 class="centered-title">Critiplot.</h1>', unsafe_allow_html=True)
 st.markdown('<p class="centered-subtitle">A Critical Appraisal Plot Visualiser for Risk of Bias Assessments</p>', unsafe_allow_html=True)
 st.markdown('</div>', unsafe_allow_html=True)
 st.markdown('<div class="lowered-section">', unsafe_allow_html=True)
@@ -427,7 +427,7 @@ To work correctly with **Critiplot**, your uploaded table should follow this str
 
 # Upload & process
 st.markdown("### Upload Your Data")
-st.markdown('<p style="color: #ffff; font-size: 1.1rem;">Please upload your file in <b>CSV</b> or <b>Excel (.xlsx)</b> format.</p>', unsafe_allow_html=True)
+st.markdown('<p style="color: #ffff; font-size: 1.1rem;">Please upload your file in <b>CSV</b> or <b>Excel (.xlsx)</b> format. <b>Maximum file size: 20MB per file.</b></p>', unsafe_allow_html=True)
 uploaded_file = st.file_uploader("Choose a CSV or Excel file", type=["csv","xls","xlsx"], key=f"file_uploader_{tool}")
 
 # Theme selection per tool
@@ -448,10 +448,26 @@ theme = st.selectbox(
     key=f"theme_{tool}"
 )
 
+# Initialize variables
+df = None
+tmp_file_path = None
+temp_dir = None
+
 if uploaded_file is not None:
     try:
+        # Validate file size (20MB limit)
+        if uploaded_file.size > 20 * 1024 * 1024:  
+            st.error("❌ File size exceeds the 20MB limit per file. Please upload a smaller file.")
+            st.stop()
+            
+        # Validate file format
+        file_ext = os.path.splitext(uploaded_file.name)[1].lower()
+        if file_ext not in ['.csv', '.xlsx', '.xls']:
+            st.error(f"❌ Invalid file format: '{file_ext}'. Please upload a CSV or Excel file.")
+            st.stop()
+            
         # Create a temporary file to pass to the imported functions
-        with tempfile.NamedTemporaryFile(delete=False, suffix=os.path.splitext(uploaded_file.name)[1]) as tmp_file:
+        with tempfile.NamedTemporaryFile(delete=False, suffix=file_ext) as tmp_file:
             tmp_file.write(uploaded_file.getvalue())
             tmp_file_path = tmp_file.name
         
@@ -494,7 +510,6 @@ if uploaded_file is not None:
         # Generate plots
         for out_ext, path in output_files.items():
             plot_function(df, path, theme=theme)
-            # Clean up immediately after generating each plot
             plt.close('all')  # Close all figures to free memory
 
         st.markdown("### Visualization Preview")
@@ -513,17 +528,26 @@ if uploaded_file is not None:
         download_html += "</div>"
         st.markdown(download_html, unsafe_allow_html=True)
         
-        # Clean up temporary files
-        os.unlink(tmp_file_path)
-        shutil.rmtree(temp_dir)
     except Exception as e:
-        st.error(f"❌ Error: {e}")
+        st.error(f"❌ Error processing file: {str(e)}")
+        st.markdown("Please ensure your file follows the template structure shown above.")
+    finally:
+        # Clean up temporary files
+        if tmp_file_path and os.path.exists(tmp_file_path):
+            os.unlink(tmp_file_path)
+        if temp_dir and os.path.exists(temp_dir):
+            shutil.rmtree(temp_dir)
+        # Clear dataframe from memory
+        df = None
+        # Force garbage collection
+        import gc
+        gc.collect()
 
 # Citation Section
 st.markdown("---")
 st.markdown("## Citation")
 
-# Predefined citation formats
+
 apa_citation = (
     "Sahu, V. (2025). Critiplot: Visualization Tool for Risk of Bias Assessments (v1.0.0). "
     "Zenodo. https://doi.org/10.5281/zenodo.17065215"
@@ -568,13 +592,13 @@ bib_data = """@misc{Sahu2025,
   doi={10.5281/zenodo.17065215}
 }"""
 
-# Dropdown to select style
+
 citation_style = st.selectbox(
     "Select citation style",
     ["APA", "Harvard", "MLA", "Chicago", "IEEE", "Vancouver"]
 )
 
-# Match style to text
+
 if citation_style == "APA":
     citation_text = apa_citation
 elif citation_style == "Harvard":

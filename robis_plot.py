@@ -5,9 +5,8 @@ import sys, os
 from matplotlib.gridspec import GridSpec
 from matplotlib.lines import Line2D
 
-# ------------------------------
+
 # Process ROBIS table
-# ------------------------------
 def process_robis(df: pd.DataFrame) -> pd.DataFrame:
     column_map = {
         "Study Eligibility Criteria": "Study Eligibility",
@@ -30,9 +29,8 @@ def process_robis(df: pd.DataFrame) -> pd.DataFrame:
         raise ValueError(f"Missing required columns: {missing}")
     return df
 
-# ------------------------------
+
 # Smiley symbol mapper
-# ------------------------------
 def risk_to_symbol(risk: str) -> str:
     if risk == "Low":
         return "☺"
@@ -42,9 +40,8 @@ def risk_to_symbol(risk: str) -> str:
         return "☹"
     return "?"
 
-# ------------------------------
-# Professional combined ROBIS plot
-# ------------------------------
+
+# Professional ROBIS plot
 def professional_robis_plot(df: pd.DataFrame, output_file: str, theme: str = "default"):
     theme_options = {
         "default": {"Low":"#06923E","Unclear":"#FFD93D","High":"#DC2525"},
@@ -64,16 +61,15 @@ def professional_robis_plot(df: pd.DataFrame, output_file: str, theme: str = "de
     fig = plt.figure(figsize=(18, fig_height), constrained_layout=True)
     gs = GridSpec(2, 1, height_ratios=[len(df)*0.7, 1.5], hspace=0.35, figure=fig)
 
-    # ------------------------------
+   
     # Traffic-Light / Smiley Plot
-    # ------------------------------
     ax0 = fig.add_subplot(gs[0])
     plot_df = df.melt(id_vars=["Review"], value_vars=domains, var_name="Domain", value_name="Risk")
 
     domain_pos = {d:i for i,d in enumerate(domains)}
     review_pos = {a:i for i,a in enumerate(df["Review"].tolist())}
 
-    # grid lines
+    
     for y in range(len(review_pos)+1):
         ax0.axhline(y-0.5, color='lightgray', linewidth=0.8, zorder=0)
 
@@ -116,9 +112,8 @@ def professional_robis_plot(df: pd.DataFrame, output_file: str, theme: str = "de
     ax0.set_ylabel("")
     ax0.grid(axis='x', linestyle='--', alpha=0.25)
 
-    # ------------------------------
+
     # Distribution Bar Plot
-    # ------------------------------
     ax1 = fig.add_subplot(gs[1])
     stacked_df = plot_df[["Domain","Risk"]].copy()
 
@@ -132,7 +127,7 @@ def professional_robis_plot(df: pd.DataFrame, output_file: str, theme: str = "de
                      color=colors[rob], edgecolor='black', label=rob)
             bottom = counts_percent[rob] if bottom is None else bottom + counts_percent[rob]
 
-    # add % labels
+   
     for i, domain in enumerate(counts_percent.index):
         left = 0
         for rob in ["High","Unclear","Low"]:
@@ -157,7 +152,6 @@ def professional_robis_plot(df: pd.DataFrame, output_file: str, theme: str = "de
     for y in range(len(domains)):
         ax1.axhline(y-0.5, color='lightgray', linewidth=0.8, zorder=0)
 
-    # Legend
     legend_elements = [
         Line2D([0],[0], marker='s', color='w', label='Low Risk', markerfacecolor=colors["Low"], markersize=20),
         Line2D([0],[0], marker='s', color='w', label='Unclear Risk', markerfacecolor=colors["Unclear"], markersize=20),
@@ -178,9 +172,8 @@ def professional_robis_plot(df: pd.DataFrame, output_file: str, theme: str = "de
     plt.close()
     print(f"✅ ROBIS professional plot saved to {output_file}")
 
-# ------------------------------
+
 # Helper: Read CSV or Excel
-# ------------------------------
 def read_input_file(file_path: str) -> pd.DataFrame:
     ext = os.path.splitext(file_path)[1].lower()
     if ext == ".csv":
@@ -190,9 +183,8 @@ def read_input_file(file_path: str) -> pd.DataFrame:
     else:
         raise ValueError(f"Unsupported file format: {ext}. Provide a CSV or Excel file.")
 
-# ------------------------------
+
 # Main
-# ------------------------------
 if __name__ == "__main__":
     if len(sys.argv) not in [3,4]:
         print("Usage: python3 robis_plot.py input_file output_file.(png|pdf|svg|eps) [theme]")

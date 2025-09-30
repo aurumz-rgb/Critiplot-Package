@@ -6,13 +6,12 @@ from matplotlib.gridspec import GridSpec
 from matplotlib.patches import Patch
 
 def process_grade(df: pd.DataFrame) -> pd.DataFrame:
-    # Map CSV columns to expected ones
     column_map = {
         "Other Considerations": "Publication Bias"
     }
     df = df.rename(columns=column_map)
 
-    # Fill missing / None values in Publication Bias with string "None"
+    
     if "Publication Bias" in df.columns:
         df["Publication Bias"] = df["Publication Bias"].fillna("None")
 
@@ -21,7 +20,7 @@ def process_grade(df: pd.DataFrame) -> pd.DataFrame:
     if missing:
         raise ValueError(f"Missing required columns: {missing}")
 
-    # Combine Outcome and Study for y-axis display
+    
     df["Outcome_Display"] = df["Outcome"] + " (" + df["Study"] + ")"
     return df
 
@@ -29,7 +28,7 @@ def map_color(certainty, colors):
     return colors.get(certainty, "grey")
 
 def grade_plot(df: pd.DataFrame, output_file: str, theme="default"):
-    # Define color themes
+    
     theme_options = {
         "green": {  
             "High":"#2E8B57",
@@ -73,7 +72,6 @@ def grade_plot(df: pd.DataFrame, output_file: str, theme="default"):
                     s=350, marker="s", legend=False, ax=ax0)
     outcome_pos = {out:i for i,out in enumerate(df["Outcome_Display"].tolist())}
 
-    # Horizontal lines
     for y in range(len(outcome_pos)+1):
         ax0.axhline(y-0.5, color='lightgray', linewidth=0.8, zorder=0)
 
@@ -95,7 +93,7 @@ def grade_plot(df: pd.DataFrame, output_file: str, theme="default"):
     plt.setp(leg.get_texts(), fontweight="bold")
     plt.setp(leg.get_title(), fontweight="bold")
 
-    # Summary bar plot
+   
     ax1 = fig.add_subplot(gs[1])
     counts = plot_df.groupby(["Domain","Certainty"]).size().unstack(fill_value=0)
     counts_percent = counts.div(counts.sum(axis=1), axis=0)*100
@@ -105,7 +103,7 @@ def grade_plot(df: pd.DataFrame, output_file: str, theme="default"):
         if cert in counts_percent.columns:
             ax1.barh(counts_percent.index, counts_percent[cert], left=bottom,
                      color=colors[cert], edgecolor="black", linewidth=1.5, label=cert)
-            # percentage labels
+            
             for i, val in enumerate(counts_percent[cert]):
                 if val > 0:
                     left_val = 0 if bottom is None else bottom.iloc[i]
@@ -117,11 +115,11 @@ def grade_plot(df: pd.DataFrame, output_file: str, theme="default"):
     ax1.set_ylabel("", fontsize=12, fontweight="bold")
     ax1.set_title("Distribution of GRADE Judgments by Domain", fontsize=18, fontweight="bold")
     
-    # Horizontal lines
+   
     for y in range(len(domains)):
         ax1.axhline(y-0.5, color='lightgray', linewidth=0.8, zorder=0)
 
-    # Bold axis tick labels
+    
     for label in ax1.get_xticklabels():
         label.set_fontweight("bold")
     for label in ax1.get_yticklabels():

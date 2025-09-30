@@ -14,6 +14,7 @@
 It produces **publication-ready traffic-light plots** and **stacked bar charts**, allowing researchers to summarize study quality clearly in systematic reviews and meta-analyses.
 
 🔗 **Interactive web app:** [critiplot.vercel.app](https://critiplot.vercel.app)
+
 📂 **Code & archive (Zenodo DOI):** [10.5281/zenodo.17065215](https://doi.org/10.5281/zenodo.17065215)
 
 ---

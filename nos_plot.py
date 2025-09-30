@@ -6,9 +6,9 @@ import os
 from matplotlib.gridspec import GridSpec
 from matplotlib.lines import Line2D
 
-# ------------------------------
+
 # Processing the detailed NOS table
-# ------------------------------
+
 def process_detailed_nos(df: pd.DataFrame) -> pd.DataFrame:
     required_columns = [
         "Author, Year",
@@ -41,9 +41,8 @@ def process_detailed_nos(df: pd.DataFrame) -> pd.DataFrame:
 
     return df
 
-# ------------------------------
+
 # Map stars to risk categories
-# ------------------------------
 def stars_to_rob(stars, domain):
     if domain == "Selection":
         return "Low" if stars >= 3 else "Moderate" if stars == 2 else "High"
@@ -57,9 +56,8 @@ def map_color(stars, domain, colors):
     risk = stars_to_rob(stars, domain)
     return colors.get(risk, "#BBBBBB")
 
-# ------------------------------
+
 # Professional combined plot
-# ------------------------------
 def professional_plot(df: pd.DataFrame, output_file: str, theme: str = "default"):
     theme_options = {
         "default": {"Low":"#06923E","Moderate":"#FFD93D","High":"#DC2525"},
@@ -79,9 +77,8 @@ def professional_plot(df: pd.DataFrame, output_file: str, theme: str = "default"
     fig = plt.figure(figsize=(18, fig_height))
     gs = GridSpec(2, 1, height_ratios=[len(df)*0.7, 1.5], hspace=0.4)
 
-    # ------------------------------
+   
     # Traffic-Light / Smiley Plot
-    # ------------------------------
     ax0 = fig.add_subplot(gs[0])
     plot_df = df.melt(id_vars=["Author, Year"], 
                       value_vars=domains,
@@ -136,9 +133,8 @@ def professional_plot(df: pd.DataFrame, output_file: str, theme: str = "default"
     ax0.set_ylabel("")
     ax0.grid(axis='x', linestyle='--', alpha=0.25)
 
-    # ------------------------------
+    
     # Weighted Horizontal Stacked Bar Plot
-    # ------------------------------
     ax1 = fig.add_subplot(gs[1])
     ax1.set_position([0.12, ax1.get_position().y0, 0.75, ax1.get_position().height])
 
@@ -180,9 +176,8 @@ def professional_plot(df: pd.DataFrame, output_file: str, theme: str = "default"
     for y in range(len(domains)):
         ax1.axhline(y-0.5, color='lightgray', linewidth=0.8, zorder=0)
 
-    # ------------------------------
-    # Clean Legend with Bold Labels and Smaller Color Boxes
-    # ------------------------------
+
+    # Clean Legend 
     legend_elements = [
         Line2D([0],[0], marker='s', color='w', label='Low Risk', markerfacecolor=colors["Low"], markersize=12),
         Line2D([0],[0], marker='s', color='w', label='Moderate Risk', markerfacecolor=colors["Moderate"], markersize=12),
@@ -201,11 +196,10 @@ def professional_plot(df: pd.DataFrame, output_file: str, theme: str = "default"
     )
     plt.setp(legend.get_title(), fontweight='bold')
     for text in legend.get_texts():
-        text.set_fontweight('bold')  # Make labels bold
+        text.set_fontweight('bold')  
 
-    # ------------------------------
+
     # Save figure
-    # ------------------------------
     valid_ext = [".png", ".pdf", ".svg", ".eps"]
     ext = os.path.splitext(output_file)[1].lower()
     if ext not in valid_ext:
@@ -214,9 +208,8 @@ def professional_plot(df: pd.DataFrame, output_file: str, theme: str = "default"
     plt.close()
     print(f"✅ Professional combined plot saved to {output_file}")
 
-# ------------------------------
+
 # Helper: Read CSV or Excel
-# ------------------------------
 def read_input_file(file_path: str) -> pd.DataFrame:
     ext = os.path.splitext(file_path)[1].lower()
     if ext in [".csv"]:
@@ -226,9 +219,8 @@ def read_input_file(file_path: str) -> pd.DataFrame:
     else:
         raise ValueError(f"Unsupported file format: {ext}. Provide a CSV or Excel file.")
 
-# ------------------------------
+
 # Main
-# ------------------------------
 if __name__ == "__main__":
     if len(sys.argv) not in [3,4]:
         print("Usage: python3 nos_plot.py input_file output_file.(png|pdf|svg|eps) [theme]")
