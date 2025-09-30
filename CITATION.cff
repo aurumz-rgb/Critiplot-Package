@@ -1,8 +1,8 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it using the following metadata."
-title: "NOS-TLPlot: Visualization Tool for Newcastle–Ottawa Scale in Meta-Analysis"
-version: "1.0.0"
-doi: "10.5281/zenodo.17065215"
+title: "Critiplot: A Critical Appraisal Plot Visualiser for Risk of Bias in Systematic Reviews and Meta-Analyses"
+version: "v1.0.1"
+doi: "https://doi.org/10.5281/zenodo.17236600"
 date-released: 2025-09-06
 authors:
   - family-names: "Sahu"
@@ -12,8 +12,8 @@ preferred-citation:
   authors:
     - family-names: "Sahu"
       given-names: "Vihaan"
-  title: "NOS-TLPlot: Visualization Tool for Newcastle–Ottawa Scale in Meta-Analysis"
-  version: "1.0.0"
-  doi: "10.5281/zenodo.17065215"
+  title: "Critiplot: A Critical Appraisal Plot Visualiser for Risk of Bias in Systematic Reviews and Meta-Analyses"
+  version: "v1.0.1"
+  doi: "https://doi.org/10.5281/zenodo.17236600"
   year: 2025
-  url: "https://doi.org/10.5281/zenodo.17065215"
+  url: "https://doi.org/10.5281/zenodo.17236600"

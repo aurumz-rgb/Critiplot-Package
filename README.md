@@ -2,7 +2,7 @@
 
 [![Python Version](https://img.shields.io/badge/python-3.10+-blue)](https://www.python.org/)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17065215.svg)](https://doi.org/10.5281/zenodo.17065215)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17236600.svg)](https://doi.org/10.5281/zenodo.17236600)
 
 **Critiplot** is an open-source Python tool and **interactive web app** for **visualizing risk-of-bias (RoB) assessments** across multiple evidence synthesis tools:
 
@@ -188,7 +188,7 @@ JBI Case Series
 If you use **Critiplot** in your work, please cite:
 
 **APA:**
-Sahu, V. (2025). *Critiplot: Visualization Tool for Risk of Bias Assessments (v1.0.0)*. Zenodo. [https://doi.org/10.5281/zenodo.17065215](https://doi.org/10.5281/zenodo.17065215)
+Sahu, V. (2025). *Critiplot: A Critical Appraisal Plot Visualiser for Risk of Bias in Systematic Reviews and Meta-Analyses (v1.0.1)*. (https://doi.org/10.5281/zenodo.17236600)
 
 **Other formats:** Harvard, MLA, Chicago, IEEE, Vancouver (see full web for options).
 
