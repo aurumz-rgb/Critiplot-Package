@@ -83,46 +83,79 @@ def professional_jbi_series_plot(df: pd.DataFrame, output_file: str, theme: str 
         "ClinicalInfo","Outcomes","SiteDescription","Statistics"
     ]
     readable_domains = [make_readable(d) for d in domains]
-
-  
+    # Add Overall RoB to the domains list for both plots
+    all_domains = domains + ["Overall RoB"]
+    all_readable_domains = readable_domains + ["Overall RoB"]
 
     fig_height = max(8, 0.9*len(df)+6)
-    bar_height = max(6, len(domains)*0.8)
+    bar_height = max(6, len(all_domains)*0.8)
     fig = plt.figure(figsize=(22, fig_height + bar_height))
     gs = GridSpec(3, 1, height_ratios=[len(df)*0.9, 0.2, bar_height], hspace=0.4)
 
 
     # Traffic-Light / Smiley Plot
     ax0 = fig.add_subplot(gs[0])
-    plot_df = df.melt(id_vars=["Author,Year"], value_vars=domains, var_name="Domain", value_name="Score")
-    plot_df["DomainReadable"] = plot_df["Domain"].apply(make_readable)
+    
+    # Create a combined dataframe for all domains including Overall RoB
+    plot_data = []
+    for _, row in df.iterrows():
+        for domain in domains:
+            plot_data.append({
+                "Author,Year": row["Author,Year"],
+                "Domain": domain,
+                "Score": row[domain],
+                "Type": "score"
+            })
+        # Add Overall RoB
+        plot_data.append({
+            "Author,Year": row["Author,Year"],
+            "Domain": "Overall RoB",
+            "Score": row["Overall RoB"],
+            "Type": "rob"
+        })
+    
+    plot_df = pd.DataFrame(plot_data)
+    plot_df["DomainReadable"] = plot_df["Domain"].apply(lambda x: make_readable(x) if x != "Overall RoB" else x)
+    
     author_pos = {a:i for i,a in enumerate(df["Author,Year"].tolist())}
 
     for y in range(len(author_pos)+1):
         ax0.axhline(y-0.5, color='lightgray', linewidth=0.8, zorder=0)
 
     if theme.startswith("smiley"):
-        def score_to_symbol(score):
+        def score_to_symbol(score, domain):
+            if domain == "Overall RoB":
+                return "☺" if score == "Low" else "☹"
             return "☺" if score == 1 else "☹"
-        plot_df["Symbol"] = plot_df["Score"].apply(score_to_symbol)
-        plot_df["Color"] = plot_df["Score"].apply(lambda x: colors[stars_to_rob(x)])
+        
+        plot_df["Symbol"] = plot_df.apply(lambda x: score_to_symbol(x["Score"], x["Domain"]), axis=1)
+        plot_df["Color"] = plot_df.apply(
+            lambda x: colors.get(x["Score"], "#BBBBBB") if x["Domain"] == "Overall RoB" 
+            else colors[stars_to_rob(x["Score"])], 
+            axis=1
+        )
+        
         for i, row in plot_df.iterrows():
             ax0.text(
-                readable_domains.index(row["DomainReadable"]),
+                all_readable_domains.index(row["DomainReadable"]),
                 author_pos[row["Author,Year"]],
                 row["Symbol"],
                 fontsize=24, ha='center', va='center',
                 color=row["Color"], fontweight='bold', zorder=1
             )
-        ax0.set_xticks(range(len(readable_domains)))
-        ax0.set_xticklabels(readable_domains, fontsize=14, fontweight="bold", rotation=45, ha='right')
+        ax0.set_xticks(range(len(all_readable_domains)))
+        ax0.set_xticklabels(all_readable_domains, fontsize=14, fontweight="bold", rotation=45, ha='right')
         ax0.set_yticks(list(author_pos.values()))
         ax0.set_yticklabels(list(author_pos.keys()), fontsize=12, fontweight="bold")
-        ax0.set_xlim(-0.5, len(readable_domains)-0.5)
+        ax0.set_xlim(-0.5, len(all_readable_domains)-0.5)
         ax0.set_ylim(-0.5, len(author_pos)-0.5)
         ax0.set_facecolor('white')
     else:
-        plot_df["Color"] = plot_df["Score"].apply(lambda x: map_color(x, colors))
+        plot_df["Color"] = plot_df.apply(
+            lambda x: colors.get(x["Score"], "#BBBBBB") if x["Domain"] == "Overall RoB" 
+            else map_color(x["Score"], colors), 
+            axis=1
+        )
         palette = {c:c for c in plot_df["Color"].unique()}
         sns.scatterplot(
             data=plot_df,
@@ -135,8 +168,8 @@ def professional_jbi_series_plot(df: pd.DataFrame, output_file: str, theme: str 
             legend=False,
             ax=ax0
         )
-        ax0.set_xticks(range(len(readable_domains)))
-        ax0.set_xticklabels(readable_domains, fontsize=14, fontweight="bold", rotation=45, ha='right')
+        ax0.set_xticks(range(len(all_readable_domains)))
+        ax0.set_xticklabels(all_readable_domains, fontsize=14, fontweight="bold", rotation=45, ha='right')
         ax0.set_yticks(list(author_pos.values()))
         ax0.set_yticklabels(list(author_pos.keys()), fontsize=12, fontweight="bold")
 
@@ -152,16 +185,40 @@ def professional_jbi_series_plot(df: pd.DataFrame, output_file: str, theme: str 
 
     # Horizontal Stacked Bar Plot
     ax1 = fig.add_subplot(gs[2])
-    stacked_df = pd.DataFrame()
-    for domain in domains:
-        temp = df[[domain]].copy()
-        temp["Domain"] = domain
-        temp["RoB"] = temp[domain].apply(stars_to_rob)
-        stacked_df = pd.concat([stacked_df, temp[["Domain","RoB"]]], axis=0)
-
-    stacked_df["DomainReadable"] = stacked_df["Domain"].apply(make_readable)
-    counts = stacked_df.groupby(["DomainReadable","RoB"]).size().unstack(fill_value=0)
+    
+    # Create a properly structured dataframe for the stacked bar plot
+    stacked_data = []
+    
+    # Add data for each domain
+    for _, row in df.iterrows():
+        for domain in domains:
+            risk = stars_to_rob(row[domain])
+            stacked_data.append({
+                "Domain": domain,
+                "RoB": risk
+            })
+        # Add Overall RoB
+        stacked_data.append({
+            "Domain": "Overall RoB",
+            "RoB": row["Overall RoB"]
+        })
+    
+    stacked_df = pd.DataFrame(stacked_data)
+    stacked_df["DomainReadable"] = stacked_df["Domain"].apply(lambda x: make_readable(x) if x != "Overall RoB" else x)
+    
+    # Count occurrences of each risk category per domain
+    counts = stacked_df.groupby(["DomainReadable", "RoB"]).size().unstack(fill_value=0)
+    
+    # Ensure all risk categories are present
+    for risk in ["Low", "High"]:
+        if risk not in counts.columns:
+            counts[risk] = 0
+    
+    # Calculate percentages
     counts_percent = counts.div(counts.sum(axis=1), axis=0)*100
+    
+    # Reorder the counts_percent to have the domains in the same order as the first plot
+    counts_percent = counts_percent.reindex(all_readable_domains)
 
     bottom = None
     for rob in ["High","Low"]:
@@ -183,11 +240,11 @@ def professional_jbi_series_plot(df: pd.DataFrame, output_file: str, theme: str 
     ax1.set_xticklabels([0,20,40,60,80,100], fontweight='bold')
     ax1.set_xlabel("Percentage of Studies (%)", fontsize=14, fontweight="bold")
     ax1.set_ylabel("")
-    ax1.set_yticks(range(len(readable_domains)))
-    ax1.set_yticklabels(readable_domains, fontsize=12, fontweight='bold', ha='right')
+    ax1.set_yticks(range(len(all_readable_domains)))
+    ax1.set_yticklabels(all_readable_domains, fontsize=12, fontweight='bold', ha='right')
     ax1.set_title("Distribution of Risk-of-Bias Judgments by Domain", fontsize=20, fontweight="bold")
     ax1.grid(axis='x', linestyle='--', alpha=0.25)
-    for y in range(len(readable_domains)):
+    for y in range(len(all_readable_domains)):
         ax1.axhline(y-0.5, color='lightgray', linewidth=0.8, zorder=0)
 
 

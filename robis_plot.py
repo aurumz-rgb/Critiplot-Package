@@ -41,6 +41,19 @@ def risk_to_symbol(risk: str) -> str:
     return "?"
 
 
+# Standardize risk categories
+def standardize_risk(risk):
+    risk = str(risk).strip().lower()
+    if risk in ['high', 'h']:
+        return 'High'
+    elif risk in ['unclear', 'uncertain', 'u']:
+        return 'Unclear'
+    elif risk in ['low', 'l']:
+        return 'Low'
+    else:
+        return 'Unclear'  # Default to Unclear for any unrecognized values
+
+
 # Professional ROBIS plot
 def professional_robis_plot(df: pd.DataFrame, output_file: str, theme: str = "default"):
     theme_options = {
@@ -55,7 +68,7 @@ def professional_robis_plot(df: pd.DataFrame, output_file: str, theme: str = "de
         raise ValueError(f"Theme {theme} not available. Choose from {list(theme_options.keys())}")
     colors = theme_options[theme]
 
-    domains = ["Study Eligibility","Identification & Selection","Data Collection","Synthesis & Findings"]
+    domains = ["Study Eligibility","Identification & Selection","Data Collection","Synthesis & Findings","Overall Risk"]
 
     fig_height = max(6, 0.7*len(df) + 5)
     fig = plt.figure(figsize=(18, fig_height), constrained_layout=True)
@@ -64,7 +77,20 @@ def professional_robis_plot(df: pd.DataFrame, output_file: str, theme: str = "de
    
     # Traffic-Light / Smiley Plot
     ax0 = fig.add_subplot(gs[0])
-    plot_df = df.melt(id_vars=["Review"], value_vars=domains, var_name="Domain", value_name="Risk")
+    
+    # Create a combined dataframe for all domains including Overall Risk
+    plot_data = []
+    for _, row in df.iterrows():
+        for domain in domains:
+            plot_data.append({
+                "Review": row["Review"],
+                "Domain": domain,
+                "Risk": row[domain]
+            })
+    
+    plot_df = pd.DataFrame(plot_data)
+    # Standardize risk categories in the plot data
+    plot_df["Risk"] = plot_df["Risk"].apply(standardize_risk)
 
     domain_pos = {d:i for i,d in enumerate(domains)}
     review_pos = {a:i for i,a in enumerate(df["Review"].tolist())}
@@ -115,22 +141,45 @@ def professional_robis_plot(df: pd.DataFrame, output_file: str, theme: str = "de
 
     # Distribution Bar Plot
     ax1 = fig.add_subplot(gs[1])
-    stacked_df = plot_df[["Domain","Risk"]].copy()
-
-    counts = stacked_df.groupby(["Domain","Risk"]).size().unstack(fill_value=0)
+    
+    # Create a properly structured dataframe for the stacked bar plot
+    stacked_data = []
+    
+    # Add data for each domain
+    for _, row in df.iterrows():
+        for domain in domains:
+            risk = standardize_risk(row[domain])
+            stacked_data.append({
+                "Domain": domain,
+                "Risk": risk
+            })
+    
+    stacked_df = pd.DataFrame(stacked_data)
+    
+    # Count occurrences of each risk category per domain
+    counts = stacked_df.groupby(["Domain", "Risk"]).size().unstack(fill_value=0)
+    
+    # Ensure all risk categories are present
+    for risk in ["Low", "Unclear", "High"]:
+        if risk not in counts.columns:
+            counts[risk] = 0
+    
+    # Calculate percentages
     counts_percent = counts.div(counts.sum(axis=1), axis=0) * 100
-
+    
+    # Reorder the counts_percent to have the domains in the same order as the first plot
+    counts_percent = counts_percent.reindex(domains)
+    
     bottom = None
-    for rob in ["High","Unclear","Low"]:
+    for rob in ["High", "Unclear", "Low"]:
         if rob in counts_percent.columns:
             ax1.barh(counts_percent.index, counts_percent[rob], left=bottom,
-                     color=colors[rob], edgecolor='black', label=rob)
+                     color=colors.get(rob, "#BBBBBB"), edgecolor='black', label=rob)
             bottom = counts_percent[rob] if bottom is None else bottom + counts_percent[rob]
 
-   
     for i, domain in enumerate(counts_percent.index):
         left = 0
-        for rob in ["High","Unclear","Low"]:
+        for rob in ["High", "Unclear", "Low"]:
             if rob in counts_percent.columns:
                 width = counts_percent.loc[domain, rob]
                 if width > 0:
@@ -140,10 +189,14 @@ def professional_robis_plot(df: pd.DataFrame, output_file: str, theme: str = "de
 
     ax1.set_xlim(0,100)
     ax1.set_xlabel("Percentage of Reviews (%)", fontsize=13, fontweight="bold")
-    ax1.set_ylabel("ROBIS Domain", fontsize=13, fontweight="bold")
+    ax1.set_ylabel("")
     ax1.set_title("Distribution of Risk-of-Bias Judgments by Domain", fontsize=18, fontweight="bold")
     ax1.grid(axis='x', linestyle='--', alpha=0.25)
-
+    
+    # Update the y-axis to use domains in the correct order
+    ax1.set_yticks(range(len(domains)))
+    ax1.set_yticklabels(domains, fontsize=12, fontweight="bold")
+    
     for label in ax1.get_yticklabels():
         label.set_fontweight("bold")
     for label in ax1.get_xticklabels():
@@ -153,9 +206,9 @@ def professional_robis_plot(df: pd.DataFrame, output_file: str, theme: str = "de
         ax1.axhline(y-0.5, color='lightgray', linewidth=0.8, zorder=0)
 
     legend_elements = [
-        Line2D([0],[0], marker='s', color='w', label='Low Risk', markerfacecolor=colors["Low"], markersize=20),
-        Line2D([0],[0], marker='s', color='w', label='Unclear Risk', markerfacecolor=colors["Unclear"], markersize=20),
-        Line2D([0],[0], marker='s', color='w', label='High Risk', markerfacecolor=colors["High"], markersize=20)
+        Line2D([0],[0], marker='s', color='w', label='Low Risk', markerfacecolor=colors.get("Low", "#BBBBBB"), markersize=20),
+        Line2D([0],[0], marker='s', color='w', label='Unclear Risk', markerfacecolor=colors.get("Unclear", "#BBBBBB"), markersize=20),
+        Line2D([0],[0], marker='s', color='w', label='High Risk', markerfacecolor=colors.get("High", "#BBBBBB"), markersize=20)
     ]
     legend = ax0.legend(handles=legend_elements, title="Domain Risk",
                         bbox_to_anchor=(1.15, 1), loc='upper left',

@@ -31,18 +31,18 @@ def grade_plot(df: pd.DataFrame, output_file: str, theme="default"):
     
     theme_options = {
         "green": {  
-            "High":"#2E8B57",
-            "Moderate":"#9ACD32",
-            "Low":"#4682B4",
-            "Very Low":"#696969",
-            "None":"#B0B0B0"
+            "High":"#276B37",
+            "Moderate":"#56AF29",
+            "Low":"#3376AD",
+            "Very Low":"#7D7D7D",
+            "None":"#B5B5B5"
         },
         "default": {  
-            "High":"#228B22",
-            "Moderate":"#9ACD32",
-            "Low":"#FFD700",
-            "Very Low":"#B22222",
-            "None":"#808080"
+            "High":"#3A896F",
+            "Moderate":"#AEBF2B",
+            "Low":"#FFBB00",
+            "Very Low":"#B42222",
+            "None":"#818181"
         },
         "blue": {  
             "High":"#006699",
@@ -63,7 +63,7 @@ def grade_plot(df: pd.DataFrame, output_file: str, theme="default"):
 
     # Traffic-light plot
     ax0 = fig.add_subplot(gs[0])
-    domains = ["Risk of Bias","Inconsistency","Indirectness","Imprecision","Publication Bias"]
+    domains = ["Risk of Bias","Inconsistency","Indirectness","Imprecision","Publication Bias", "Overall Certainty"]
     plot_df = df.melt(id_vars=["Outcome_Display"], value_vars=domains, var_name="Domain", value_name="Certainty")
     
     plot_df["Color"] = plot_df["Certainty"].apply(lambda x: map_color(x, colors))
@@ -95,7 +95,17 @@ def grade_plot(df: pd.DataFrame, output_file: str, theme="default"):
 
    
     ax1 = fig.add_subplot(gs[1])
-    counts = plot_df.groupby(["Domain","Certainty"]).size().unstack(fill_value=0)
+    
+    # Create a new DataFrame that includes Overall Certainty
+    bar_df = pd.concat([
+        plot_df,  # Original domains
+        pd.DataFrame({
+            "Domain": "Overall Certainty",
+            "Certainty": df["Overall Certainty"]
+        })
+    ], ignore_index=True)
+    
+    counts = bar_df.groupby(["Domain","Certainty"]).size().unstack(fill_value=0)
     counts_percent = counts.div(counts.sum(axis=1), axis=0)*100
     bottom=None
 
@@ -115,8 +125,12 @@ def grade_plot(df: pd.DataFrame, output_file: str, theme="default"):
     ax1.set_ylabel("", fontsize=12, fontweight="bold")
     ax1.set_title("Distribution of GRADE Judgments by Domain", fontsize=18, fontweight="bold")
     
+    # Update the y-axis to include Overall Certainty
+    all_domains = domains
+    ax1.set_yticks(range(len(all_domains)))
+    ax1.set_yticklabels(all_domains, fontsize=12, fontweight="bold")
    
-    for y in range(len(domains)):
+    for y in range(len(all_domains)):
         ax1.axhline(y-0.5, color='lightgray', linewidth=0.8, zorder=0)
 
     

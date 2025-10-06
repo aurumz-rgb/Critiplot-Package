@@ -60,10 +60,10 @@ def map_color(stars, domain, colors):
 # Professional combined plot
 def professional_plot(df: pd.DataFrame, output_file: str, theme: str = "default"):
     theme_options = {
-        "default": {"Low":"#06923E","Moderate":"#FFD93D","High":"#DC2525"},
+        "default": {"Low":"#2E7D32", "Moderate":"#F9A825", "High":"#C62828"},
         "blue": {"Low":"#3a83b7","Moderate":"#bdcfe7","High":"#084582"},
         "gray": {"Low":"#7f7f7f","Moderate":"#b0b0b0","High":"#3b3b3b"},
-        "smiley": {"Low":"#06923E","Moderate":"#FFD93D","High":"#DC2525"},
+        "smiley": {"Low":"#2E7D32", "Moderate":"#F9A825", "High":"#C62828"},
         "smiley_blue": {"Low":"#3a83b7","Moderate":"#7fb2e6","High":"#084582"}
     }
 
@@ -71,7 +71,7 @@ def professional_plot(df: pd.DataFrame, output_file: str, theme: str = "default"
         raise ValueError(f"Theme {theme} not available. Choose from {list(theme_options.keys())}")
     colors = theme_options[theme]
 
-    domains = ["Selection","Comparability","Outcome/Exposure"]
+    domains = ["Selection","Comparability","Outcome/Exposure","Overall RoB"]
 
     fig_height = max(6, 0.7*len(df) + 5)
     fig = plt.figure(figsize=(18, fig_height))
@@ -80,9 +80,26 @@ def professional_plot(df: pd.DataFrame, output_file: str, theme: str = "default"
    
     # Traffic-Light / Smiley Plot
     ax0 = fig.add_subplot(gs[0])
-    plot_df = df.melt(id_vars=["Author, Year"], 
-                      value_vars=domains,
-                      var_name="Domain", value_name="Stars")
+    
+    # Create a combined dataframe for all domains including Overall RoB
+    plot_data = []
+    for _, row in df.iterrows():
+        for domain in domains[:-1]:  # For the first three domains
+            plot_data.append({
+                "Author, Year": row["Author, Year"],
+                "Domain": domain,
+                "Value": row[domain],
+                "Type": "stars"
+            })
+        # Add Overall RoB
+        plot_data.append({
+            "Author, Year": row["Author, Year"],
+            "Domain": "Overall RoB",
+            "Value": row["Overall RoB"],
+            "Type": "rob"
+        })
+    
+    plot_df = pd.DataFrame(plot_data)
 
     domain_pos = {d:i for i,d in enumerate(domains)}
     author_pos = {a:i for i,a in enumerate(df["Author, Year"].tolist())}
@@ -92,10 +109,17 @@ def professional_plot(df: pd.DataFrame, output_file: str, theme: str = "default"
 
     if theme.startswith("smiley"):
         def stars_to_symbol(stars, domain):
+            if domain == "Overall RoB":
+                return {"Low":"☺","Moderate":"😐","High":"☹"}.get(stars,"?")
             risk = stars_to_rob(stars, domain)
             return {"Low":"☺","Moderate":"😐","High":"☹"}.get(risk,"?")
-        plot_df["Symbol"] = plot_df.apply(lambda x: stars_to_symbol(x["Stars"], x["Domain"]), axis=1)
-        plot_df["Color"] = plot_df.apply(lambda x: colors[stars_to_rob(x["Stars"], x["Domain"])], axis=1)
+        
+        plot_df["Symbol"] = plot_df.apply(lambda x: stars_to_symbol(x["Value"], x["Domain"]), axis=1)
+        plot_df["Color"] = plot_df.apply(
+            lambda x: colors.get(x["Value"], "#BBBBBB") if x["Domain"] == "Overall RoB" 
+            else colors[stars_to_rob(x["Value"], x["Domain"])], 
+            axis=1
+        )
 
         for i, row in plot_df.iterrows():
             ax0.text(domain_pos[row["Domain"]], author_pos[row["Author, Year"]],
@@ -110,7 +134,11 @@ def professional_plot(df: pd.DataFrame, output_file: str, theme: str = "default"
         ax0.set_facecolor('white')
 
     else:
-        plot_df["Color"] = plot_df.apply(lambda x: map_color(x["Stars"], x["Domain"], colors), axis=1)
+        plot_df["Color"] = plot_df.apply(
+            lambda x: colors.get(x["Value"], "#BBBBBB") if x["Domain"] == "Overall RoB" 
+            else map_color(x["Value"], x["Domain"], colors), 
+            axis=1
+        )
         palette = {c:c for c in plot_df["Color"].unique()}
         sns.scatterplot(
             data=plot_df,
@@ -138,25 +166,47 @@ def professional_plot(df: pd.DataFrame, output_file: str, theme: str = "default"
     ax1 = fig.add_subplot(gs[1])
     ax1.set_position([0.12, ax1.get_position().y0, 0.75, ax1.get_position().height])
 
-    stacked_df = pd.DataFrame()
-    for domain in domains:
-        temp = df[[domain]].copy()
-        temp["Domain"] = domain
-        temp["RoB"] = temp[domain].apply(lambda x: stars_to_rob(x, domain))
-        stacked_df = pd.concat([stacked_df, temp[["Domain","RoB"]]], axis=0)
-
-    counts = stacked_df.groupby(["Domain","RoB"]).size().unstack(fill_value=0)
+    # Create a properly structured dataframe for the stacked bar plot
+    stacked_data = []
+    for _, row in df.iterrows():
+        # Add data for each domain
+        for domain in domains[:-1]:  # For the first three domains
+            risk = stars_to_rob(row[domain], domain)
+            stacked_data.append({
+                "Domain": domain,
+                "RoB": risk
+            })
+        # Add Overall RoB
+        stacked_data.append({
+            "Domain": "Overall RoB",
+            "RoB": row["Overall RoB"]
+        })
+    
+    stacked_df = pd.DataFrame(stacked_data)
+    
+    # Count occurrences of each risk category per domain
+    counts = stacked_df.groupby(["Domain", "RoB"]).size().unstack(fill_value=0)
+    
+    # Ensure all risk categories are present
+    for risk in ["Low", "Moderate", "High"]:
+        if risk not in counts.columns:
+            counts[risk] = 0
+    
+    # Calculate percentages
     counts_percent = counts.div(counts.sum(axis=1), axis=0) * 100
-
+    
+    # Reorder domains to match the first plot
+    counts_percent = counts_percent.reindex(domains)
+    
     bottom = None
-    for rob in ["High","Moderate","Low"]:
+    for rob in ["High", "Moderate", "Low"]:
         if rob in counts_percent.columns:
             ax1.barh(counts_percent.index, counts_percent[rob], left=bottom, color=colors[rob], edgecolor='black', label=rob)
             bottom = counts_percent[rob] if bottom is None else bottom + counts_percent[rob]
 
     for i, domain in enumerate(counts_percent.index):
         left = 0
-        for rob in ["High","Moderate","Low"]:
+        for rob in ["High", "Moderate", "Low"]:
             if rob in counts_percent.columns:
                 width = counts_percent.loc[domain, rob]
                 if width > 0:

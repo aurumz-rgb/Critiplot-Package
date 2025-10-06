@@ -1,6 +1,7 @@
-# Critiplot
+![Preview](assets/preview1.png)
 
-[![Python Version](https://img.shields.io/badge/python-3.10+-blue)](https://www.python.org/)
+[![Python Version](https://img.shields.io/badge/python-3.11-blue)](https://www.python.org/)
+[![Streamlit Demo](https://img.shields.io/badge/Streamlit-Demo-orange)](https://critiplot.streamlit.app)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17236600.svg)](https://doi.org/10.5281/zenodo.17236600)
 
@@ -13,7 +14,25 @@
 
 It produces **publication-ready traffic-light plots** and **stacked bar charts**, allowing researchers to summarize study quality clearly in systematic reviews and meta-analyses.
 
+
+---
+
+
 🔗 **Interactive web app:** [critiplot.vercel.app](https://critiplot.vercel.app)
+
+- If you want to skip the Vercel user-interface, you can directly access Streamlit: [critiplot.streamlit.app](https://critiplot.streamlit.app)
+
+
+![Example Result11](example/Screenshot3.png)
+Vercel User-Inferface
+
+
+![Example Result22](example/Screenshot1.png)
+
+![Example Result33](example/Screenshot2.png)
+Streamlit User-Inferface
+
+
 
 📂 **Code & archive (Zenodo DOI):** [10.5281/zenodo.17065215](https://doi.org/10.5281/zenodo.17065215)
 
@@ -152,11 +171,6 @@ streamlit run app.py
 
 ---
 
-## Critiplot
-
-![Preview](assets/preview1.png)
-
----
 
 ## 📸 Example / Result
 Here’s an example traffic-light plot generated using Critiplot using different themes.
