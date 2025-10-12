@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: critiplot
-Version: 1.0.0
+Version: 1.0.1
 Summary: Visualize risk-of-bias in systematic reviews and meta-analyses
 Home-page: https://github.com/aurumz-rgb/Critiplot-Package
 Author: Vihaan Sahu
@@ -31,9 +31,8 @@ Dynamic: summary
 ![Preview](assets/preview1.png)
 
 [![Python Version](https://img.shields.io/badge/python-3.11%2B-blue)](https://www.python.org/)
-[![Streamlit Demo](https://img.shields.io/badge/Streamlit-Demo-orange)](https://critiplot.streamlit.app)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17236600.svg)](https://doi.org/10.5281/zenodo.17236600)
+
 
 **Critiplot** is an open-source Python package for **visualizing risk-of-bias (RoB) assessments** across multiple evidence synthesis tools:
 
@@ -42,8 +41,8 @@ Dynamic: summary
 * **GRADE certainty of evidence**
 * **ROBIS for systematic reviews**
 
-It produces **publication-ready traffic-light plots** and **stacked bar charts** for summarizing study quality.
-**Python Package**: https://pypi.org/project/critiplot/1.0.0/
+* It produces **publication-ready traffic-light plots** and **stacked bar charts** for summarizing study quality.
+* **Python Package**: https://pypi.org/project/critiplot/1.0.1/
 ---
 
 ## 📥 Installation

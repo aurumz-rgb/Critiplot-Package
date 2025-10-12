@@ -30,4 +30,21 @@ Python\
 \
 twine upload dist/*\
 \
-twine upload --verbose dist/*}
+twine upload --verbose dist/*\
+\
+\
+\
+twine upload --api-token YOUR_PYPI_TOKEN dist/*\
+\
+\
+\
+rm -rf dist/\
+\
+rm -rf critiplot.egg-info\
+\
+\
+python3 setup.py egg_info\
+\
+\
+python3 -m build\
+}

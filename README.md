@@ -12,7 +12,7 @@
 * **ROBIS for systematic reviews**
 
 * It produces **publication-ready traffic-light plots** and **stacked bar charts** for summarizing study quality.
-* **Python Package**: https://pypi.org/project/critiplot/1.0.0/
+* **Python Package**: https://pypi.org/project/critiplot/1.0.1/
 ---
 
 ## 📥 Installation
