@@ -1,21 +1,34 @@
+
 ![Preview](assets/preview1.png)
 
 [![Python Version](https://img.shields.io/badge/python-3.11%2B-blue)](https://www.python.org/)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-
 **Critiplot** is an open-source Python package for **visualizing risk-of-bias (RoB) assessments** across multiple evidence synthesis tools:
 
 * **Newcastle-Ottawa Scale (NOS)**
+
 * **JBI Critical Appraisal Checklists** (Case Report / Case Series)
+
 * **GRADE certainty of evidence**
+
 * **ROBIS for systematic reviews**
 
 * It produces **publication-ready traffic-light plots** and **stacked bar charts** for summarizing study quality.
-* **Python Package**: https://pypi.org/project/critiplot/1.0.1/
+
+* **Python Package**: [https://pypi.org/project/critiplot/1.0.1/](https://pypi.org/project/critiplot/1.0.1/)
+
 ---
 
 ## 📥 Installation
+
+You can install **Critiplot** directly from PyPI:
+
+```bash
+pip install critiplot
+```
+
+Or install locally from source:
 
 ```bash
 # Clone repository
@@ -38,6 +51,8 @@ pip install .
 Import the plotting functions from the package:
 
 ```python
+import critiplot
+
 from critiplot import plot_nos, plot_jbi_case_report, plot_jbi_case_series, plot_grade, plot_robis
 ```
 
@@ -68,7 +83,7 @@ plot_grade("tests/sample_grade.csv", "tests/output_grade.png", theme="green")
 
 ---
 
-##  Notes
+## Notes
 
 * Generates **traffic-light plots** and **weighted bar charts** using **Matplotlib / Seaborn**.
 * Input data must be a CSV or Excel file following each tool’s required columns.
@@ -78,33 +93,30 @@ plot_grade("tests/sample_grade.csv", "tests/output_grade.png", theme="green")
 
 ## Info
 
-- Web version also exists of this Package.
-- Github: https://github.com/aurumz-rgb/Critiplot-main
-- Web: https://critiplot.vercel.app
+* Web version also exists for this package.
+* GitHub: [https://github.com/aurumz-rgb/Critiplot-main](https://github.com/aurumz-rgb/Critiplot-main)
+* Web: [https://critiplot.vercel.app](https://critiplot.vercel.app)
 
 ---
 
 ## Example / Result
-Here’s an example traffic-light plot generated using Critiplot using different themes.
+
+Here’s an example traffic-light plot generated using Critiplot with different themes:
 
 ![Example Result](example/result.png)
-NOS
-
+**NOS**
 
 ![Example Result1](example/grade_result2.png)
-GRADE
-
+**GRADE**
 
 ![Example Result2](example/robis_result5.png)
-ROBIS
-
+**ROBIS**
 
 ![Example Result3](example/case_report3.png)
-JBI Case Report
-
+**JBI Case Report**
 
 ![Example Result4](example/series_plot1.png)
-JBI Case Series
+**JBI Case Series**
 
 ---
 
