@@ -1,4 +1,4 @@
-#!/Users/vihaan/NOS-TLPlot/venv/bin/python3.11
+#!/Users/vihaan/Critiplot-Package/venv/bin/python3.13
 import sys
 from numpy.f2py.f2py2e import main
 if __name__ == '__main__':

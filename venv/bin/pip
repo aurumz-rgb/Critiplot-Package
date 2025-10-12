@@ -1,4 +1,4 @@
-#!/Users/vihaan/NOS-TLPlot/venv/bin/python3.11
+#!/Users/vihaan/Critiplot-Package/venv/bin/python3.13
 # -*- coding: utf-8 -*-
 import re
 import sys
