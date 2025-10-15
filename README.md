@@ -82,6 +82,11 @@ plot_grade("tests/sample_grade.csv", "tests/output_grade.png", theme="green")
 > * Default theme is used if omitted.
 
 ---
+## Sample
+
+![Python Result](example/python.png)
+
+---
 
 ## Notes
 
