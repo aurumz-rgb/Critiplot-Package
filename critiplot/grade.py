@@ -18,9 +18,14 @@ def _process_grade(df: pd.DataFrame) -> pd.DataFrame:
     }
     df = df.rename(columns=column_map)
 
+    # Add original order column to preserve input order
+    df['Original_Order'] = range(len(df))
     
-    if "Publication Bias" in df.columns:
-        df["Publication Bias"] = df["Publication Bias"].fillna("None")
+    # Fill all domain columns with "None" for missing values
+    domain_columns = ["Risk of Bias","Inconsistency","Indirectness","Imprecision","Publication Bias","Overall Certainty"]
+    for col in domain_columns:
+        if col in df.columns:
+            df[col] = df[col].fillna("None")
 
     required_columns = ["Outcome","Study","Risk of Bias","Inconsistency","Indirectness","Imprecision","Publication Bias","Overall Certainty"]
     missing = [c for c in required_columns if c not in df.columns]
@@ -105,13 +110,39 @@ def _grade_plot(df: pd.DataFrame, output_file: str, theme="default"):
     # Traffic-light plot
     ax0 = fig.add_subplot(gs[0])
     domains = ["Risk of Bias","Inconsistency","Indirectness","Imprecision","Publication Bias", "Overall Certainty"]
-    plot_df = df.melt(id_vars=["Outcome_Display"], value_vars=domains, var_name="Domain", value_name="Certainty")
+    
+    # Manually build plot data to preserve order
+    plot_data = []
+    for _, row in df.iterrows():
+        for domain in domains:
+            plot_data.append({
+                "Outcome_Display": row["Outcome_Display"],
+                "Domain": domain,
+                "Certainty": row[domain],
+                "Original_Order": row["Original_Order"]
+            })
+    plot_df = pd.DataFrame(plot_data)
     
     plot_df["Color"] = plot_df["Certainty"].apply(lambda x: _map_color(x, colors))
+    
+    # Create ordered categorical variables
+    outcome_order = df.sort_values("Original_Order")["Outcome_Display"].tolist()
+    plot_df["Outcome_Display"] = pd.Categorical(
+        plot_df["Outcome_Display"], 
+        categories=outcome_order, 
+        ordered=True
+    )
+    plot_df["Domain"] = pd.Categorical(
+        plot_df["Domain"], 
+        categories=domains, 
+        ordered=True
+    )
+    
     sns.scatterplot(data=plot_df, x="Domain", y="Outcome_Display",
                     hue="Color", palette={c:c for c in plot_df["Color"].unique()},
                     s=350, marker="s", legend=False, ax=ax0)
-    outcome_pos = {out:i for i,out in enumerate(df["Outcome_Display"].tolist())}
+    
+    outcome_pos = {out:i for i,out in enumerate(outcome_order)}
 
     for y in range(len(outcome_pos)+1):
         ax0.axhline(y-0.5, color='lightgray', linewidth=0.8, zorder=0)
@@ -137,28 +168,58 @@ def _grade_plot(df: pd.DataFrame, output_file: str, theme="default"):
    
     ax1 = fig.add_subplot(gs[1])
     
-    # Create a new DataFrame that includes Overall Certainty
-    bar_df = pd.concat([
-        plot_df,  # Original domains
-        pd.DataFrame({
-            "Domain": "Overall Certainty",
-            "Certainty": df["Overall Certainty"]
-        })
-    ], ignore_index=True)
+    # Calculate counts using value_counts to include all certainty levels
+    counts_data = []
+    for domain in domains:
+        # Get value counts for each domain including all certainty levels
+        counts = df[domain].value_counts()
+        # Reindex to include all categories (including "None") with 0 for missing
+        counts = counts.reindex(["High", "Moderate", "Low", "Very Low", "None"], fill_value=0)
+        # Create dictionary with domain name and counts
+        domain_dict = counts.to_dict()
+        domain_dict["Domain"] = domain
+        counts_data.append(domain_dict)
     
-    counts = bar_df.groupby(["Domain","Certainty"]).size().unstack(fill_value=0)
-    counts_percent = counts.div(counts.sum(axis=1), axis=0)*100
-    bottom=None
-
+    counts_df = pd.DataFrame(counts_data)
+    counts_df.set_index("Domain", inplace=True)
+    
+    # Calculate percentages
+    counts_percent = counts_df.div(counts_df.sum(axis=1), axis=0) * 100
+    
+    # Create ordered categorical for domains
+    counts_percent.index = pd.Categorical(
+        counts_percent.index, 
+        categories=domains, 
+        ordered=True
+    )
+    counts_percent = counts_percent.sort_index()
+    
+    bottom = None
     for cert in ["Very Low","Low","Moderate","High","None"]:
         if cert in counts_percent.columns:
-            ax1.barh(counts_percent.index, counts_percent[cert], left=bottom,
-                     color=colors[cert], edgecolor="black", linewidth=1.5, label=cert)
+            ax1.barh(
+                range(len(domains)), 
+                counts_percent[cert], 
+                left=bottom,
+                color=colors[cert], 
+                edgecolor="black", 
+                linewidth=1.5, 
+                label=cert
+            )
             
             for i, val in enumerate(counts_percent[cert]):
                 if val > 0:
                     left_val = 0 if bottom is None else bottom.iloc[i]
-                    ax1.text(left_val + val/2, i, f"{val:.1f}%", va='center', ha='center', fontsize=10, color='black', fontweight="bold")
+                    ax1.text(
+                        left_val + val/2, 
+                        i, 
+                        f"{val:.1f}%", 
+                        va='center', 
+                        ha='center', 
+                        fontsize=10, 
+                        color='black', 
+                        fontweight="bold"
+                    )
             bottom = counts_percent[cert] if bottom is None else bottom + counts_percent[cert]
 
     ax1.set_xlim(0,100)
@@ -166,12 +227,10 @@ def _grade_plot(df: pd.DataFrame, output_file: str, theme="default"):
     ax1.set_ylabel("", fontsize=12, fontweight="bold")
     ax1.set_title("Distribution of GRADE Judgments by Domain", fontsize=18, fontweight="bold")
     
-    # Update the y-axis to include Overall Certainty
-    all_domains = domains
-    ax1.set_yticks(range(len(all_domains)))
-    ax1.set_yticklabels(all_domains, fontsize=12, fontweight="bold")
+    ax1.set_yticks(range(len(domains)))
+    ax1.set_yticklabels(domains, fontsize=12, fontweight="bold")
    
-    for y in range(len(all_domains)):
+    for y in range(len(domains)):
         ax1.axhline(y-0.5, color='lightgray', linewidth=0.8, zorder=0)
 
     
