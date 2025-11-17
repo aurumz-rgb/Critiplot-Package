@@ -18,10 +18,10 @@ def _process_grade(df: pd.DataFrame) -> pd.DataFrame:
     }
     df = df.rename(columns=column_map)
 
-    # Add original order column to preserve input order
+
     df['Original_Order'] = range(len(df))
     
-    # Fill all domain columns with "None" for missing values
+ 
     domain_columns = ["Risk of Bias","Inconsistency","Indirectness","Imprecision","Publication Bias","Overall Certainty"]
     for col in domain_columns:
         if col in df.columns:
@@ -107,11 +107,11 @@ def _grade_plot(df: pd.DataFrame, output_file: str, theme="default"):
     fig = plt.figure(figsize=(18, fig_height))
     gs = GridSpec(2,1, height_ratios=[len(df)*0.7, 1.5], hspace=0.4)
 
-    # Traffic-light plot
+ 
     ax0 = fig.add_subplot(gs[0])
     domains = ["Risk of Bias","Inconsistency","Indirectness","Imprecision","Publication Bias", "Overall Certainty"]
     
-    # Manually build plot data to preserve order
+
     plot_data = []
     for _, row in df.iterrows():
         for domain in domains:
@@ -125,7 +125,7 @@ def _grade_plot(df: pd.DataFrame, output_file: str, theme="default"):
     
     plot_df["Color"] = plot_df["Certainty"].apply(lambda x: _map_color(x, colors))
     
-    # Create ordered categorical variables
+
     outcome_order = df.sort_values("Original_Order")["Outcome_Display"].tolist()
     plot_df["Outcome_Display"] = pd.Categorical(
         plot_df["Outcome_Display"], 
@@ -168,14 +168,14 @@ def _grade_plot(df: pd.DataFrame, output_file: str, theme="default"):
    
     ax1 = fig.add_subplot(gs[1])
     
-    # Calculate counts using value_counts to include all certainty levels
+
     counts_data = []
     for domain in domains:
-        # Get value counts for each domain including all certainty levels
+        
         counts = df[domain].value_counts()
-        # Reindex to include all categories (including "None") with 0 for missing
+        
         counts = counts.reindex(["High", "Moderate", "Low", "Very Low", "None"], fill_value=0)
-        # Create dictionary with domain name and counts
+        
         domain_dict = counts.to_dict()
         domain_dict["Domain"] = domain
         counts_data.append(domain_dict)
@@ -183,10 +183,9 @@ def _grade_plot(df: pd.DataFrame, output_file: str, theme="default"):
     counts_df = pd.DataFrame(counts_data)
     counts_df.set_index("Domain", inplace=True)
     
-    # Calculate percentages
     counts_percent = counts_df.div(counts_df.sum(axis=1), axis=0) * 100
     
-    # Create ordered categorical for domains
+
     counts_percent.index = pd.Categorical(
         counts_percent.index, 
         categories=domains, 

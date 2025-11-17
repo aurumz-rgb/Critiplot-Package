@@ -7,7 +7,7 @@ from matplotlib.lines import Line2D
 import re
 
 
-# Processing JBI Case Series
+
 def process_jbi_case_series(df: pd.DataFrame) -> pd.DataFrame:
     if "Author,Year" not in df.columns:
         if "Author, Year" in df.columns:
@@ -48,7 +48,7 @@ def process_jbi_case_series(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-# Map numeric to risk categories
+
 def stars_to_rob(score):
     return "Low" if score == 1 else "High"
 
@@ -62,7 +62,7 @@ def make_readable(name: str) -> str:
     return s1
 
 
-# Professional JBI Case Series Plot
+
 def professional_jbi_series_plot(df: pd.DataFrame, output_file: str, theme: str = "default"):
     theme_options = {
         "default": {"Low":"#06923E","High":"#DC2525"}, 
@@ -82,7 +82,7 @@ def professional_jbi_series_plot(df: pd.DataFrame, output_file: str, theme: str 
         "ClinicalInfo","Outcomes","SiteDescription","Statistics"
     ]
     readable_domains = [make_readable(d) for d in domains]
-    # Add Overall RoB to the domains list for both plots
+
     all_domains = domains + ["Overall RoB"]
     all_readable_domains = readable_domains + ["Overall RoB"]
 
@@ -92,10 +92,10 @@ def professional_jbi_series_plot(df: pd.DataFrame, output_file: str, theme: str 
     gs = GridSpec(3, 1, height_ratios=[len(df)*0.9, 0.2, bar_height], hspace=0.4)
 
 
-    # Traffic-Light / Smiley Plot
+
     ax0 = fig.add_subplot(gs[0])
     
-    # Create a combined dataframe for all domains including Overall RoB
+ 
     plot_data = []
     for _, row in df.iterrows():
         for domain in domains:
@@ -105,7 +105,7 @@ def professional_jbi_series_plot(df: pd.DataFrame, output_file: str, theme: str 
                 "Score": row[domain],
                 "Type": "score"
             })
-        # Add Overall RoB
+
         plot_data.append({
             "Author,Year": row["Author,Year"],
             "Domain": "Overall RoB",
@@ -182,13 +182,13 @@ def professional_jbi_series_plot(df: pd.DataFrame, output_file: str, theme: str 
     ax_space.axis('off')
 
 
-    # Horizontal Stacked Bar Plot
+
     ax1 = fig.add_subplot(gs[2])
     
-    # Create a properly structured dataframe for the stacked bar plot
+
     stacked_data = []
     
-    # Add data for each domain
+
     for _, row in df.iterrows():
         for domain in domains:
             risk = stars_to_rob(row[domain])
@@ -196,7 +196,7 @@ def professional_jbi_series_plot(df: pd.DataFrame, output_file: str, theme: str 
                 "Domain": domain,
                 "RoB": risk
             })
-        # Add Overall RoB
+        
         stacked_data.append({
             "Domain": "Overall RoB",
             "RoB": row["Overall RoB"]
@@ -205,18 +205,18 @@ def professional_jbi_series_plot(df: pd.DataFrame, output_file: str, theme: str 
     stacked_df = pd.DataFrame(stacked_data)
     stacked_df["DomainReadable"] = stacked_df["Domain"].apply(lambda x: make_readable(x) if x != "Overall RoB" else x)
     
-    # Count occurrences of each risk category per domain
+
     counts = stacked_df.groupby(["DomainReadable", "RoB"]).size().unstack(fill_value=0)
     
-    # Ensure all risk categories are present
+
     for risk in ["Low", "High"]:
         if risk not in counts.columns:
             counts[risk] = 0
     
-    # Calculate percentages
+
     counts_percent = counts.div(counts.sum(axis=1), axis=0)*100
     
-    # Reorder the counts_percent to have the domains in the same order as the first plot
+
     counts_percent = counts_percent.reindex(all_readable_domains)
 
     bottom = None
@@ -270,7 +270,7 @@ def professional_jbi_series_plot(df: pd.DataFrame, output_file: str, theme: str 
         text.set_fontweight('bold')         
 
 
-    # Save figure
+
     valid_ext = [".png",".pdf",".svg",".eps"]
     ext = os.path.splitext(output_file)[1].lower()
     if ext not in valid_ext:
@@ -280,7 +280,7 @@ def professional_jbi_series_plot(df: pd.DataFrame, output_file: str, theme: str 
     print(f"✅ Professional JBI Case Series plot saved to {output_file}")
 
 
-# Helper: Read CSV/Excel
+
 def read_input_file(file_path: str) -> pd.DataFrame:
     ext = os.path.splitext(file_path)[1].lower()
     if ext == ".csv":
@@ -291,7 +291,7 @@ def read_input_file(file_path: str) -> pd.DataFrame:
         raise ValueError(f"Unsupported file format: {ext}")
 
 
-# Public function
+
 def plot_jbi_case_series(input_file: str, output_file: str, theme: str = "default"):
     """
     Generate a JBI Case Series plot from input data.

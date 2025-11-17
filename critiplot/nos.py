@@ -6,7 +6,7 @@ from matplotlib.gridspec import GridSpec
 from matplotlib.lines import Line2D
 
 
-# Processing the detailed NOS table
+
 def process_detailed_nos(df: pd.DataFrame) -> pd.DataFrame:
     required_columns = [
         "Author, Year",
@@ -40,7 +40,7 @@ def process_detailed_nos(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-# Map stars to risk categories
+
 def stars_to_rob(stars, domain):
     if domain == "Selection":
         return "Low" if stars >= 3 else "Moderate" if stars == 2 else "High"
@@ -55,7 +55,7 @@ def map_color(stars, domain, colors):
     return colors.get(risk, "#BBBBBB")
 
 
-# Professional combined plot
+
 def professional_plot(df: pd.DataFrame, output_file: str, theme: str = "default"):
     theme_options = {
         "default": {"Low":"#2E7D32", "Moderate":"#F9A825", "High":"#C62828"},
@@ -76,20 +76,20 @@ def professional_plot(df: pd.DataFrame, output_file: str, theme: str = "default"
     gs = GridSpec(2, 1, height_ratios=[len(df)*0.7, 1.5], hspace=0.4)
 
    
-    # Traffic-Light / Smiley Plot
+
     ax0 = fig.add_subplot(gs[0])
     
-    # Create a combined dataframe for all domains including Overall RoB
+    
     plot_data = []
     for _, row in df.iterrows():
-        for domain in domains[:-1]:  # For the first three domains
+        for domain in domains[:-1]: 
             plot_data.append({
                 "Author, Year": row["Author, Year"],
                 "Domain": domain,
                 "Value": row[domain],
                 "Type": "stars"
             })
-        # Add Overall RoB
+
         plot_data.append({
             "Author, Year": row["Author, Year"],
             "Domain": "Overall RoB",
@@ -160,21 +160,21 @@ def professional_plot(df: pd.DataFrame, output_file: str, theme: str = "default"
     ax0.grid(axis='x', linestyle='--', alpha=0.25)
 
     
-    # Weighted Horizontal Stacked Bar Plot
+
     ax1 = fig.add_subplot(gs[1])
     ax1.set_position([0.12, ax1.get_position().y0, 0.75, ax1.get_position().height])
 
-    # Create a properly structured dataframe for the stacked bar plot
+   
     stacked_data = []
     for _, row in df.iterrows():
-        # Add data for each domain
-        for domain in domains[:-1]:  # For the first three domains
+       
+        for domain in domains[:-1]: 
             risk = stars_to_rob(row[domain], domain)
             stacked_data.append({
                 "Domain": domain,
                 "RoB": risk
             })
-        # Add Overall RoB
+
         stacked_data.append({
             "Domain": "Overall RoB",
             "RoB": row["Overall RoB"]
@@ -182,18 +182,18 @@ def professional_plot(df: pd.DataFrame, output_file: str, theme: str = "default"
     
     stacked_df = pd.DataFrame(stacked_data)
     
-    # Count occurrences of each risk category per domain
+
     counts = stacked_df.groupby(["Domain", "RoB"]).size().unstack(fill_value=0)
     
-    # Ensure all risk categories are present
+
     for risk in ["Low", "Moderate", "High"]:
         if risk not in counts.columns:
             counts[risk] = 0
     
-    # Calculate percentages
+
     counts_percent = counts.div(counts.sum(axis=1), axis=0) * 100
     
-    # Reorder domains to match the first plot
+
     counts_percent = counts_percent.reindex(domains)
     
     bottom = None
@@ -225,7 +225,6 @@ def professional_plot(df: pd.DataFrame, output_file: str, theme: str = "default"
         ax1.axhline(y-0.5, color='lightgray', linewidth=0.8, zorder=0)
 
 
-    # Clean Legend 
     legend_elements = [
         Line2D([0],[0], marker='s', color='w', label='Low Risk', markerfacecolor=colors["Low"], markersize=12),
         Line2D([0],[0], marker='s', color='w', label='Moderate Risk', markerfacecolor=colors["Moderate"], markersize=12),
@@ -247,7 +246,7 @@ def professional_plot(df: pd.DataFrame, output_file: str, theme: str = "default"
         text.set_fontweight('bold')  
 
 
-    # Save figure
+
     valid_ext = [".png", ".pdf", ".svg", ".eps"]
     ext = os.path.splitext(output_file)[1].lower()
     if ext not in valid_ext:
@@ -257,7 +256,7 @@ def professional_plot(df: pd.DataFrame, output_file: str, theme: str = "default"
     print(f"✅ Professional combined plot saved to {output_file}")
 
 
-# Helper: Read CSV or Excel
+
 def read_input_file(file_path: str) -> pd.DataFrame:
     ext = os.path.splitext(file_path)[1].lower()
     if ext in [".csv"]:
@@ -268,7 +267,7 @@ def read_input_file(file_path: str) -> pd.DataFrame:
         raise ValueError(f"Unsupported file format: {ext}. Provide a CSV or Excel file.")
 
 
-# Public function
+
 def plot_nos(input_file: str, output_file: str, theme: str = "default"):
     """
     Generate a NOS traffic-light plot from input data.

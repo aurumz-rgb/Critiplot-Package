@@ -6,7 +6,7 @@ from matplotlib.gridspec import GridSpec
 from matplotlib.lines import Line2D
 
 
-# Process ROBIS table
+
 def process_robis(df: pd.DataFrame) -> pd.DataFrame:
     column_map = {
         "Study Eligibility Criteria": "Study Eligibility",
@@ -30,7 +30,7 @@ def process_robis(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-# Smiley symbol mapper
+
 def risk_to_symbol(risk: str) -> str:
     if risk == "Low":
         return "☺"
@@ -41,7 +41,7 @@ def risk_to_symbol(risk: str) -> str:
     return "?"
 
 
-# Standardize risk categories
+
 def standardize_risk(risk):
     risk = str(risk).strip().lower()
     if risk in ['high', 'h']:
@@ -51,10 +51,10 @@ def standardize_risk(risk):
     elif risk in ['low', 'l']:
         return 'Low'
     else:
-        return 'Unclear'  # Default to Unclear for any unrecognized values
+        return 'Unclear' 
 
 
-# Helper: Read CSV or Excel
+
 def read_input_file(file_path: str) -> pd.DataFrame:
     ext = os.path.splitext(file_path)[1].lower()
     if ext == ".csv":
@@ -65,7 +65,7 @@ def read_input_file(file_path: str) -> pd.DataFrame:
         raise ValueError(f"Unsupported file format: {ext}. Provide a CSV or Excel file.")
 
 
-# Professional ROBIS plot
+
 def professional_robis_plot(df: pd.DataFrame, output_file: str, theme: str = "default"):
     theme_options = {
         "default": {"Low":"#06923E","Unclear":"#FFD93D","High":"#DC2525"},
@@ -86,10 +86,10 @@ def professional_robis_plot(df: pd.DataFrame, output_file: str, theme: str = "de
     gs = GridSpec(2, 1, height_ratios=[len(df)*0.7, 1.5], hspace=0.35, figure=fig)
 
    
-    # Traffic-Light / Smiley Plot
+
     ax0 = fig.add_subplot(gs[0])
     
-    # Create a combined dataframe for all domains including Overall Risk
+   
     plot_data = []
     for _, row in df.iterrows():
         for domain in domains:
@@ -100,7 +100,7 @@ def professional_robis_plot(df: pd.DataFrame, output_file: str, theme: str = "de
             })
     
     plot_df = pd.DataFrame(plot_data)
-    # Standardize risk categories in the plot data
+    
     plot_df["Risk"] = plot_df["Risk"].apply(standardize_risk)
 
     domain_pos = {d:i for i,d in enumerate(domains)}
@@ -150,13 +150,13 @@ def professional_robis_plot(df: pd.DataFrame, output_file: str, theme: str = "de
     ax0.grid(axis='x', linestyle='--', alpha=0.25)
 
 
-    # Distribution Bar Plot
+
     ax1 = fig.add_subplot(gs[1])
     
-    # Create a properly structured dataframe for the stacked bar plot
+   
     stacked_data = []
     
-    # Add data for each domain
+    
     for _, row in df.iterrows():
         for domain in domains:
             risk = standardize_risk(row[domain])
@@ -167,18 +167,18 @@ def professional_robis_plot(df: pd.DataFrame, output_file: str, theme: str = "de
     
     stacked_df = pd.DataFrame(stacked_data)
     
-    # Count occurrences of each risk category per domain
+    
     counts = stacked_df.groupby(["Domain", "Risk"]).size().unstack(fill_value=0)
     
-    # Ensure all risk categories are present
+   
     for risk in ["Low", "Unclear", "High"]:
         if risk not in counts.columns:
             counts[risk] = 0
     
-    # Calculate percentages
+
     counts_percent = counts.div(counts.sum(axis=1), axis=0) * 100
     
-    # Reorder the counts_percent to have the domains in the same order as the first plot
+
     counts_percent = counts_percent.reindex(domains)
     
     bottom = None
@@ -204,7 +204,7 @@ def professional_robis_plot(df: pd.DataFrame, output_file: str, theme: str = "de
     ax1.set_title("Distribution of Risk-of-Bias Judgments by Domain", fontsize=18, fontweight="bold")
     ax1.grid(axis='x', linestyle='--', alpha=0.25)
     
-    # Update the y-axis to use domains in the correct order
+
     ax1.set_yticks(range(len(domains)))
     ax1.set_yticklabels(domains, fontsize=12, fontweight="bold")
     
@@ -227,7 +227,7 @@ def professional_robis_plot(df: pd.DataFrame, output_file: str, theme: str = "de
     plt.setp(legend.get_texts(), fontweight="bold")
     plt.setp(legend.get_title(), fontweight="bold")
 
-    # Save file
+
     valid_ext = [".png", ".pdf", ".svg", ".eps"]
     ext = os.path.splitext(output_file)[1].lower()
     if ext not in valid_ext:
@@ -237,7 +237,7 @@ def professional_robis_plot(df: pd.DataFrame, output_file: str, theme: str = "de
     print(f"✅ ROBIS professional plot saved to {output_file}")
 
 
-# Public function for the module
+
 def plot_robis(input_file: str, output_file: str, theme: str = "default"):
     """
     Generate a ROBIS (Risk Of Bias In Systematic reviews) plot from input data.
