@@ -1,7 +1,7 @@
 
 ![Preview](assets/preview1.png)
 
-[![Python Version](https://img.shields.io/badge/python-3.11%2B-blue)](https://www.python.org/)
+[![Python Version](https://img.shields.io/badge/python-3.11+%2B-blue)](https://www.python.org/)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17338087.svg)](https://doi.org/10.5281/zenodo.17338087)
 [![PyPI Downloads](https://static.pepy.tech/personalized-badge/critiplot?period=total&units=INTERNATIONAL_SYSTEM&left_color=GREY&right_color=RED&left_text=downloads)](https://pepy.tech/projects/critiplot)
@@ -21,6 +21,14 @@
 * It produces **publication-ready traffic-light plots** and **stacked bar charts** for summarizing study quality.
 
 * **Python Package**: [https://pypi.org/project/critiplot/1.0.2/](https://pypi.org/project/critiplot/1.0.2/)
+
+---
+
+
+## Data & Template
+
+* Please strictly follow the **Data & Template** _(available as .csv & excel format)_ as mentioned in the main Critiplot Web: [critiplot.vercel.app](https://critiplot.vercel.app)
+
 
 ---
 
@@ -46,7 +54,7 @@ pip install -r requirements.txt
 pip install .
 ```
 
-> Requires **Python 3.11**, **Matplotlib**, **Seaborn**, and **Pandas**.
+> Requires **Python 3.11+**, **Matplotlib**, **Seaborn**, and **Pandas**.
 
 ---
 
