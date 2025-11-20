@@ -32,9 +32,9 @@
 
 ---
 
-## 📥 Installation
+## 📥 Installation 
 
-You can install **Critiplot** directly from PyPI:
+You can install **Critiplot** directly from PyPI _(works the best with Python 3.13 version)_:
 
 ```bash
 pip install critiplot
@@ -54,7 +54,7 @@ pip install -r requirements.txt
 pip install .
 ```
 
-> Requires **Python 3.11+**, **Matplotlib**, **Seaborn**, and **Pandas**.
+> Requires **Python 3.11+** _(Recommended: use Python 3.13 version)_, **Matplotlib**, **Seaborn**, and **Pandas**.
 
 ---
 
