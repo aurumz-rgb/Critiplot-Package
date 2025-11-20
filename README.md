@@ -78,10 +78,10 @@ plot_nos("tests/sample_nos.csv", "tests/output_nos.png", theme="blue")
 plot_robis("tests/sample_robis.csv", "tests/output_robis.png", theme="smiley")
 
 # JBI Case Report
-plot_jbi_case_report("tests/sample_case_report.csv", "tests/output_case_report.png", theme="gray")
+plot_jbi_case_report("tests/sample_jbi_case_report.csv", "tests/output_case_report.png", theme="gray")
 
 # JBI Case Series
-plot_jbi_case_series("tests/sample_case_series.csv", "tests/output_case_series.png", theme="smiley_blue")
+plot_jbi_case_series("tests/sample_jbi_case_series.csv", "tests/output_case_series.png", theme="smiley_blue")
 
 # GRADE
 plot_grade("tests/sample_grade.csv", "tests/output_grade.png", theme="green")
