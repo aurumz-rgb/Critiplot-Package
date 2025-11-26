@@ -98,6 +98,8 @@ plot_grade("tests/sample_grade.csv", "tests/output_grade.png", theme="green")
 
 ![Python Result](example/python.png)
 
+Use Critiplot Python package validation repository if you want: [https://github.com/critiplot/Critiplot-Validation](https://github.com/critiplot/Critiplot-Validation)
+
 ---
 
 ## Notes
