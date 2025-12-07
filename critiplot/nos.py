@@ -60,7 +60,7 @@ def professional_plot(df: pd.DataFrame, output_file: str, theme: str = "default"
     theme_options = {
         "default": {"Low":"#2E7D32", "Moderate":"#F9A825", "High":"#C62828"},
         "blue": {"Low":"#3a83b7","Moderate":"#bdcfe7","High":"#084582"},
-        "gray": {"Low":"#7f7f7f","Moderate":"#b0b0b0","High":"#3b3b3b"},
+        "gray": {"Low":"#63BF93FF","Moderate":"#5B6D80","High":"#FF884DFF"},
         "smiley": {"Low":"#2E7D32", "Moderate":"#F9A825", "High":"#C62828"},
         "smiley_blue": {"Low":"#3a83b7","Moderate":"#7fb2e6","High":"#084582"}
     }
@@ -71,18 +71,33 @@ def professional_plot(df: pd.DataFrame, output_file: str, theme: str = "default"
 
     domains = ["Selection","Comparability","Outcome/Exposure","Overall RoB"]
 
-    fig_height = max(6, 0.7*len(df) + 5)
-    fig = plt.figure(figsize=(18, fig_height))
-    gs = GridSpec(2, 1, height_ratios=[len(df)*0.7, 1.5], hspace=0.4)
-
-   
-
-    ax0 = fig.add_subplot(gs[0])
+    # Fixed parameters (this fixes the major gap issue, very important)
+    n_studies = len(df)
+    per_study_height = 0.5  
+    min_first_plot_height = 4.0  
+    second_plot_height = 1.7  
+    gap_between_plots = 1.7
+    top_margin = 1.0  
+    bottom_margin = 0.5 
     
+  
+    first_plot_height = max(min_first_plot_height, n_studies * per_study_height)
+    total_height = first_plot_height + gap_between_plots + second_plot_height + top_margin + bottom_margin
+    
+    fig = plt.figure(figsize=(18, total_height))
+    
+    ax0_bottom = (bottom_margin + second_plot_height + gap_between_plots) / total_height
+    ax0_height = first_plot_height / total_height
+    
+    ax1_bottom = bottom_margin / total_height
+    ax1_height = second_plot_height / total_height
+    
+    ax0 = fig.add_axes([0.12, ax0_bottom, 0.75, ax0_height])
+    ax1 = fig.add_axes([0.12, ax1_bottom, 0.75, ax1_height])
     
     plot_data = []
     for _, row in df.iterrows():
-        for domain in domains[:-1]: 
+        for domain in domains[:-1]:  
             plot_data.append({
                 "Author, Year": row["Author, Year"],
                 "Domain": domain,
@@ -102,8 +117,13 @@ def professional_plot(df: pd.DataFrame, output_file: str, theme: str = "default"
     domain_pos = {d:i for i,d in enumerate(domains)}
     author_pos = {a:i for i,a in enumerate(df["Author, Year"].tolist())}
 
-    for y in range(len(author_pos)+1):
-        ax0.axhline(y-0.5, color='lightgray', linewidth=0.8, zorder=0)
+
+    for y in range(len(author_pos)):
+        ax0.axhline(y, color='lightgray', linewidth=0.8, zorder=0)
+    
+    # Add lines at the top and bottom
+    ax0.axhline(-0.5, color='lightgray', linewidth=0.8, zorder=0)
+    ax0.axhline(len(author_pos)-0.5, color='lightgray', linewidth=0.8, zorder=0)
 
     if theme.startswith("smiley"):
         def stars_to_symbol(stars, domain):
@@ -121,7 +141,7 @@ def professional_plot(df: pd.DataFrame, output_file: str, theme: str = "default"
 
         for i, row in plot_df.iterrows():
             ax0.text(domain_pos[row["Domain"]], author_pos[row["Author, Year"]],
-                     row["Symbol"], fontsize=24, ha='center', va='center', color=row["Color"], fontweight='bold', zorder=1)
+                     row["Symbol"], fontsize=30, ha='center', va='center', color=row["Color"], fontweight='bold', zorder=1)
 
         ax0.set_xticks(range(len(domains)))
         ax0.set_xticklabels(domains, fontsize=14, fontweight="bold")
@@ -144,7 +164,7 @@ def professional_plot(df: pd.DataFrame, output_file: str, theme: str = "default"
             y="Author, Year",
             hue="Color",
             palette=palette,
-            s=350,
+            s=800,
             marker="s",
             legend=False,
             ax=ax0
@@ -154,21 +174,17 @@ def professional_plot(df: pd.DataFrame, output_file: str, theme: str = "default"
         ax0.set_yticks(list(author_pos.values()))
         ax0.set_yticklabels(list(author_pos.keys()), fontsize=11, fontweight="bold", rotation=0)
 
+
+    ax0.set_ylim(-0.5, len(author_pos)-0.5)
+    
     ax0.set_title("NOS Traffic-Light Plot", fontsize=18, fontweight="bold")
     ax0.set_xlabel("")
     ax0.set_ylabel("")
     ax0.grid(axis='x', linestyle='--', alpha=0.25)
 
-    
-
-    ax1 = fig.add_subplot(gs[1])
-    ax1.set_position([0.12, ax1.get_position().y0, 0.75, ax1.get_position().height])
-
-   
     stacked_data = []
     for _, row in df.iterrows():
-       
-        for domain in domains[:-1]: 
+        for domain in domains[:-1]:  
             risk = stars_to_rob(row[domain], domain)
             stacked_data.append({
                 "Domain": domain,
@@ -182,19 +198,17 @@ def professional_plot(df: pd.DataFrame, output_file: str, theme: str = "default"
     
     stacked_df = pd.DataFrame(stacked_data)
     
-
     counts = stacked_df.groupby(["Domain", "RoB"]).size().unstack(fill_value=0)
     
-
     for risk in ["Low", "Moderate", "High"]:
         if risk not in counts.columns:
             counts[risk] = 0
     
-
     counts_percent = counts.div(counts.sum(axis=1), axis=0) * 100
-    
 
-    counts_percent = counts_percent.reindex(domains)
+   
+    inverted_domains = domains[::-1]
+    counts_percent = counts_percent.reindex(inverted_domains)
     
     bottom = None
     for rob in ["High", "Moderate", "Low"]:
@@ -214,16 +228,15 @@ def professional_plot(df: pd.DataFrame, output_file: str, theme: str = "default"
     ax1.set_xlim(0,100)
     ax1.set_xticks([0,20,40,60,80,100])
     ax1.set_xticklabels([0,20,40,60,80,100], fontsize=12, fontweight='bold')
-    ax1.set_yticks(range(len(domains)))
-    ax1.set_yticklabels(domains, fontsize=12, fontweight='bold')
+    ax1.set_yticks(range(len(inverted_domains)))
+    ax1.set_yticklabels(inverted_domains, fontsize=12, fontweight='bold')
 
     ax1.set_xlabel("Percentage of Studies (%)", fontsize=14, fontweight='bold')
     ax1.set_ylabel("")
     ax1.set_title("Distribution of Risk-of-Bias Judgments by Domain", fontsize=18, fontweight='bold')
     ax1.grid(axis='x', linestyle='--', alpha=0.25)
-    for y in range(len(domains)):
+    for y in range(len(inverted_domains)):
         ax1.axhline(y-0.5, color='lightgray', linewidth=0.8, zorder=0)
-
 
     legend_elements = [
         Line2D([0],[0], marker='s', color='w', label='Low Risk', markerfacecolor=colors["Low"], markersize=12),
@@ -243,9 +256,7 @@ def professional_plot(df: pd.DataFrame, output_file: str, theme: str = "default"
     )
     plt.setp(legend.get_title(), fontweight='bold')
     for text in legend.get_texts():
-        text.set_fontweight('bold')  
-
-
+        text.set_fontweight('bold')
 
     valid_ext = [".png", ".pdf", ".svg", ".eps"]
     ext = os.path.splitext(output_file)[1].lower()

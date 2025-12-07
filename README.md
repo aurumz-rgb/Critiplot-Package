@@ -20,7 +20,7 @@
 
 * It produces **publication-ready traffic-light plots** and **stacked bar charts** for summarizing study quality.
 
-* **Python Package**: [https://pypi.org/project/critiplot/1.0.2/](https://pypi.org/project/critiplot/1.0.2/)
+* **Python Package**: [https://pypi.org/project/critiplot/1.1.0/](https://pypi.org/project/critiplot/1.1.0/)
 
 ---
 
@@ -96,7 +96,9 @@ plot_grade("tests/sample_grade.csv", "tests/output_grade.png", theme="green")
 ---
 ## Sample
 
-![Python Result](example/python.png)
+![Python Result](example/sample.png)
+
+![Python Result2](example/sample2.png)
 
 Use Critiplot Python package validation repository if you want: [https://github.com/critiplot/Critiplot-Validation](https://github.com/critiplot/Critiplot-Validation)
 
@@ -126,7 +128,7 @@ If you use this software, please cite it using the following metadata:
 cff-version: 1.2.0
 message: "If you use this software, please cite it using the following metadata."
 title: "Critiplot: A Python based Package for risk-of-bias data visualization in Systematic Reviews & Meta-Analysis"
-version: "v1.0.2"
+version: "v1.1.0"
 doi: "10.5281/zenodo.17338087"
 date-released: 2025-09-06
 authors:
@@ -138,7 +140,7 @@ preferred-citation:
     - family-names: "Sahu"
       given-names: "Vihaan"
   title: "Critiplot: A Python based Package for risk-of-bias data visualization in Systematic Reviews & Meta-Analysis"
-  version: "v1.0.2"
+  version: "v1.1.0"
   doi: "10.5281/zenodo.17338087"
   year: 2025
   url: "https://doi.org/10.5281/zenodo.17338087"
@@ -146,7 +148,7 @@ preferred-citation:
 
 Or cite as:
 
-> **Sahu, V. (2025). *Critiplot: A Python based Package for risk-of-bias data visualization in Systematic Reviews & Meta-Analysis* (v1.0.2). Zenodo. [https://doi.org/10.5281/zenodo.17338087](https://doi.org/10.5281/zenodo.17338087)**
+> **Sahu, V. (2025). *Critiplot: A Python based Package for risk-of-bias data visualization in Systematic Reviews & Meta-Analysis* (v1.1.0). Zenodo. [https://doi.org/10.5281/zenodo.17338087](https://doi.org/10.5281/zenodo.17338087)**
 
 
 ---
