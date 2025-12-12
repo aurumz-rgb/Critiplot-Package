@@ -199,7 +199,6 @@ def _grade_plot(df: pd.DataFrame, output_file: str, theme="default"):
     
     bar_df = pd.DataFrame(bar_data)
     
-   
     inverted_domains = domains[::-1]
     bar_df['Domain'] = pd.Categorical(bar_df['Domain'], categories=inverted_domains, ordered=True)
     
@@ -221,11 +220,13 @@ def _grade_plot(df: pd.DataFrame, output_file: str, theme="default"):
                 label=cert
             )
             
+           
+            bottom_array = bottom.values
             for i, domain in enumerate(inverted_domains):
                 val = cert_series[domain]
                 if val > 0: 
                     ax1.text(
-                        bottom[i] + val/2, 
+                        bottom_array[i] + val/2, 
                         i, 
                         f"{val:.1f}%", 
                         va='center', 

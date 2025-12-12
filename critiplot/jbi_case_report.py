@@ -215,7 +215,7 @@ def professional_jbi_plot(df: pd.DataFrame, output_file: str, theme: str = "defa
             if rob in counts_percent.columns:
                 width = counts_percent.loc[domain, rob]
                 if width > 0:
-                    ax1.text(left + width/2, i, f"{width:.0f}%", ha='centre', va='centre', 
+                    ax1.text(left + width/2, i, f"{width:.0f}%", ha='center', va='center', 
                              color='black', fontsize=14, fontweight='bold')
                     left += width
 

@@ -18,9 +18,11 @@
 
 * **ROBIS for systematic reviews**
 
+* **MMAT (Mixed Methods Appraisal Tool)**
+
 * It produces **publication-ready traffic-light plots** and **stacked bar charts** for summarizing study quality.
 
-* **Python Package**: [https://pypi.org/project/critiplot/1.1.0/](https://pypi.org/project/critiplot/1.1.0/)
+* **Python Package**: [https://pypi.org/project/critiplot/1.2.0/](https://pypi.org/project/critiplot/1.2.0/)
 
 ---
 
@@ -28,7 +30,6 @@
 ## Data & Template
 
 * Please strictly follow the **Data & Template** _(available as .csv & excel format)_ as mentioned in the main Critiplot Web: [critiplot.vercel.app](https://critiplot.vercel.app)
-
 
 ---
 
@@ -65,7 +66,7 @@ Import the plotting functions from the package:
 ```python
 import critiplot
 
-from critiplot import plot_nos, plot_jbi_case_report, plot_jbi_case_series, plot_grade, plot_robis
+from critiplot import plot_nos, plot_jbi_case_report, plot_jbi_case_series, plot_grade, plot_robis, plot_mmat
 ```
 
 **Example:**
@@ -85,24 +86,51 @@ plot_jbi_case_series("tests/sample_jbi_case_series.csv", "tests/output_case_seri
 
 # GRADE
 plot_grade("tests/sample_grade.csv", "tests/output_grade.png", theme="green")
+
+# MMAT
+plot_mmat("tests/sample_mmat.csv", "tests/output_mmat.png", theme="default")
 ```
 
 > **Theme options:**
 >
-> * NOS, JBI Case Report / Case Series, ROBIS: `"default"`, `"blue"`, `"gray"`, `"smiley"`, `"smiley_blue"`
+> * NOS, JBI Case Report / Case Series, ROBIS, MMAT: `"default"`, `"blue"`, `"gray"`, `"smiley"`, `"smiley_blue"`
 > * GRADE: `"default"`, `"green"`, `"blue"`
 > * Default theme is used if omitted.
 
----
-## Sample
-
 ![Python Result](example/sample.png)
 
-![Python Result2](example/sample2.png)
+---
 
-Use Critiplot Python package validation repository if you want: [https://github.com/critiplot/Critiplot-Validation](https://github.com/critiplot/Critiplot-Validation)
+
+### 📂 Example Datasets
+
+For reproducibility and reference, example `.csv` and `.xlsx` files are included in the repository:
+
+| Tool / Assessment Type           | Example Files                                                   |
+| -------------------------------- | --------------------------------------------------------------- |
+| **Newcastle–Ottawa Scale (NOS)** | `tests/sample_nos.csv`, `tests/sample_nos.xlsx`                 |
+| **ROBIS**                        | `tests/sample_robis.csv`, `tests/sample_robis.xlsx`             |
+| **GRADE**                        | `tests/sample_grade.csv`, `tests/sample_grade.xlsx`             |
+| **JBI Case Report**              | `tests/sample_case_report.csv`, `tests/sample_case_report.xlsx` |
+| **JBI Case Series**              | `tests/sample_case_series.csv`, `tests/sample_case_series.xlsx` |
+| **MMAT**                         | `tests/sample_mmat.csv`, `tests/sample_mmat.xlsx`               |
+
+You can **open these files directly** to view the expected column format and data layout for each plotting function.
+
 
 ---
+
+## 🧩 Reproducibility 
+
+All results in the paper can be reproduced by following the method as mentioned in **Usage**
+
+**I would personally recommend testing using Python 3.13**
+
+You can also use Critiplot Python package validation repository (Was done for v1.0.3, newer version visualizes an additional plot i.e. MMAT) 
+You can chekc it out here: [https://github.com/critiplot/Critiplot-Validation](https://github.com/critiplot/Critiplot-Validation)
+
+---
+
 
 ## Notes
 
@@ -117,6 +145,7 @@ Use Critiplot Python package validation repository if you want: [https://github.
 * Web version also exists for this package.
 * GitHub: [https://github.com/aurumz-rgb/Critiplot-main](https://github.com/aurumz-rgb/Critiplot-main)
 * Web: [https://critiplot.vercel.app](https://critiplot.vercel.app)
+* Please Check the **INSTALLATION.md** for more detailed installation details.
 
 ---
 
@@ -128,7 +157,7 @@ If you use this software, please cite it using the following metadata:
 cff-version: 1.2.0
 message: "If you use this software, please cite it using the following metadata."
 title: "Critiplot: A Python based Package for risk-of-bias data visualization in Systematic Reviews & Meta-Analysis"
-version: "v1.1.0"
+version: "v1.2.0"
 doi: "10.5281/zenodo.17338087"
 date-released: 2025-09-06
 authors:
@@ -140,7 +169,7 @@ preferred-citation:
     - family-names: "Sahu"
       given-names: "Vihaan"
   title: "Critiplot: A Python based Package for risk-of-bias data visualization in Systematic Reviews & Meta-Analysis"
-  version: "v1.1.0"
+  version: "v1.2.0"
   doi: "10.5281/zenodo.17338087"
   year: 2025
   url: "https://doi.org/10.5281/zenodo.17338087"
@@ -148,7 +177,7 @@ preferred-citation:
 
 Or cite as:
 
-> **Sahu, V. (2025). *Critiplot: A Python based Package for risk-of-bias data visualization in Systematic Reviews & Meta-Analysis* (v1.1.0). Zenodo. [https://doi.org/10.5281/zenodo.17338087](https://doi.org/10.5281/zenodo.17338087)**
+> **Sahu, V. (2025). *Critiplot: A Python based Package for risk-of-bias data visualization in Systematic Reviews & Meta-Analysis* (v1.2.0). Zenodo. [https://doi.org/10.5281/zenodo.17338087](https://doi.org/10.5281/zenodo.17338087)**
 
 
 ---
@@ -165,38 +194,46 @@ Apache 2.0 © 2025 Vihaan Sahu
 Here’s an example traffic-light plot generated using Critiplot with different themes:
 
 ![Example Result](example/result.png)
-![Example Result11](example/result1.png)
 ![Example Result22](example/result2.png)
-![Example Result33](example/nos_result.png)
-![Example Result44](example/nos_result2.png)
 **NOS**
 
 
 ![Example Result1](example/grade_result2.png)
-![Example Result12](example/grade_result1.png)
 ![Example Result13](example/grade_result3.png)
 **GRADE**
 
 
-![Example Result2](example/robis_result5.png)
 ![Example Result21](example/robis_result4.png)
 ![Example Result23](example/robis_result3.png)
-![Example Result29](example/robis_result2.png)
-![Example Result26](example/robis_result1.png)
 **ROBIS**
 
 
-![Example Result3](example/case_report3.png)
+
 ![Example Result34](example/case_report.png)
-![Example Result36](example/case_report1.png)
 ![Example Result37](example/case_report2.png)
-![Example Result38](example/case_report4.png)
 **JBI Case Report**
 
 
 ![Example Result4](example/series_plot1.png)
-![Example Result41](example/series_plot.png)
-![Example Result42](example/series_plot2.png)
 ![Example Result43](example/series_plot4.png)
-![Example Result46](example/series_plot5.png)
 **JBI Case Series**
+
+
+![Example Result990](example/MMAT2.png)
+**MMAT Descriptive Plot**
+
+
+![Example Result9909](example/MMAT7.png)
+**MMAT Non-Randomized Plot**
+
+
+![Example Result99099](example/MMAT8.png)
+**MMAT Mixed-Methods Plot**
+
+
+![Example Result990999](example/MMAT9.png)
+**MMAT Randomized Plot**
+
+
+![Example Result9909990](example/MMAT6.png)
+**MMAT Qualitative Plot**

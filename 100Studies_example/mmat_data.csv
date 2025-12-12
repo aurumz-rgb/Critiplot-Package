@@ -1,0 +1,105 @@
+Author_Year,Study_Category,Appropriate randomization,Groups comparable at baseline,Complete outcome data,Outcome assessors blinded,Adherence to intervention,Overall_Rating
+"Smith, 2019",Qualitative,Yes,Yes,Yes,Yes,Yes,High
+"Johnson, 2020",Qualitative,Yes,No,Yes,"Can't tell",Yes,Moderate
+"Adams, 2021",Qualitative,Yes,Yes,Yes,No,Yes,Moderate
+"Lee, 2022",Qualitative,No,Yes,"Can't tell",Yes,Yes,Low
+"Green, 2023",Qualitative,Yes,Yes,Yes,Yes,Yes,High
+"Cooper, 2024",Qualitative,Yes,No,Yes,No,Yes,Moderate
+"Turner, 2018",Qualitative,Yes,Yes,"Can't tell","Can't tell",Yes,Moderate
+"Evans, 2020",Qualitative,No,No,Yes,Yes,Yes,Low
+"Mitchell, 2019",Qualitative,Yes,Yes,Yes,Yes,Yes,High
+"Reed, 2022",Qualitative,Yes,Yes,"Can't tell",Yes,Yes,Moderate
+"Bailey, 2021",Qualitative,No,Yes,Yes,No,Yes,Low
+"Bell, 2017",Qualitative,Yes,Yes,Yes,"Can't tell",Yes,Moderate
+"Price, 2018",Qualitative,Yes,No,"Can't tell","Can't tell",Yes,Low
+"Cox, 2023",Qualitative,Yes,Yes,Yes,Yes,Yes,High
+"Foster, 2024",Qualitative,No,No,"Can't tell",No,Yes,Low
+"Morgan, 2019",Qualitative,Yes,Yes,Yes,Yes,Yes,High
+"Gray, 2020",Qualitative,Yes,No,Yes,No,Yes,Moderate
+"Perry, 2021",Qualitative,Yes,Yes,"Can't tell",Yes,Yes,Moderate
+"Wood, 2023",Qualitative,No,Yes,Yes,"Can't tell",Yes,Low
+"Barnes, 2024",Qualitative,Yes,Yes,Yes,Yes,Yes,High
+
+"Williams, 2019",Randomized,Yes,Yes,Yes,No,Yes,Moderate
+"Brown, 2025",Randomized,Yes,Yes,No,"Can't tell",Yes,Low
+"Clark, 2020",Randomized,Yes,Yes,Yes,Yes,Yes,High
+"Hall, 2021",Randomized,No,Yes,"Can't tell",Yes,Yes,Low
+"Allen, 2022",Randomized,Yes,No,Yes,"Can't tell",Yes,Moderate
+"Harris, 2023",Randomized,Yes,Yes,Yes,Yes,Yes,High
+"Young, 2018",Randomized,No,Yes,Yes,"Can't tell",Yes,Low
+"King, 2019",Randomized,Yes,Yes,"Can't tell",Yes,Yes,Moderate
+"Scott, 2020",Randomized,Yes,No,Yes,No,Yes,Moderate
+"Turner, 2022",Randomized,Yes,Yes,Yes,Yes,Yes,High
+"Cook, 2023",Randomized,No,Yes,Yes,"Can't tell",Yes,Low
+"Rogers, 2024",Randomized,Yes,Yes,Yes,No,Yes,Moderate
+"Peterson, 2021",Randomized,Yes,No,"Can't tell","Can't tell",Yes,Low
+"Stewart, 2019",Randomized,Yes,Yes,Yes,Yes,Yes,High
+"Jenkins, 2020",Randomized,No,No,Yes,"Can't tell",Yes,Low
+"Wallace, 2022",Randomized,Yes,Yes,Yes,No,Yes,Moderate
+"Chapman, 2023",Randomized,Yes,No,Yes,"Can't tell",Yes,Moderate
+"Grant, 2024",Randomized,Yes,Yes,Yes,Yes,Yes,High
+"Burns, 2018",Randomized,No,Yes,"Can't tell",No,Yes,Low
+"Porter, 2021",Randomized,Yes,Yes,Yes,Yes,Yes,High
+
+"Davis, 2019",Non-randomized,Yes,Yes,Yes,No,Yes,Moderate
+"Miller, 2025",Non-randomized,No,Yes,"Can't tell",Yes,Yes,Low
+"Taylor, 2020",Non-randomized,Yes,No,Yes,"Can't tell",Yes,Moderate
+"White, 2021",Non-randomized,Yes,Yes,Yes,No,Yes,Moderate
+"Martin, 2022",Non-randomized,No,No,Yes,"Can't tell",Yes,Low
+"Thompson, 2023",Non-randomized,Yes,Yes,"Can't tell",Yes,Yes,Moderate
+"Garcia, 2018",Non-randomized,Yes,Yes,Yes,Yes,Yes,High
+"Andrews, 2020",Non-randomized,No,Yes,Yes,"Can't tell",Yes,Low
+"Patterson, 2019",Non-randomized,Yes,No,Yes,No,Yes,Low
+"Ross, 2022",Non-randomized,Yes,Yes,Yes,Yes,Yes,High
+"Barnett, 2023",Non-randomized,No,Yes,"Can't tell",Yes,Yes,Low
+"Fisher, 2021",Non-randomized,Yes,Yes,Yes,No,Yes,Moderate
+"Larson, 2024",Non-randomized,Yes,No,Yes,"Can't tell",Yes,Moderate
+"Harper, 2020",Non-randomized,No,Yes,Yes,Yes,Yes,Moderate
+"Murray, 2021",Non-randomized,Yes,Yes,Yes,Yes,Yes,High
+"Freeman, 2022",Non-randomized,No,No,"Can't tell","Can't tell",Yes,Low
+"Bell, 2018",Non-randomized,Yes,Yes,Yes,No,Yes,Moderate
+"Stone, 2019",Non-randomized,Yes,No,Yes,Yes,Yes,Moderate
+"Watkins, 2024",Non-randomized,No,Yes,Yes,No,Yes,Low
+"Ford, 2023",Non-randomized,Yes,Yes,Yes,Yes,Yes,High
+
+"Wilson, 2019",Descriptive,Yes,Yes,Yes,Yes,Yes,High
+"Moore, 2025",Descriptive,Yes,No,Yes,"Can't tell",Yes,Moderate
+"Kelly, 2020",Descriptive,Yes,Yes,"Can't tell",Yes,Yes,Moderate
+"Rivera, 2021",Descriptive,No,Yes,Yes,"Can't tell",Yes,Low
+"Henderson, 2022",Descriptive,Yes,Yes,Yes,No,Yes,Moderate
+"Howard, 2023",Descriptive,Yes,Yes,Yes,Yes,Yes,High
+"Lane, 2018",Descriptive,No,No,"Can't tell",No,Yes,Low
+"Knight, 2019",Descriptive,Yes,No,Yes,"Can't tell",Yes,Moderate
+"Elliott, 2020",Descriptive,Yes,Yes,Yes,Yes,Yes,High
+"Bates, 2021",Descriptive,No,Yes,Yes,No,Yes,Low
+"Franklin, 2022",Descriptive,Yes,Yes,"Can't tell","Can't tell",Yes,Moderate
+"Holt, 2023",Descriptive,Yes,No,Yes,No,Yes,Moderate
+"Palmer, 2024",Descriptive,Yes,Yes,Yes,Yes,Yes,High
+"Medina, 2020",Descriptive,No,Yes,Yes,"Can't tell",Yes,Low
+"Fleming, 2021",Descriptive,Yes,Yes,Yes,Yes,Yes,High
+"Sanders, 2022",Descriptive,Yes,No,"Can't tell",No,Yes,Low
+"Swanson, 2023",Descriptive,Yes,Yes,Yes,"Can't tell",Yes,Moderate
+"Page, 2019",Descriptive,No,No,Yes,Yes,Yes,Low
+"Barker, 2024",Descriptive,Yes,Yes,Yes,Yes,Yes,High
+"Chapman, 2025",Descriptive,Yes,No,Yes,No,Yes,Moderate
+
+"Taylor, 2019",Mixed Methods,Yes,Yes,Yes,Yes,Yes,High
+"Anderson, 2025",Mixed Methods,Yes,No,Yes,"Can't tell",Yes,Moderate
+"Ross, 2020",Mixed Methods,Yes,Yes,Yes,No,Yes,Moderate
+"Ramirez, 2021",Mixed Methods,No,Yes,"Can't tell",Yes,Yes,Low
+"Shaw, 2022",Mixed Methods,Yes,No,Yes,Yes,Yes,Moderate
+"Hunt, 2023",Mixed Methods,Yes,Yes,Yes,Yes,Yes,High
+"Daniels, 2018",Mixed Methods,No,Yes,"Can't tell","Can't tell",Yes,Low
+"Reeves, 2019",Mixed Methods,Yes,No,Yes,No,Yes,Moderate
+"Carter, 2020",Mixed Methods,Yes,Yes,Yes,Yes,Yes,High
+"Harvey, 2021",Mixed Methods,No,Yes,Yes,"Can't tell",Yes,Moderate
+"Walsh, 2022",Mixed Methods,Yes,Yes,Yes,No,Yes,Moderate
+"Summers, 2023",Mixed Methods,Yes,No,Yes,"Can't tell",Yes,Moderate
+"Logan, 2024",Mixed Methods,Yes,Yes,Yes,Yes,Yes,High
+"Fuller, 2020",Mixed Methods,No,Yes,"Can't tell",No,Yes,Low
+"Cole, 2021",Mixed Methods,Yes,Yes,Yes,No,Yes,Moderate
+"Jordan, 2022",Mixed Methods,Yes,No,Yes,Yes,Yes,Moderate
+"Marsh, 2023",Mixed Methods,Yes,Yes,Yes,Yes,Yes,High
+"Reid, 2019",Mixed Methods,No,No,Yes,"Can't tell",Yes,Low
+"Hardy, 2024",Mixed Methods,Yes,Yes,Yes,No,Yes,Moderate
+"Ellis, 2025",Mixed Methods,Yes,Yes,Yes,Yes,Yes,High
