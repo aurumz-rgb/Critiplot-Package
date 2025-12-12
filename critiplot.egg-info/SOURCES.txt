@@ -6,6 +6,7 @@ critiplot/__init__.py
 critiplot/grade.py
 critiplot/jbi_case_report.py
 critiplot/jbi_case_series.py
+critiplot/mmat.py
 critiplot/nos.py
 critiplot/robis.py
 critiplot.egg-info/PKG-INFO
@@ -13,8 +14,3 @@ critiplot.egg-info/SOURCES.txt
 critiplot.egg-info/dependency_links.txt
 critiplot.egg-info/requires.txt
 critiplot.egg-info/top_level.txt
-tests/test_grade.py
-tests/test_jbi_case_report.py
-tests/test_jbi_case_series.py
-tests/test_nos.py
-tests/test_robis.py

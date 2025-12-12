@@ -2,15 +2,15 @@ from setuptools import setup, find_packages
 
 setup(
     name="critiplot",
-    version="1.2.0",
+    version="1.2.1",
     packages=find_packages(),
     install_requires=[
-        "numpy>=1.26",
-        "pandas>=2.3",
-        "matplotlib>=3.7",
-        "seaborn>=0.13",
-        "pyarrow>=11",
-        "openpyxl>=3.1"
+        "numpy==2.2.2",
+        "pandas==2.3.2",
+        "matplotlib==3.9.2",
+        "seaborn==0.13.2",
+        "pyarrow==21.0.0",
+        "openpyxl==3.1.5"
     ],
     author="Vihaan Sahu",
     author_email="pterois.volitans12@gmail.com",
