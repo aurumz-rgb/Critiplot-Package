@@ -6,6 +6,7 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17338087.svg)](https://doi.org/10.5281/zenodo.17338087)
 [![PyPI Downloads](https://static.pepy.tech/personalized-badge/critiplot?period=total&units=INTERNATIONAL_SYSTEM&left_color=GREY&right_color=RED&left_text=downloads)](https://pepy.tech/projects/critiplot)
 [![conda-forge](https://anaconda.org/conda-forge/critiplot/badges/version.svg)](https://anaconda.org/conda-forge/critiplot)
+[![Anaconda-Server Badge](https://anaconda.org/conda-forge/critiplot/badges/platforms.svg)](https://anaconda.org/conda-forge/critiplot)
 
 
 **Critiplot** is an open-source Python package for **visualizing risk-of-bias (RoB) assessments** across multiple evidence synthesis tools:
