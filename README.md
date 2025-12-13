@@ -23,7 +23,7 @@
 
 * It produces **publication-ready traffic-light plots** and **stacked bar charts** for summarizing study quality.
 
-* **Python Package**: [https://pypi.org/project/critiplot/1.2.1/](https://pypi.org/project/critiplot/1.2.1/)
+* **Python Package**: [https://pypi.org/project/critiplot/1.2.2/](https://pypi.org/project/critiplot/1.2.2/)
 
 ---
 
@@ -100,6 +100,10 @@ plot_mmat("tests/sample_mmat.csv", "tests/output_mmat.png", theme="default")
 
 ![Python Result](example/sample.png)
 
+
+You can also use Critiplot Python package validation repository (Was done for v1.0.3, newer version visualizes an additional plot i.e. MMAT) 
+You can check it out here: [https://github.com/critiplot/Critiplot-Validation](https://github.com/critiplot/Critiplot-Validation)
+
 ---
 
 
@@ -128,7 +132,7 @@ All results in the paper can be reproduced by following the method as mentioned 
 **I would personally recommend testing using Python 3.13**
 
 You can also use Critiplot Python package validation repository (Was done for v1.0.3, newer version visualizes an additional plot i.e. MMAT) 
-You can chekc it out here: [https://github.com/critiplot/Critiplot-Validation](https://github.com/critiplot/Critiplot-Validation)
+You can check it out here: [https://github.com/critiplot/Critiplot-Validation](https://github.com/critiplot/Critiplot-Validation)
 
 ---
 
@@ -158,7 +162,7 @@ If you use this software, please cite it using the following metadata:
 cff-version: 1.2.0
 message: "If you use this software, please cite it using the following metadata."
 title: "Critiplot: A Python based Package for risk-of-bias data visualization in Systematic Reviews & Meta-Analysis"
-version: "v1.2.1"
+version: "v1.2.2"
 doi: "10.5281/zenodo.17338087"
 date-released: 2025-09-06
 authors:
@@ -170,7 +174,7 @@ preferred-citation:
     - family-names: "Sahu"
       given-names: "Vihaan"
   title: "Critiplot: A Python based Package for risk-of-bias data visualization in Systematic Reviews & Meta-Analysis"
-  version: "v1.2.1"
+  version: "v1.2.2"
   doi: "10.5281/zenodo.17338087"
   year: 2025
   url: "https://doi.org/10.5281/zenodo.17338087"
@@ -178,7 +182,7 @@ preferred-citation:
 
 Or cite as:
 
-> **Sahu, V. (2025). *Critiplot: A Python based Package for risk-of-bias data visualization in Systematic Reviews & Meta-Analysis* (v1.2.1). Zenodo. [https://doi.org/10.5281/zenodo.17338087](https://doi.org/10.5281/zenodo.17338087)**
+> **Sahu, V. (2025). *Critiplot: A Python based Package for risk-of-bias data visualization in Systematic Reviews & Meta-Analysis* (v1.2.2). Zenodo. [https://doi.org/10.5281/zenodo.17338087](https://doi.org/10.5281/zenodo.17338087)**
 
 
 ---
