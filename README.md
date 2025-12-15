@@ -101,7 +101,7 @@ plot_mmat("tests/sample_mmat.csv", "tests/output_mmat.png", theme="default")
 ![Python Result](example/sample.png)
 
 
-You can also use Critiplot Python package validation repository (Was done for v1.0.3, newer version visualizes an additional plot i.e. MMAT) 
+You can also use Critiplot Python package validation repository (Was done for v1.2.1)
 You can check it out here: [https://github.com/critiplot/Critiplot-Validation](https://github.com/critiplot/Critiplot-Validation)
 
 ---
