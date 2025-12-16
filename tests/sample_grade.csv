@@ -1,5 +1,7 @@
-Outcome,Study,Risk of Bias,Inconsistency,Indirectness,Imprecision,Publication Bias,Overall Certainty
-Mortality,Study 1 2020,Low,Low,Low,Moderate,None,Low
-Infection,Study 2 2019,Moderate,High,Low,Low,Low,Moderate
-Mortality,Study 3 2020,Very Low,Low,Low,Moderate,None,Low
-Infection,Study 4 2019,Moderate,High,Low,Low,Low,Moderate
+Outcome,Risk_of_Bias,Inconsistency,Indirectness,Imprecision,Publication_Bias,Overall_Certainty
+Mortality,Serious,Not Serious,Not Serious,Serious,Not Serious,Low
+Infection,Serious,Very Serious,Not Serious,Not Serious,Not Serious,High
+Hospitalization,Not Serious,Not Serious,Serious,Not Serious,Moderate
+Adverse Events,Serious,Serious,Not Serious,Serious,Not Serious,Low
+Quality of Life,Not Serious,Not Serious,Very Serious,Serious,Not Serious,Very Low
+

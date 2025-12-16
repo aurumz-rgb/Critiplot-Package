@@ -1,101 +1,101 @@
-Outcome,Study,Risk of Bias,Inconsistency,Indirectness,Imprecision,Publication Bias,Overall Certainty
-Mortality,Study 1 2015,Low,Low,Low,Moderate,None,Low
-Infection,Study 2 2016,Moderate,High,Low,Low,Low,Moderate
-Mortality,Study 3 2017,Low,Low,Low,Moderate,None,Low
-Infection,Study 4 2018,Moderate,High,Low,Low,Low,Moderate
-Mortality,Study 5 2019,High,Moderate,High,High,Moderate,High
-Infection,Study 6 2020,Low,Low,Moderate,Low,None,Low
-Mortality,Study 7 2021,Moderate,High,Low,Moderate,Low,Moderate
-Infection,Study 8 2022,High,Low,High,High,Moderate,High
-Mortality,Study 9 2023,Low,Moderate,Low,Low,None,Low
-Infection,Study 10 2024,Moderate,High,Moderate,High,Low,Moderate
-Mortality,Study 11 2025,High,Low,High,Low,Moderate,High
-Infection,Study 12 2026,Low,Moderate,Low,Moderate,None,Low
-Mortality,Study 13 2027,Moderate,High,High,High,Low,Moderate
-Infection,Study 14 2028,High,Low,Low,Low,Moderate,High
-Mortality,Study 15 2029,Low,Moderate,Moderate,Moderate,None,Low
-Infection,Study 16 2030,Moderate,High,High,High,Low,Moderate
-Mortality,Study 17 2031,High,Low,Low,Low,Moderate,High
-Infection,Study 18 2032,Low,Moderate,Moderate,Moderate,None,Low
-Mortality,Study 19 2033,Moderate,High,High,High,Low,Moderate
-Infection,Study 20 2034,High,Low,Low,Low,Moderate,High
-Mortality,Study 21 2035,Low,Moderate,Moderate,Moderate,None,Low
-Infection,Study 22 2036,Moderate,High,High,High,Low,Moderate
-Mortality,Study 23 2037,High,Low,Low,Low,Moderate,High
-Infection,Study 24 2038,Low,Moderate,Moderate,Moderate,None,Low
-Mortality,Study 25 2039,Moderate,High,High,High,Low,Moderate
-Infection,Study 26 2040,High,Low,Low,Low,Moderate,High
-Mortality,Study 27 2041,Low,Moderate,Moderate,Moderate,None,Low
-Infection,Study 28 2042,Moderate,High,High,High,Low,Moderate
-Mortality,Study 29 2043,High,Low,Low,Low,Moderate,High
-Infection,Study 30 2044,Low,Moderate,Moderate,Moderate,None,Low
-Mortality,Study 31 2045,Moderate,High,High,High,Low,Moderate
-Infection,Study 32 2046,High,Low,Low,Low,Moderate,High
-Mortality,Study 33 2047,Low,Moderate,Moderate,Moderate,None,Low
-Infection,Study 34 2048,Moderate,High,High,High,Low,Moderate
-Mortality,Study 35 2049,High,Low,Low,Low,Moderate,High
-Infection,Study 36 2050,Low,Moderate,Moderate,Moderate,None,Low
-Mortality,Study 37 2051,Moderate,High,High,High,Low,Moderate
-Infection,Study 38 2052,High,Low,Low,Low,Moderate,High
-Mortality,Study 39 2053,Low,Moderate,Moderate,Moderate,None,Low
-Infection,Study 40 2054,Moderate,High,High,High,Low,Moderate
-Mortality,Study 41 2055,High,Low,Low,Low,Moderate,High
-Infection,Study 42 2056,Low,Moderate,Moderate,Moderate,None,Low
-Mortality,Study 43 2057,Moderate,High,High,High,Low,Moderate
-Infection,Study 44 2058,High,Low,Low,Low,Moderate,High
-Mortality,Study 45 2059,Low,Moderate,Moderate,Moderate,None,Low
-Infection,Study 46 2060,Moderate,High,High,High,Low,Moderate
-Mortality,Study 47 2061,High,Low,Low,Low,Moderate,High
-Infection,Study 48 2062,Low,Moderate,Moderate,Moderate,None,Low
-Mortality,Study 49 2063,Moderate,High,High,High,Low,Moderate
-Infection,Study 50 2064,High,Low,Low,Low,Moderate,High
-Mortality,Study 51 2065,Low,Moderate,Moderate,Moderate,None,Low
-Infection,Study 52 2066,Moderate,High,High,High,Low,Moderate
-Mortality,Study 53 2067,High,Low,Low,Low,Moderate,High
-Infection,Study 54 2068,Low,Moderate,Moderate,Moderate,None,Low
-Mortality,Study 55 2069,Moderate,High,High,High,Low,Moderate
-Infection,Study 56 2070,High,Low,Low,Low,Moderate,High
-Mortality,Study 57 2071,Low,Moderate,Moderate,Moderate,None,Low
-Infection,Study 58 2072,Moderate,High,High,High,Low,Moderate
-Mortality,Study 59 2073,High,Low,Low,Low,Moderate,High
-Infection,Study 60 2074,Low,Moderate,Moderate,Moderate,None,Low
-Mortality,Study 61 2075,Moderate,High,High,High,Low,Moderate
-Infection,Study 62 2076,High,Low,Low,Low,Moderate,High
-Mortality,Study 63 2077,Low,Moderate,Moderate,Moderate,None,Low
-Infection,Study 64 2078,Moderate,High,High,High,Low,Moderate
-Mortality,Study 65 2079,High,Low,Low,Low,Moderate,High
-Infection,Study 66 2080,Low,Moderate,Moderate,Moderate,None,Low
-Mortality,Study 67 2081,Moderate,High,High,High,Low,Moderate
-Infection,Study 68 2082,High,Low,Low,Low,Moderate,High
-Mortality,Study 69 2083,Low,Moderate,Moderate,Moderate,None,Low
-Infection,Study 70 2084,Moderate,High,High,High,Low,Moderate
-Mortality,Study 71 2085,High,Low,Low,Low,Moderate,High
-Infection,Study 72 2086,Low,Moderate,Moderate,Moderate,None,Low
-Mortality,Study 73 2087,Moderate,High,High,High,Low,Moderate
-Infection,Study 74 2088,High,Low,Low,Low,Moderate,High
-Mortality,Study 75 2089,Low,Moderate,Moderate,Moderate,None,Low
-Infection,Study 76 2090,Moderate,High,High,High,Low,Moderate
-Mortality,Study 77 2091,High,Low,Low,Low,Moderate,High
-Infection,Study 78 2092,Low,Moderate,Moderate,Moderate,None,Low
-Mortality,Study 79 2093,Moderate,High,High,High,Low,Moderate
-Infection,Study 80 2094,High,Low,Low,Low,Moderate,High
-Mortality,Study 81 2095,Low,Moderate,Moderate,Moderate,None,Low
-Infection,Study 82 2096,Moderate,High,High,High,Low,Moderate
-Mortality,Study 83 2097,High,Low,Low,Low,Moderate,High
-Infection,Study 84 2098,Low,Moderate,Moderate,Moderate,None,Low
-Mortality,Study 85 2099,Moderate,High,High,High,Low,Moderate
-Infection,Study 86 2100,High,Low,Low,Low,Moderate,High
-Mortality,Study 87 2101,Low,Moderate,Moderate,Moderate,None,Low
-Infection,Study 88 2102,Moderate,High,High,High,Low,Moderate
-Mortality,Study 89 2103,High,Low,Low,Low,Moderate,High
-Infection,Study 90 2104,Low,Moderate,Moderate,Moderate,None,Low
-Mortality,Study 91 2105,Moderate,High,High,High,Low,Moderate
-Infection,Study 92 2106,High,Low,Low,Low,Moderate,High
-Mortality,Study 93 2107,Low,Moderate,Moderate,Moderate,None,Low
-Infection,Study 94 2108,Moderate,High,High,High,Low,Moderate
-Mortality,Study 95 2109,High,Low,Low,Low,Moderate,High
-Infection,Study 96 2110,Low,Moderate,Moderate,Moderate,None,Low
-Mortality,Study 97 2111,Moderate,High,High,High,Low,Moderate
-Infection,Study 98 2112,High,Low,Low,Low,Moderate,High
-Mortality,Study 99 2113,Low,Moderate,Moderate,Moderate,None,Low
-Infection,Study 100 2114,Moderate,High,High,High,Low,Moderate
+Outcome,Risk_of_Bias,Inconsistency,Indirectness,Imprecision,Publication_Bias,Overall_Certainty
+Mortality,Serious,Serious,Not Serious,Serious,Not Serious,Very Low
+Infection,Serious,Very Serious,Not Serious,Not Serious,Not Serious,Moderate
+Hospitalization,Not Serious,Not Serious,Serious,Not Serious,Not Serious,Moderate
+Adverse Events,Very Serious,Not Serious,Not Serious,Serious,Not Serious,Low
+Quality of Life,Not Serious,Very Serious,Serious,Serious,Not Serious,Very Low
+Outcome 6,Serious,Not Serious,Serious,Serious,Not Serious,Low
+Outcome 7,Very Serious,Serious,Not Serious,Not Serious,Not Serious,Very Low
+Outcome 8,Not Serious,Not Serious,Serious,Serious,Not Serious,Moderate
+Outcome 9,Serious,Very Serious,Not Serious,Serious,Not Serious,Very Low
+Outcome 10,Not Serious,Serious,Serious,Not Serious,Not Serious,Low
+Outcome 11,Very Serious,Not Serious,Serious,Serious,Not Serious,Very Low
+Outcome 12,Serious,Serious,Serious,Not Serious,Not Serious,Very Low
+Outcome 13,Not Serious,Very Serious,Not Serious,Serious,Not Serious,Very Low
+Outcome 14,Very Serious,Serious,Serious,Serious,Not Serious,Very Low
+Outcome 15,Serious,Not Serious,Not Serious,Serious,Not Serious,Low
+Outcome 16,Not Serious,Serious,Not Serious,Serious,Not Serious,Low
+Outcome 17,Serious,Very Serious,Serious,Not Serious,Not Serious,Very Low
+Outcome 18,Very Serious,Not Serious,Not Serious,Serious,Not Serious,Low
+Outcome 19,Not Serious,Serious,Serious,Serious,Not Serious,Very Low
+Outcome 20,Serious,Not Serious,Serious,Not Serious,Not Serious,Moderate
+Outcome 21,Very Serious,Very Serious,Not Serious,Serious,Not Serious,Very Low
+Outcome 22,Not Serious,Not Serious,Serious,Serious,Not Serious,Low
+Outcome 23,Serious,Serious,Serious,Not Serious,Not Serious,Very Low
+Outcome 24,Very Serious,Not Serious,Not Serious,Not Serious,Not Serious,High
+Outcome 25,Not Serious,Very Serious,Serious,Serious,Not Serious,Very Low
+Outcome 26,Serious,Serious,Not Serious,Serious,Not Serious,Very Low
+Outcome 27,Very Serious,Not Serious,Serious,Not Serious,Not Serious,Low
+Outcome 28,Not Serious,Serious,Not Serious,Serious,Not Serious,Low
+Outcome 29,Serious,Very Serious,Serious,Serious,Not Serious,Very Low
+Outcome 30,Very Serious,Not Serious,Not Serious,Serious,Not Serious,Low
+Outcome 31,Not Serious,Serious,Serious,Not Serious,Not Serious,Moderate
+Outcome 32,Serious,Not Serious,Serious,Serious,Not Serious,Very Low
+Outcome 33,Very Serious,Very Serious,Not Serious,Not Serious,Not Serious,Very Low
+Outcome 34,Not Serious,Not Serious,Serious,Serious,Not Serious,Low
+Outcome 35,Serious,Serious,Serious,Not Serious,Not Serious,Very Low
+Outcome 36,Very Serious,Not Serious,Not Serious,Serious,Not Serious,Low
+Outcome 37,Not Serious,Very Serious,Serious,Serious,Not Serious,Very Low
+Outcome 38,Serious,Serious,Not Serious,Not Serious,Not Serious,Moderate
+Outcome 39,Very Serious,Not Serious,Serious,Serious,Not Serious,Very Low
+Outcome 40,Not Serious,Serious,Not Serious,Serious,Not Serious,Low
+Outcome 41,Serious,Very Serious,Serious,Not Serious,Not Serious,Very Low
+Outcome 42,Very Serious,Not Serious,Not Serious,Serious,Not Serious,Low
+Outcome 43,Not Serious,Serious,Serious,Serious,Not Serious,Very Low
+Outcome 44,Serious,Not Serious,Serious,Not Serious,Not Serious,Moderate
+Outcome 45,Very Serious,Very Serious,Not Serious,Serious,Not Serious,Very Low
+Outcome 46,Not Serious,Not Serious,Serious,Serious,Not Serious,Low
+Outcome 47,Serious,Serious,Serious,Not Serious,Not Serious,Very Low
+Outcome 48,Very Serious,Not Serious,Not Serious,Not Serious,Not Serious,High
+Outcome 49,Not Serious,Very Serious,Serious,Serious,Not Serious,Very Low
+Outcome 50,Serious,Serious,Not Serious,Serious,Not Serious,Very Low
+Outcome 51,Very Serious,Not Serious,Serious,Not Serious,Not Serious,Low
+Outcome 52,Not Serious,Serious,Not Serious,Serious,Not Serious,Low
+Outcome 53,Serious,Very Serious,Serious,Serious,Not Serious,Very Low
+Outcome 54,Very Serious,Not Serious,Not Serious,Serious,Not Serious,Low
+Outcome 55,Not Serious,Serious,Serious,Not Serious,Not Serious,Moderate
+Outcome 56,Serious,Not Serious,Serious,Serious,Not Serious,Very Low
+Outcome 57,Very Serious,Very Serious,Not Serious,Not Serious,Not Serious,Very Low
+Outcome 58,Not Serious,Not Serious,Serious,Serious,Not Serious,Low
+Outcome 59,Serious,Serious,Serious,Not Serious,Not Serious,Very Low
+Outcome 60,Very Serious,Not Serious,Not Serious,Serious,Not Serious,Low
+Outcome 61,Not Serious,Very Serious,Serious,Serious,Not Serious,Very Low
+Outcome 62,Serious,Serious,Not Serious,Not Serious,Not Serious,Moderate
+Outcome 63,Very Serious,Not Serious,Serious,Serious,Not Serious,Very Low
+Outcome 64,Not Serious,Serious,Not Serious,Serious,Not Serious,Low
+Outcome 65,Serious,Very Serious,Serious,Not Serious,Not Serious,Very Low
+Outcome 66,Very Serious,Not Serious,Not Serious,Serious,Not Serious,Low
+Outcome 67,Not Serious,Serious,Serious,Serious,Not Serious,Very Low
+Outcome 68,Serious,Not Serious,Serious,Not Serious,Not Serious,Moderate
+Outcome 69,Very Serious,Very Serious,Not Serious,Serious,Not Serious,Very Low
+Outcome 70,Not Serious,Not Serious,Serious,Serious,Not Serious,Low
+Outcome 71,Serious,Serious,Serious,Not Serious,Not Serious,Very Low
+Outcome 72,Very Serious,Not Serious,Not Serious,Not Serious,Not Serious,High
+Outcome 73,Not Serious,Very Serious,Serious,Serious,Not Serious,Very Low
+Outcome 74,Serious,Serious,Not Serious,Serious,Not Serious,Very Low
+Outcome 75,Very Serious,Not Serious,Serious,Not Serious,Not Serious,Low
+Outcome 76,Not Serious,Serious,Not Serious,Serious,Not Serious,Low
+Outcome 77,Serious,Very Serious,Serious,Serious,Not Serious,Very Low
+Outcome 78,Very Serious,Not Serious,Not Serious,Serious,Not Serious,Low
+Outcome 79,Not Serious,Serious,Serious,Not Serious,Not Serious,Moderate
+Outcome 80,Serious,Not Serious,Serious,Serious,Not Serious,Very Low
+Outcome 81,Very Serious,Very Serious,Not Serious,Not Serious,Not Serious,Very Low
+Outcome 82,Not Serious,Not Serious,Serious,Serious,Not Serious,Low
+Outcome 83,Serious,Serious,Serious,Not Serious,Not Serious,Very Low
+Outcome 84,Very Serious,Not Serious,Not Serious,Serious,Not Serious,Low
+Outcome 85,Not Serious,Very Serious,Serious,Serious,Not Serious,Very Low
+Outcome 86,Serious,Serious,Not Serious,Not Serious,Not Serious,Moderate
+Outcome 87,Very Serious,Not Serious,Serious,Serious,Not Serious,Very Low
+Outcome 88,Not Serious,Serious,Not Serious,Serious,Not Serious,Low
+Outcome 89,Serious,Very Serious,Serious,Not Serious,Not Serious,Very Low
+Outcome 90,Very Serious,Not Serious,Not Serious,Serious,Not Serious,Low
+Outcome 91,Not Serious,Serious,Serious,Serious,Not Serious,Very Low
+Outcome 92,Serious,Not Serious,Serious,Not Serious,Not Serious,Moderate
+Outcome 93,Very Serious,Very Serious,Not Serious,Serious,Not Serious,Very Low
+Outcome 94,Not Serious,Not Serious,Serious,Serious,Not Serious,Low
+Outcome 95,Serious,Serious,Serious,Not Serious,Not Serious,Very Low
+Outcome 96,Very Serious,Not Serious,Not Serious,Not Serious,Not Serious,High
+Outcome 97,Not Serious,Very Serious,Serious,Serious,Not Serious,Very Low
+Outcome 98,Serious,Serious,Not Serious,Serious,Not Serious,Very Low
+Outcome 99,Very Serious,Not Serious,Serious,Not Serious,Not Serious,Low
+Outcome 100,Not Serious,Serious,Not Serious,Serious,Not Serious,Low
