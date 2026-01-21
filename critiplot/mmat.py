@@ -75,11 +75,11 @@ def mmat_plot(df: pd.DataFrame, output_file: str, theme: str = "default"):
         category_df = df[category_mask].copy()
         n_studies = len(category_df)
         n_criteria = len(criteria_columns)
-        
-        per_study_height = 0.5
+
+        per_study_height = 0.6
         min_first_plot_height = 4.0
-        second_plot_height = 3.0
-        gap_between_plots = 1.7
+        second_plot_height = 3.4
+        gap_between_plots = 4.0
         top_margin = 1.0
         bottom_margin = 0.5
         
@@ -87,6 +87,7 @@ def mmat_plot(df: pd.DataFrame, output_file: str, theme: str = "default"):
         total_height = first_plot_height + gap_between_plots + second_plot_height + top_margin + bottom_margin
         
         fig = plt.figure(figsize=(18, total_height))
+        
         
         ax0_bottom = (bottom_margin + second_plot_height + gap_between_plots) / total_height
         ax0_height = first_plot_height / total_height
@@ -113,19 +114,21 @@ def mmat_plot(df: pd.DataFrame, output_file: str, theme: str = "default"):
             for _, row in category_df.iterrows():
                 y_pos = author_pos[row["Study_Display"]]
                 
+            
                 for criterion in criteria_columns:
                     rating = row[criterion]
                     symbol = symbol_map.get(rating, "😐")
                     risk = rating_to_risk(rating)
                     x_pos = criterion_pos[criterion]
-                    ax0.text(x_pos, y_pos, symbol, fontsize=30, ha='center', va='center', 
+                    ax0.text(x_pos, y_pos, symbol, fontsize=35, ha='center', va='center', 
                             color=colors[risk], fontweight='bold', zorder=1)
+                
                 
                 overall_rating = row["Overall_Rating"]
                 symbol = symbol_map.get(overall_rating, "😐")
                 risk = rating_to_risk(overall_rating)
                 x_pos = criterion_pos["Overall Rating"]
-                ax0.text(x_pos, y_pos, symbol, fontsize=30, ha='center', va='center', 
+                ax0.text(x_pos, y_pos, symbol, fontsize=35, ha='center', va='center', 
                         color=colors[risk], fontweight='bold', zorder=1)
         else:
             x_coords = []
@@ -135,6 +138,7 @@ def mmat_plot(df: pd.DataFrame, output_file: str, theme: str = "default"):
             for _, row in category_df.iterrows():
                 y_pos = author_pos[row["Study_Display"]]
                 
+                
                 for criterion in criteria_columns:
                     rating = row[criterion]
                     risk = rating_to_risk(rating)
@@ -142,23 +146,24 @@ def mmat_plot(df: pd.DataFrame, output_file: str, theme: str = "default"):
                     y_coords.append(y_pos)
                     point_colors.append(colors[risk])
                 
+        
                 overall_rating = row["Overall_Rating"]
                 risk = rating_to_risk(overall_rating)
                 x_coords.append(criterion_pos["Overall Rating"])
                 y_coords.append(y_pos)
                 point_colors.append(colors[risk])
             
-            ax0.scatter(x_coords, y_coords, c=point_colors, s=800, marker="s", 
+            ax0.scatter(x_coords, y_coords, c=point_colors, s=1000, marker="s", 
                        edgecolor='white', linewidth=1, zorder=1)
         
         ax0.set_xlim(-0.5, len(all_criteria)-0.5)
         ax0.set_ylim(-0.5, n_studies-0.5)
         ax0.set_xticks(range(len(all_criteria)))
-        ax0.set_xticklabels(all_criteria, fontsize=11, fontweight="bold")
+        ax0.set_xticklabels(all_criteria, fontsize=18, fontweight="bold", rotation=45, ha='right')
         ax0.set_yticks(list(author_pos.values()))
-        ax0.set_yticklabels(list(author_pos.keys()), fontsize=12, fontweight="bold", rotation=0)
+        ax0.set_yticklabels(list(author_pos.keys()), fontsize=18, fontweight="bold", rotation=0)
         ax0.set_facecolor('white')
-        ax0.set_title(f"MMAT Traffic-Light Plot - {category}", fontsize=18, fontweight="bold")
+        ax0.set_title(f"MMAT Traffic-Light Plot - {category}", fontsize=22, fontweight="bold")
         ax0.set_xlabel("")
         ax0.set_ylabel("")
         ax0.grid(axis='x', linestyle='--', alpha=0.25)
@@ -203,17 +208,17 @@ def mmat_plot(df: pd.DataFrame, output_file: str, theme: str = "default"):
                 if width > 0:
                     ax1.text(left + width/2, i, f"{width:.0f}%", 
                             ha='center', va='center', color='black', 
-                            fontsize=12, fontweight='bold')
+                            fontsize=16, fontweight='bold')
                     left += width
         
         ax1.set_xlim(0, 100)
         ax1.set_xticks([0, 20, 40, 60, 80, 100])
-        ax1.set_xticklabels([0, 20, 40, 60, 80, 100], fontsize=12, fontweight='bold')
+        ax1.set_xticklabels([0, 20, 40, 60, 80, 100], fontsize=18, fontweight='bold')
         ax1.set_yticks(range(len(inverted_criteria)))
-        ax1.set_yticklabels(inverted_criteria, fontsize=12, fontweight='bold')
-        ax1.set_xlabel("Percentage of Studies (%)", fontsize=14, fontweight="bold")
+        ax1.set_yticklabels(inverted_criteria, fontsize=18, fontweight='bold')
+        ax1.set_xlabel("Percentage of Studies (%)", fontsize=18, fontweight="bold")
         ax1.set_ylabel("")
-        ax1.set_title(f"Distribution of Ratings by Criterion - {category}", fontsize=18, fontweight="bold")
+        ax1.set_title(f"Distribution of Ratings by Criterion - {category}", fontsize=22, fontweight="bold")
         ax1.grid(axis='x', linestyle='--', alpha=0.25)
         
         for y in range(len(inverted_criteria)):
@@ -221,19 +226,19 @@ def mmat_plot(df: pd.DataFrame, output_file: str, theme: str = "default"):
         
         legend_elements = [
             Line2D([0], [0], marker='s', color='w', label='Yes/Low Risk', 
-                  markerfacecolor=colors["Low"], markersize=10),
-            Line2D([0], [0], marker='s', color='w', label='Cannot tell/Moderate Risk', 
-                  markerfacecolor=colors["Moderate"], markersize=10),
+                  markerfacecolor=colors["Low"], markersize=18),
+            Line2D([0], [0], marker='s', color='w', label='Unclear/Moderate Risk', 
+                  markerfacecolor=colors["Moderate"], markersize=18),
             Line2D([0], [0], marker='s', color='w', label='No/High Risk', 
-                  markerfacecolor=colors["High"], markersize=10)
+                  markerfacecolor=colors["High"], markersize=18)
         ]
         legend = ax1.legend(
             handles=legend_elements,
             title="Criterion Risk",
             bbox_to_anchor=(1.02, 1),
             loc='upper left',
-            fontsize=12,
-            title_fontsize=14,
+            fontsize=18,
+            title_fontsize=20,
             frameon=True,
             fancybox=True,
             edgecolor='black'
@@ -269,20 +274,19 @@ def plot_mmat(input_file: str, output_file: str, theme: str = "default"):
     input_file : str
         Path to the input CSV or Excel file containing MMAT data
     output_file : str
-        Path to save the output plot (supports .png, .pdf, .svg, .eps)
+        Path to save to output plot (supports .png, .pdf, .svg, .eps)
     theme : str, optional
         Color theme for the plot. Options: "default", "blue", "gray", "smiley", "smiley_blue"
         
     Returns:
     --------
     None
-        The plot is saved to the specified output file
+        The plot is saved to the specified output file path
     """
     df = read_input_file(input_file)
     df = process_mmat(df)
     mmat_plot(df, output_file, theme)
     
-  
     del df
 
 if __name__ == "__main__":

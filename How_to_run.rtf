@@ -1,0 +1,95 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2822
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red255\green255\blue11;\red0\green0\blue0;
+\red183\green111\blue179;\red24\green24\blue24;\red202\green202\blue202;\red193\green193\blue193;\red89\green138\blue67;
+\red194\green126\blue101;\red140\green211\blue254;\red254\green255\blue10;\red255\green255\blue255;}
+{\*\expandedcolortbl;;\csgray\c0;\cssrgb\c100000\c100000\c0;\cssrgb\c0\c0\c0;
+\cssrgb\c77255\c52549\c75294;\cssrgb\c12157\c12157\c12157;\cssrgb\c83137\c83137\c83137;\cssrgb\c80000\c80000\c80000;\cssrgb\c41569\c60000\c33333;
+\cssrgb\c80784\c56863\c47059;\cssrgb\c61176\c86275\c99608;\cssrgb\c99555\c99475\c0;\cssrgb\c100000\c100000\c100000\c0;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww13220\viewh11300\viewkind0
+\deftab720
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf2 \CocoaLigature0 \
+\
+\
+1) Best to test locals\
+\
+cd Critiplot-Package (this repo)\
+\
+\
+cd critiplot\
+\
+\
+python3 nos.py tests/sample_nos.csv tests/nos.png \
+\
+python3 grade.py tests/sample_grade.csv tests/grade.png \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\pardirnatural\partightenfactor0
+python3 robis.py tests/sample_robis.csv tests/robis.png \
+\
+python3 jbi_case_report.py tests/sample_jbi_case_report.csv tests/jbi_case_report.png \
+\
+python3 jbi_case_series.py tests/sample_jbi_case_series.csv tests/jbi_case_series.png \
+\
+python3 mmat.py tests/sample_mmat.csv tests/mmat.png \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\pardirnatural\partightenfactor0
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\pardirnatural\partightenfactor0
+\cf3 (Saves file in tests in critiplot folder)\
+\
+\cf4 \
+2) As per versioned python released, no local changes.\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\pardirnatural\partightenfactor0
+\cf2 cd Critiplot-Package (this repo)\
+\
+python3\
+\
+\
+\pard\pardeftab720\partightenfactor0
+
+\fs24 \cf5 \cb6 \expnd0\expndtw0\kerning0
+\CocoaLigature1 import\cf7  critiplot\cf8 \cb1 \
+\
+\cf5 \cb6 from\cf7  critiplot \cf5 import\cf7  plot_nos, plot_jbi_case_report, plot_jbi_case_series, plot_grade, plot_robis, plot_mmat\
+\
+\
+\cf8 \cb1 \
+\
+\pard\pardeftab720\partightenfactor0
+\cf9 \cb6 # NOS\cf8 \cb1 \
+\pard\pardeftab720\partightenfactor0
+\cf7 \cb6 plot_nos(\cf10 "tests/sample_nos.csv"\cf7 , \cf10 "tests/output_nos.png"\cf7 , \cf11 theme\cf7 =\cf10 "blue"\cf7 )\cf8 \cb1 \
+\
+\pard\pardeftab720\partightenfactor0
+\cf9 \cb6 # ROBIS\cf8 \cb1 \
+\pard\pardeftab720\partightenfactor0
+\cf7 \cb6 plot_robis(\cf10 "tests/sample_robis.csv"\cf7 , \cf10 "tests/output_robis.png"\cf7 , \cf11 theme\cf7 =\cf10 "smiley"\cf7 )\cf8 \cb1 \
+\
+\pard\pardeftab720\partightenfactor0
+\cf9 \cb6 # JBI Case Report\cf8 \cb1 \
+\pard\pardeftab720\partightenfactor0
+\cf7 \cb6 plot_jbi_case_report(\cf10 "tests/sample_jbi_case_report.csv"\cf7 , \cf10 "tests/output_case_report.png"\cf7 , \cf11 theme\cf7 =\cf10 "gray"\cf7 )\cf8 \cb1 \
+\
+\pard\pardeftab720\partightenfactor0
+\cf9 \cb6 # JBI Case Series\cf8 \cb1 \
+\pard\pardeftab720\partightenfactor0
+\cf7 \cb6 plot_jbi_case_series(\cf10 "tests/sample_jbi_case_series.csv"\cf7 , \cf10 "tests/output_case_series.png"\cf7 , \cf11 theme\cf7 =\cf10 "smiley_blue"\cf7 )\cf8 \cb1 \
+\
+\pard\pardeftab720\partightenfactor0
+\cf9 \cb6 # GRADE\cf8 \cb1 \
+\pard\pardeftab720\partightenfactor0
+\cf7 \cb6 plot_grade(\cf10 "tests/sample_grade.csv"\cf7 , \cf10 "tests/output_grade.png"\cf7 , \cf11 theme\cf7 =\cf10 "green"\cf7 )\cf8 \cb1 \
+\
+\pard\pardeftab720\partightenfactor0
+\cf9 \cb6 # MMAT\cf8 \cb1 \
+\pard\pardeftab720\partightenfactor0
+\cf7 \cb6 plot_mmat(\cf10 "tests/sample_mmat.csv"\cf7 , \cf10 "tests/output_mmat.png"\cf7 , \cf11 theme\cf7 =\cf10 "default"\cf7 )\
+\
+\
+\pard\pardeftab720\partightenfactor0
+\cf12 \cb13 (Saves file in tests in main folder)\cf8 \cb1 \
+}

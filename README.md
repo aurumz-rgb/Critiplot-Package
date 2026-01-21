@@ -23,7 +23,7 @@
 
 * It produces **publication-ready traffic-light plots** and **stacked bar charts** for summarizing study quality.
 
-* **Python Package**: [https://pypi.org/project/critiplot/2.0.0/](https://pypi.org/project/critiplot/2.0.0/)
+* **Python Package**: [https://pypi.org/project/critiplot/2.1.0/](https://pypi.org/project/critiplot/2.1.0/)
 
 ---
 
@@ -46,7 +46,7 @@ Or install locally from source:
 
 ```bash
 # Clone repository
-git clone https://github.com/aurumz-rgb/Critiplot-main.git
+git clone https://github.com/aurumz-rgb/Critiplot-Package.git
 cd Critiplot-Package
 
 # Install requirements
@@ -62,7 +62,7 @@ pip install .
 
 ## ⚡ Usage
 
-Import the plotting functions from the package:
+To visualize your data, import the plotting functions from `critiplot` and run them directly in a Python script (`.py`) or in the terminal using `python3`.
 
 ```python
 import critiplot
@@ -98,10 +98,10 @@ plot_mmat("tests/sample_mmat.csv", "tests/output_mmat.png", theme="default")
 > * GRADE: `"default"`, `"green"`, `"blue"`
 > * Default theme is used if omitted.
 
-![Python Result](example/sample.png)
+![Python Result](python.png)
 
 
-You can also use Critiplot Python package validation repository (Was done for v2.0.0)
+You can also use Critiplot Python package validation repository where validation was done using .py file (Was done for v2.1.0)
 You can check it out here: [https://github.com/critiplot/Critiplot-Validation](https://github.com/critiplot/Critiplot-Validation)
 
 ---
@@ -162,7 +162,7 @@ If you use this software, please cite it using the following metadata:
 cff-version: 1.2.0
 message: "If you use this software, please cite it using the following metadata."
 title: "Critiplot: A Python based Package for risk-of-bias data visualization in Systematic Reviews & Meta-Analysis"
-version: "v2.0.0"
+version: "v2.1.0"
 doi: "10.5281/zenodo.17338087"
 date-released: 2025-09-06
 authors:
@@ -174,7 +174,7 @@ preferred-citation:
     - family-names: "Sahu"
       given-names: "Vihaan"
   title: "Critiplot: A Python based Package for risk-of-bias data visualization in Systematic Reviews & Meta-Analysis"
-  version: "v2.0.0"
+  version: "v2.1.0"
   doi: "10.5281/zenodo.17338087"
   year: 2025
   url: "https://doi.org/10.5281/zenodo.17338087"
@@ -182,7 +182,7 @@ preferred-citation:
 
 Or cite as:
 
-> **Sahu, V. (2025). *Critiplot: A Python based Package for risk-of-bias data visualization in Systematic Reviews & Meta-Analysis* (v2.0.0). Zenodo. [https://doi.org/10.5281/zenodo.17338087](https://doi.org/10.5281/zenodo.17338087)**
+> **Sahu, V. (2025). *Critiplot: A Python based Package for risk-of-bias data visualization in Systematic Reviews & Meta-Analysis* (v2.1.0). Zenodo. [https://doi.org/10.5281/zenodo.17338087](https://doi.org/10.5281/zenodo.17338087)**
 
 
 ---
