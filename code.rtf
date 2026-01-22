@@ -3,9 +3,9 @@
 \f3\froman\fcharset0 Times-Bold;\f4\froman\fcharset0 Times-Roman;\f5\fnil\fcharset0 AppleColorEmoji;
 \f6\fmodern\fcharset0 Courier;\f7\fmodern\fcharset0 Courier-Bold;}
 {\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red109\green109\blue109;\red0\green0\blue233;
-}
+\red0\green0\blue0;\red255\green255\blue11;}
 {\*\expandedcolortbl;;\csgray\c0;\cssrgb\c50196\c50196\c50196;\cssrgb\c0\c0\c93333;
-}
+\cssrgb\c0\c0\c0;\cssrgb\c100000\c100000\c0;}
 {\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}}{\leveltext\leveltemplateid1\'01\'00;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid1}
 {\list\listtemplateid2\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}}{\leveltext\leveltemplateid101\'01\'00;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid2}
 {\list\listtemplateid3\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}}{\leveltext\leveltemplateid201\'01\'00;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid3}
@@ -146,12 +146,12 @@ cd critiplot-feedstock\
 \f3\b ALWAYS
 \f4\b0  use a feature branch for PRs.\
 For version 
-\f3\b 1.2.0
-\f4\b0 :\
+\f3\b 2.1.0
+\f4\b0 \
 \pard\pardeftab720\partightenfactor0
 
 \f6\fs26 \cf0 \
-git checkout -b update-2.0.0\
+\
 \pard\pardeftab720\partightenfactor0
 
 \f4\fs24 \cf3 \
@@ -162,7 +162,7 @@ git checkout -b update-2.0.0\
 \pard\pardeftab720\partightenfactor0
 
 \f6\b0\fs26 \cf0 \
-wget https://pypi.org/packages/source/c/critiplot/critiplot-2.0.0.tar.gz\
+wget https://pypi.org/packages/source/c/critiplot/critiplot-2.1.0.tar.gz\
 \pard\pardeftab720\sa240\partightenfactor0
 
 \f4\fs24 \cf0 (Or download manually.)\
@@ -175,7 +175,7 @@ wget https://pypi.org/packages/source/c/critiplot/critiplot-2.0.0.tar.gz\
 \pard\pardeftab720\partightenfactor0
 
 \f6\b0\fs26 \cf0 \
-shasum -a 256 critiplot-2.0.0.tar.gz\
+shasum -a 256 critiplot-2.1.0.tar.gz\
 \pard\pardeftab720\sa240\partightenfactor0
 
 \f4\fs24 \cf0 Copy the hash.\
@@ -204,7 +204,7 @@ recipe/meta.yaml\
 
 \f6\b0\fs26 \cf0 \
 package:\
-  version: \'931.2.1\'94\
+  version: \'932.1.0\'94\
 \pard\pardeftab720\sa280\partightenfactor0
 
 \f3\b\fs28 \cf0 Change source URL and SHA\
@@ -212,13 +212,32 @@ package:\
 
 \f6\b0\fs26 \cf0 \
 source:\
-  url: https://pypi.org/packages/source/c/critiplot/critiplot-1.2.0.tar.gz\
+  url: https://pypi.org/packages/source/c/critiplot/critiplot-2.1.0.tar.gz\
   sha256: <THE_SHA256_HASH_YOU_GOT>\
 \pard\pardeftab720\sa240\partightenfactor0
 
 \f4\fs24 \cf0 Save the file.\
 \pard\pardeftab720\partightenfactor0
 \cf3 \
+\
+\
+\
+
+\fs36 After this do     in terminal \
+\
+conda build recipe/
+\fs24 \
+\
+\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f6\fs26 \cf0 git checkout -b update-2.1.0
+\f4\fs24 \cf3 \
+\pard\pardeftab720\partightenfactor0
+\cf3 \
+\
+\
 \pard\pardeftab720\sa321\partightenfactor0
 
 \f5\fs48 \cf0 \uc0\u55357 \u56633 
@@ -227,7 +246,7 @@ source:\
 
 \f6\b0\fs26 \cf0 \
 git add recipe/meta.yaml\
-git commit -m "Update Critiplot to 2.0.0 with PyPI source"\
+git commit -m "Latest Update Critiplot to 2.1.0 with PyPI source"\
 \pard\pardeftab720\partightenfactor0
 
 \f4\fs24 \cf3 \
@@ -238,7 +257,7 @@ git commit -m "Update Critiplot to 2.0.0 with PyPI source"\
 \pard\pardeftab720\partightenfactor0
 
 \f6\b0\fs26 \cf0 \
-git push --set-upstream origin update-2.0.0\
+git push --set-upstream origin update-2.1.0\
 \pard\pardeftab720\partightenfactor0
 
 \f4\fs24 \cf3 \
@@ -286,4 +305,65 @@ check the recipe\
 build Linux, macOS, Windows packages\
 \ls4\ilvl0\kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
 merge the PR automatically if all good\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sa240\partightenfactor0
+\cf0 \
+\
+\
+\
+Azure pipelines is failing no matter whatever I do. I am having a breakdown (almost). Yk what fuck pypi, lemme use the repo directly as source for conda.\
+\
+\
+\
+What I do step by step. \
+\
+1) use wget to get sha26 for pypi latest package and update version and sha26 in meta.yaml in recipe\
+2) then conda build \
+\
+3) then git checkout , 
+\f6\fs26 git checkout -b update-2.1.0
+\f4\fs24 \
+\
+4) then add , commit, push.   \
+\
+\pard\pardeftab720\partightenfactor0
+
+\f6\fs26 \cf0 git add recipe/meta.yaml\
+git commit -m "Latest Update Critiplot to 2.1.0 with PyPI source"\
+\
+git push --set-upstream origin update-2.1.0
+\f4\fs24 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sa240\partightenfactor0
+\cf0 \
+5) go to your fork and accept\
+\
+4) then later on when it asks you to merge, what 3 mins for azure line pipeline to flow and then merge. And make sure to delete the branch please Sudhar hi hai to delete this branch.\
+\
+And uske baad in terminal of your feedstock,\
+\
+git branch\
+git checkout main\
+git pull --ff-only\
+\
+\
+\pard\pardeftab720\partightenfactor0
+\cf0 \outl0\strokewidth0 \strokec5 vihaan@Vihaans-MacBook-Pro critiplot-feedstock % \
+\
+git branch\
+ * main \
+update-2.1.0\
+ update-2.1.0-meta-fix \
+\
+vihaan@Vihaans-MacBook-Pro critiplot-feedstock %\
+\
+\
+git branch -D update-2.1.0\
+git branch -D update-2.1.0-meta-fix\
+\
+\
+git branch\
+(To confirm)\
+\
+\
+\
+\cf6 \strokec5 Also if pull request doesnt come, switch to that new branch from main in feedstock fork (it will show its 1 commit ahead) and click on contribute and then open pull request\cf0 \outl0\strokewidth0 \
 }
