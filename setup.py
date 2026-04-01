@@ -6,7 +6,7 @@ setup(
     packages=find_packages(),
     install_requires=[
         "numpy==2.2.2",
-        "pandas==2.3.2",
+        "pandas==3.0.2",
         "matplotlib==3.9.2",
         "seaborn==0.13.2",
         "pyarrow==21.0.0",
