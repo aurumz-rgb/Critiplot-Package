@@ -9,7 +9,7 @@ setup(
         "pandas==2.3.2",
         "matplotlib==3.9.2",
         "seaborn==0.13.2",
-        "pyarrow==21.0.0",
+        "pyarrow==23.0.1",
         "openpyxl==3.1.5"
     ],
     author="Vihaan Sahu",
