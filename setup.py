@@ -5,7 +5,7 @@ setup(
     version="2.1.0",
     packages=find_packages(),
     install_requires=[
-        "numpy==2.2.2",
+        "numpy==2.4.4",
         "pandas==2.3.2",
         "matplotlib==3.9.2",
         "seaborn==0.13.2",
