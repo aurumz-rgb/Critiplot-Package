@@ -1,22 +1,22 @@
 Metadata-Version: 2.4
 Name: critiplot
-Version: 2.1.0
+Version: 2.1.1
 Summary: Visualize risk-of-bias in systematic reviews and meta-analyses
 Home-page: https://github.com/aurumz-rgb/Critiplot-Package
 Author: Vihaan Sahu
-Author-email: pterois.volitans12@gmail.com
+Author-email: pteroisvolitans12@gmail.com
 Classifier: Programming Language :: Python :: 3
 Classifier: License :: OSI Approved :: Apache Software License
 Classifier: Operating System :: OS Independent
-Requires-Python: >=3.11
+Requires-Python: >=3.9
 Description-Content-Type: text/markdown
 License-File: LICENSE
-Requires-Dist: numpy==2.2.2
-Requires-Dist: pandas==2.3.2
-Requires-Dist: matplotlib==3.9.2
-Requires-Dist: seaborn==0.13.2
-Requires-Dist: pyarrow==21.0.0
-Requires-Dist: openpyxl==3.1.5
+Requires-Dist: numpy>=2.0
+Requires-Dist: pandas>=2.0
+Requires-Dist: matplotlib>=3.5
+Requires-Dist: seaborn>=0.12
+Requires-Dist: pyarrow>=10.0
+Requires-Dist: openpyxl>=3.0
 Dynamic: author
 Dynamic: author-email
 Dynamic: classifier

@@ -14,3 +14,4 @@ critiplot.egg-info/SOURCES.txt
 critiplot.egg-info/dependency_links.txt
 critiplot.egg-info/requires.txt
 critiplot.egg-info/top_level.txt
+tests/test_critiplot.py
