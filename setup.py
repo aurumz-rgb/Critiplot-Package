@@ -6,16 +6,17 @@ with open("README.md", encoding="utf-8") as f:
 
 setup(
     name="critiplot",
-    version="2.1.0",
+    version="2.1.1",
     packages=find_packages(),
 
     install_requires=[
-        "numpy>=2.0,<3.0",
-        "pandas>=2.0,<3.0",
-        "matplotlib>=3.5,<4.0",
-        "seaborn>=0.12,<1.0",
-        "pyarrow>=10.0,<22.0",
-        "openpyxl>=3.0,<4.0"
+        "numpy>=2.0,<=2.2.2",
+        "pandas>=2.0,<=2.3.2",
+        "matplotlib>=3.5,<=3.9.2",
+        "seaborn>=0.12,<=0.13.2",
+        "pyarrow>=10.0,<=21.0.0",
+        "openpyxl>=3.0,<=3.1.5"
+
     ],
     author="Vihaan Sahu",
     author_email="pteroisvolitans12@gmail.com",
