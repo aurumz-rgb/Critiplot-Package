@@ -6,8 +6,8 @@ on:
   pull_request:
     branches: [ "main", "master" ]
   schedule:
-    # Run tests automatically every Monday at 6am UTC
-    - cron: '0 6 * * 1'
+    # Run tests automatically every SUNDAY at 6am UTC
+    - cron: '0 6 * * 0'
 
 jobs:
   test:
@@ -18,10 +18,10 @@ jobs:
         python-version: ["3.9", "3.10", "3.11", "3.12"]
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
 
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v6
       with:
         python-version: ${{ matrix.python-version }}
 
@@ -30,12 +30,9 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements-dev.txt
         
-        # LOGIC: Install the absolute LATEST versions from PyPI explicitly.
-        # This ignores the upper limits in setup.py (e.g., <=2.2.2) to check if new versions work.
-        pip install numpy pandas matplotlib seaborn pyarrow openpyxl
-        
-        # Install your package code, but tell pip NOT to change the libraries we just installed
-        pip install -e . --no-deps
+        # Install your package.
+        # Since you removed upper limits, pip installs the LATEST versions automatically.
+        pip install -e .
 
     - name: Run tests with pytest
       run: |

@@ -10,12 +10,12 @@ setup(
     packages=find_packages(),
 
     install_requires=[
-        "numpy>=2.0,<=2.2.2",
-        "pandas>=2.0,<=2.3.2",
-        "matplotlib>=3.5,<=3.9.2",
-        "seaborn>=0.12,<=0.13.2",
-        "pyarrow>=10.0,<=21.0.0",
-        "openpyxl>=3.0,<=3.1.5"
+        "numpy>=2.0",
+        "pandas>=2.0",
+        "matplotlib>=3.5",
+        "seaborn>=0.12",
+        "pyarrow>=10.0",
+        "openpyxl>=3.0"
 
     ],
     author="Vihaan Sahu",
