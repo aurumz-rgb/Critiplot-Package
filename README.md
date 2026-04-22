@@ -23,7 +23,7 @@
 
 * It produces **publication-ready traffic-light plots** and **stacked bar charts** for summarizing study quality.
 
-* **Python Package**: [https://pypi.org/project/critiplot/2.1.0/](https://pypi.org/project/critiplot/2.1.0/)
+* **Python Package**: [https://pypi.org/project/critiplot/](https://pypi.org/project/critiplot/)
 
 ---
 
@@ -101,7 +101,7 @@ plot_mmat("tests/sample_mmat.csv", "tests/output_mmat.png", theme="default")
 ![Python Result](python.png)
 
 
-You can also use Critiplot Python package validation repository where validation was done using .py file (Was done for v2.1.0)
+You can also use Critiplot Python package validation repository where validation was done using .py file (Was done for v2.0.0)
 You can check it out here: [https://github.com/critiplot/Critiplot-Validation](https://github.com/critiplot/Critiplot-Validation)
 
 ---
@@ -162,7 +162,7 @@ If you use this software, please cite it using the following metadata:
 cff-version: 1.2.0
 message: "If you use this software, please cite it using the following metadata."
 title: "Critiplot: A Python based Package for risk-of-bias data visualization in Systematic Reviews & Meta-Analysis"
-version: "v2.1.0"
+version: "v2.1.1"
 doi: "10.5281/zenodo.17338087"
 date-released: 2025-09-06
 authors:
@@ -174,7 +174,7 @@ preferred-citation:
     - family-names: "Sahu"
       given-names: "Vihaan"
   title: "Critiplot: A Python based Package for risk-of-bias data visualization in Systematic Reviews & Meta-Analysis"
-  version: "v2.1.0"
+  version: "v2.1.1"
   doi: "10.5281/zenodo.17338087"
   year: 2025
   url: "https://doi.org/10.5281/zenodo.17338087"
@@ -182,7 +182,7 @@ preferred-citation:
 
 Or cite as:
 
-> **Sahu, V. (2025). *Critiplot: A Python based Package for risk-of-bias data visualization in Systematic Reviews & Meta-Analysis* (v2.1.0). Zenodo. [https://doi.org/10.5281/zenodo.17338087](https://doi.org/10.5281/zenodo.17338087)**
+> **Sahu, V. (2025). *Critiplot: A Python based Package for risk-of-bias data visualization in Systematic Reviews & Meta-Analysis* (v2.1.1). Zenodo. [https://doi.org/10.5281/zenodo.17338087](https://doi.org/10.5281/zenodo.17338087)**
 
 
 ---
@@ -199,27 +199,21 @@ Apache 2.0 © 2025 Vihaan Sahu
 Here’s an example traffic-light plot generated using Critiplot with different themes:
 
 ![Example Result](example/result.png)
-![Example Result22](example/result2.png)
 **NOS**
 
 
 ![Example Result1](example/grade_result2.png)
-![Example Result13](example/grade_result3.png)
 **GRADE**
 
 
 ![Example Result21](example/robis_result4.png)
-![Example Result23](example/robis_result3.png)
 **ROBIS**
 
 
-
-![Example Result34](example/case_report.png)
 ![Example Result37](example/case_report2.png)
 **JBI Case Report**
 
 
-![Example Result4](example/series_plot1.png)
 ![Example Result43](example/series_plot4.png)
 **JBI Case Series**
 
