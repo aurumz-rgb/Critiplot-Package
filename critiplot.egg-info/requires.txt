@@ -1,6 +1,6 @@
 numpy>=2.0
 pandas>=2.0
 matplotlib>=3.5
-seaborn>=0.12
+seaborn>=0.13.2
 pyarrow>=10.0
 openpyxl>=3.0
