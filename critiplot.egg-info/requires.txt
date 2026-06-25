@@ -1,6 +1,6 @@
 numpy>=2.0
 pandas>=2.0
-matplotlib>=3.5
+matplotlib>=3.9.4
 seaborn>=0.12
 pyarrow>=10.0
 openpyxl>=3.0
