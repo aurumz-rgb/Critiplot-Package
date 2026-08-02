@@ -10,7 +10,7 @@
 [![CI](https://github.com/aurumz-rgb/Critiplot-Package/actions/workflows/ci.yml/badge.svg)](https://github.com/aurumz-rgb/Critiplot-Package/actions)
 
 
-**Critiplot** is an open-source Python package for **visualizing risk-of-bias (RoB) assessments** across multiple evidence synthesis tools:
+**Critiplot** is an open-source Python package for **visualizing risk-of-bias (RoB) and certainty of evidence assessments** across multiple evidence synthesis tools:
 
 * **Newcastle-Ottawa Scale (NOS)**
 
