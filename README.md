@@ -31,7 +31,7 @@
 
 ## Data & Template
 
-* Please strictly follow the **Data & Template** _(available as .csv & excel format)_ as mentioned in the main Critiplot Web: [critiplot.vercel.app](https://critiplot.vercel.app)
+* Please strictly follow the **Data & Template** _(available as .csv & excel format)_ as mentioned in the main Critiplot Web: [critiplot.github.io](https://critiplot.github.io)
 
 ---
 
@@ -150,7 +150,7 @@ You can check it out here: [https://github.com/critiplot/Critiplot-Validation](h
 
 * Web version also exists for this package.
 * GitHub: [https://github.com/aurumz-rgb/Critiplot-main](https://github.com/aurumz-rgb/Critiplot-main)
-* Web: [https://critiplot.vercel.app](https://critiplot.vercel.app)
+* Web: [https://critiplot.github.io](https://critiplot.github.io)
 
 
 ---
