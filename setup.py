@@ -20,7 +20,7 @@ setup(
     ],
     author="Vihaan Sahu",
     author_email="pteroisvolitans12@gmail.com",
-    description="Visualize risk-of-bias in systematic reviews and meta-analyses",
+    description="Visualize risk-of-bias and certainty of evidence in systematic reviews and meta-analyses",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/aurumz-rgb/Critiplot-Package",
