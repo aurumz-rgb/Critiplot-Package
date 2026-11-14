@@ -26,6 +26,8 @@
 
 * **Python Package**: [https://pypi.org/project/critiplot/](https://pypi.org/project/critiplot/)
 
+* **R interface (critiplotR)**: GitHub — [github.com/critiplot/critiplotR](https://github.com/critiplot/critiplotR) · Website — [critiplot.github.io/critiplotR](https://critiplot.github.io/critiplotR/) — install from CRAN with `install.packages("critiplotR")`
+
 ---
 
 
@@ -151,6 +153,7 @@ You can check it out here: [https://github.com/critiplot/Critiplot-Validation](h
 * Web version also exists for this package.
 * GitHub: [https://github.com/aurumz-rgb/Critiplot-main](https://github.com/aurumz-rgb/Critiplot-main)
 * Web: [https://critiplot.github.io](https://critiplot.github.io)
+* **R version (critiplotR)**: GitHub — [github.com/critiplot/critiplotR](https://github.com/critiplot/critiplotR) · Website — [critiplot.github.io/critiplotR](https://critiplot.github.io/critiplotR/)
 
 
 ---
