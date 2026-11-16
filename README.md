@@ -109,6 +109,50 @@ You can check it out here: [https://github.com/critiplot/Critiplot-Validation](h
 
 ---
 
+## Use it from R — [critiplotR](https://github.com/critiplot/critiplotR)
+
+The same plots are available in **R** through **[critiplotR](https://github.com/critiplot/critiplotR)** — the official R interface to Critiplot, available on [CRAN](https://cran.r-project.org/package=critiplotR) and documented at **[critiplot.github.io/critiplotR](https://critiplot.github.io/critiplotR/)**:
+
+```r
+install.packages("critiplotR")
+```
+
+Each function mirrors the Python API — same data templates, same themes, same output formats (`plot_nos()`, `plot_jbi_case_report()`, `plot_jbi_case_series()`, `plot_grade()`, `plot_robis()`, `plot_mmat()`).
+
+**Live R sessions producing each plot** (console + resulting figure):
+
+<figure>
+  <img src="https://raw.githubusercontent.com/aurumz-rgb/Critiplot-Package/main/assets/screenshots/demo-nos.png" width="800" alt="R console running plot_nos() from the critiplotR R package, producing a Newcastle-Ottawa Scale traffic-light plot and stacked bar chart" />
+  <figcaption><strong>NOS</strong> — <code>plot_nos()</code>.</figcaption>
+</figure>
+
+<figure>
+  <img src="https://raw.githubusercontent.com/aurumz-rgb/Critiplot-Package/main/assets/screenshots/demo-jbi-case-report.png" width="800" alt="R console running plot_jbi_case_report() from the critiplotR R package, producing a JBI case report traffic-light plot" />
+  <figcaption><strong>JBI case report</strong> — <code>plot_jbi_case_report()</code>.</figcaption>
+</figure>
+
+<figure>
+  <img src="https://raw.githubusercontent.com/aurumz-rgb/Critiplot-Package/main/assets/screenshots/demo-jbi-case-series.png" width="800" alt="R console running plot_jbi_case_series() from the critiplotR R package, producing a JBI case series traffic-light plot" />
+  <figcaption><strong>JBI case series</strong> — <code>plot_jbi_case_series()</code>.</figcaption>
+</figure>
+
+<figure>
+  <img src="https://raw.githubusercontent.com/aurumz-rgb/Critiplot-Package/main/assets/screenshots/demo-grade.png" width="800" alt="R console running plot_grade() from the critiplotR R package, producing a GRADE certainty of evidence profile" />
+  <figcaption><strong>GRADE</strong> — <code>plot_grade()</code>.</figcaption>
+</figure>
+
+<figure>
+  <img src="https://raw.githubusercontent.com/aurumz-rgb/Critiplot-Package/main/assets/screenshots/demo-robis.png" width="800" alt="R console running plot_robis() from the critiplotR R package, producing a ROBIS traffic-light plot" />
+  <figcaption><strong>ROBIS</strong> — <code>plot_robis()</code>.</figcaption>
+</figure>
+
+<figure>
+  <img src="https://raw.githubusercontent.com/aurumz-rgb/Critiplot-Package/main/assets/screenshots/demo-mmat.png" width="800" alt="R console running plot_mmat() from the critiplotR R package, producing one MMAT traffic-light plot per study category" />
+  <figcaption><strong>MMAT</strong> — <code>plot_mmat()</code>.</figcaption>
+</figure>
+
+---
+
 
 ### 📂 Example Datasets
 
