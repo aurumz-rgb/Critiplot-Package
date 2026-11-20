@@ -45,6 +45,12 @@ You can install **Critiplot** directly from PyPI _(works the best with Python 3.
 pip install critiplot
 ```
 
+Or install from conda-forge:
+
+```bash
+conda install conda-forge::critiplot
+```
+
 Or install locally from source:
 
 ```bash
@@ -197,6 +203,7 @@ You can check it out here: [https://github.com/critiplot/Critiplot-Validation](h
 * Web version also exists for this package.
 * GitHub: [https://github.com/aurumz-rgb/Critiplot-main](https://github.com/aurumz-rgb/Critiplot-main)
 * Web: [https://critiplot.github.io](https://critiplot.github.io)
+* conda-forge: [https://anaconda.org/conda-forge/critiplot](https://anaconda.org/conda-forge/critiplot)
 * **R version (critiplotR)**: GitHub — [github.com/critiplot/critiplotR](https://github.com/critiplot/critiplotR) · Website — [critiplot.github.io/critiplotR](https://critiplot.github.io/critiplotR/)
 
 
