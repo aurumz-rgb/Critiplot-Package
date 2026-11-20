@@ -1,7 +1,7 @@
 
 ![Preview](assets/critiplot-package.png)
 
-[![Python Version](https://img.shields.io/badge/python-3.11+%2B-blue)](https://www.python.org/)
+[![Python Version](https://img.shields.io/badge/python-3.9+%2B-blue)](https://www.python.org/)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17338087.svg)](https://doi.org/10.5281/zenodo.17338087)
 [![PyPI Downloads](https://static.pepy.tech/personalized-badge/critiplot?period=total&units=INTERNATIONAL_SYSTEM&left_color=GREY&right_color=RED&left_text=downloads)](https://pepy.tech/projects/critiplot)
@@ -26,7 +26,7 @@
 
 * **Python Package**: [https://pypi.org/project/critiplot/](https://pypi.org/project/critiplot/)
 
-* **R interface (critiplotR)**: [GitHub](https://github.com/critiplot/critiplotR) | [Website](https://critiplot.github.io/critiplotR/) | install from CRAN with `install.packages("critiplotR")`
+* **R interface (critiplotR)**: [GitHub](https://github.com/critiplot/critiplotR) | [Website](https://critiplot.github.io/critiplotR/) | install with `remotes::install_github("critiplot/critiplotR")`
 
 ---
 
@@ -58,14 +58,11 @@ Or install locally from source:
 git clone https://github.com/aurumz-rgb/Critiplot-Package.git
 cd Critiplot-Package
 
-# Install requirements
-pip install -r requirements.txt
-
-# Install package locally
+# Install package locally (dependencies are installed automatically)
 pip install .
 ```
 
-> Requires **Python 3.11+** _(Recommended: use Python 3.13 version)_, **Matplotlib**, **Seaborn**, and **Pandas**.
+> Requires **Python 3.9+** _(Recommended: use Python 3.13 version)_, **Matplotlib**, **Seaborn**, and **Pandas**.
 
 ---
 
@@ -117,10 +114,11 @@ You can check it out here: [https://github.com/critiplot/Critiplot-Validation](h
 
 ## Use it from R: [critiplotR](https://github.com/critiplot/critiplotR)
 
-The same plots are available in **R** through **[critiplotR](https://github.com/critiplot/critiplotR)**, the official R interface to Critiplot, available on [CRAN](https://cran.r-project.org/package=critiplotR) and documented at **[critiplot.github.io/critiplotR](https://critiplot.github.io/critiplotR/)**:
+The same plots are available in **R** through **[critiplotR](https://github.com/critiplot/critiplotR)**, the official R interface to Critiplot, available from [GitHub](https://github.com/critiplot/critiplotR) while the CRAN submission is in review, and documented at **[critiplot.github.io/critiplotR](https://critiplot.github.io/critiplotR/)**:
 
 ```r
-install.packages("critiplotR")
+# install.packages("remotes")
+remotes::install_github("critiplot/critiplotR")
 ```
 
 Each function mirrors the Python API: same data templates, same themes, same output formats (`plot_nos()`, `plot_jbi_case_report()`, `plot_jbi_case_series()`, `plot_grade()`, `plot_robis()`, `plot_mmat()`).
@@ -169,8 +167,8 @@ For reproducibility and reference, example `.csv` and `.xlsx` files are included
 | **Newcastle-Ottawa Scale (NOS)** | `tests/sample_nos.csv`, `tests/sample_nos.xlsx`                 |
 | **ROBIS**                        | `tests/sample_robis.csv`, `tests/sample_robis.xlsx`             |
 | **GRADE**                        | `tests/sample_grade.csv`, `tests/sample_grade.xlsx`             |
-| **JBI Case Report**              | `tests/sample_case_report.csv`, `tests/sample_case_report.xlsx` |
-| **JBI Case Series**              | `tests/sample_case_series.csv`, `tests/sample_case_series.xlsx` |
+| **JBI Case Report**              | `tests/sample_jbi_case_report.csv`, `tests/sample_jbi_case_report.xlsx` |
+| **JBI Case Series**              | `tests/sample_jbi_case_series.csv`, `tests/sample_jbi_case_series.xlsx` |
 | **MMAT**                         | `tests/sample_mmat.csv`, `tests/sample_mmat.xlsx`               |
 
 You can **open these files directly** to view the expected column format and data layout for each plotting function.
@@ -184,7 +182,7 @@ All results in the paper can be reproduced by following the method as mentioned 
 
 **I would personally recommend testing using Python 3.13**
 
-You can also use Critiplot Python package validation repository (Was done for v1.0.3, newer version visualizes an additional plot i.e. MMAT) 
+You can also use Critiplot Python package validation repository (Was done for v2.0.0)
 You can check it out here: [https://github.com/critiplot/Critiplot-Validation](https://github.com/critiplot/Critiplot-Validation)
 
 ---
@@ -219,7 +217,7 @@ message: "If you use this software, please cite it using the following metadata.
 title: "Critiplot: A Python based Package for risk-of-bias and certainty-of-evidence data visualization in Systematic Reviews & Meta-Analysis"
 version: "v2.1.1"
 doi: "10.5281/zenodo.17338087"
-date-released: 2025-09-06
+date-released: 2026-04-22
 authors:
   - family-names: "Sahu"
     given-names: "Vihaan"
@@ -231,13 +229,13 @@ preferred-citation:
   title: "Critiplot: A Python based Package for risk-of-bias and certainty-of-evidence data visualization in Systematic Reviews & Meta-Analysis"
   version: "v2.1.1"
   doi: "10.5281/zenodo.17338087"
-  year: 2025
+  year: 2026
   url: "https://doi.org/10.5281/zenodo.17338087"
 ```
 
 Or cite as:
 
-> **Sahu, V. (2025). *Critiplot: A Python based Package for risk-of-bias and certainty-of-evidence data visualization in Systematic Reviews & Meta-Analysis* (v2.1.1). Zenodo. [https://doi.org/10.5281/zenodo.17338087](https://doi.org/10.5281/zenodo.17338087)**
+> **Sahu, V. (2026). *Critiplot: A Python based Package for risk-of-bias and certainty-of-evidence data visualization in Systematic Reviews & Meta-Analysis* (v2.1.1). Zenodo. [https://doi.org/10.5281/zenodo.17338087](https://doi.org/10.5281/zenodo.17338087)**
 
 
 ---
