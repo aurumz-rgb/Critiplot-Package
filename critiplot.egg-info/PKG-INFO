@@ -143,7 +143,7 @@ For reproducibility and reference, example `.csv` and `.xlsx` files are included
 
 | Tool / Assessment Type           | Example Files                                                   |
 | -------------------------------- | --------------------------------------------------------------- |
-| **Newcastle–Ottawa Scale (NOS)** | `tests/sample_nos.csv`, `tests/sample_nos.xlsx`                 |
+| **Newcastle-Ottawa Scale (NOS)** | `tests/sample_nos.csv`, `tests/sample_nos.xlsx`                 |
 | **ROBIS**                        | `tests/sample_robis.csv`, `tests/sample_robis.xlsx`             |
 | **GRADE**                        | `tests/sample_grade.csv`, `tests/sample_grade.xlsx`             |
 | **JBI Case Report**              | `tests/sample_case_report.csv`, `tests/sample_case_report.xlsx` |

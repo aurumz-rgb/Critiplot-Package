@@ -26,7 +26,7 @@
 
 * **Python Package**: [https://pypi.org/project/critiplot/](https://pypi.org/project/critiplot/)
 
-* **R interface (critiplotR)**: GitHub — [github.com/critiplot/critiplotR](https://github.com/critiplot/critiplotR) · Website — [critiplot.github.io/critiplotR](https://critiplot.github.io/critiplotR/) — install from CRAN with `install.packages("critiplotR")`
+* **R interface (critiplotR)**: [GitHub](https://github.com/critiplot/critiplotR) | [Website](https://critiplot.github.io/critiplotR/) | install from CRAN with `install.packages("critiplotR")`
 
 ---
 
@@ -115,46 +115,46 @@ You can check it out here: [https://github.com/critiplot/Critiplot-Validation](h
 
 ---
 
-## Use it from R — [critiplotR](https://github.com/critiplot/critiplotR)
+## Use it from R: [critiplotR](https://github.com/critiplot/critiplotR)
 
-The same plots are available in **R** through **[critiplotR](https://github.com/critiplot/critiplotR)** — the official R interface to Critiplot, available on [CRAN](https://cran.r-project.org/package=critiplotR) and documented at **[critiplot.github.io/critiplotR](https://critiplot.github.io/critiplotR/)**:
+The same plots are available in **R** through **[critiplotR](https://github.com/critiplot/critiplotR)**, the official R interface to Critiplot, available on [CRAN](https://cran.r-project.org/package=critiplotR) and documented at **[critiplot.github.io/critiplotR](https://critiplot.github.io/critiplotR/)**:
 
 ```r
 install.packages("critiplotR")
 ```
 
-Each function mirrors the Python API — same data templates, same themes, same output formats (`plot_nos()`, `plot_jbi_case_report()`, `plot_jbi_case_series()`, `plot_grade()`, `plot_robis()`, `plot_mmat()`).
+Each function mirrors the Python API: same data templates, same themes, same output formats (`plot_nos()`, `plot_jbi_case_report()`, `plot_jbi_case_series()`, `plot_grade()`, `plot_robis()`, `plot_mmat()`).
 
 **Live R sessions producing each plot** (console + resulting figure):
 
 <figure>
   <img src="https://raw.githubusercontent.com/aurumz-rgb/Critiplot-Package/main/assets/screenshots/demo-nos.png" width="800" alt="R console running plot_nos() from the critiplotR R package, producing a Newcastle-Ottawa Scale traffic-light plot and stacked bar chart" />
-  <figcaption><strong>NOS</strong> — <code>plot_nos()</code>.</figcaption>
+  <figcaption><strong>NOS</strong>: <code>plot_nos()</code>.</figcaption>
 </figure>
 
 <figure>
   <img src="https://raw.githubusercontent.com/aurumz-rgb/Critiplot-Package/main/assets/screenshots/demo-jbi-case-report.png" width="800" alt="R console running plot_jbi_case_report() from the critiplotR R package, producing a JBI case report traffic-light plot" />
-  <figcaption><strong>JBI case report</strong> — <code>plot_jbi_case_report()</code>.</figcaption>
+  <figcaption><strong>JBI case report</strong>: <code>plot_jbi_case_report()</code>.</figcaption>
 </figure>
 
 <figure>
   <img src="https://raw.githubusercontent.com/aurumz-rgb/Critiplot-Package/main/assets/screenshots/demo-jbi-case-series.png" width="800" alt="R console running plot_jbi_case_series() from the critiplotR R package, producing a JBI case series traffic-light plot" />
-  <figcaption><strong>JBI case series</strong> — <code>plot_jbi_case_series()</code>.</figcaption>
+  <figcaption><strong>JBI case series</strong>: <code>plot_jbi_case_series()</code>.</figcaption>
 </figure>
 
 <figure>
   <img src="https://raw.githubusercontent.com/aurumz-rgb/Critiplot-Package/main/assets/screenshots/demo-grade.png" width="800" alt="R console running plot_grade() from the critiplotR R package, producing a GRADE certainty of evidence profile" />
-  <figcaption><strong>GRADE</strong> — <code>plot_grade()</code>.</figcaption>
+  <figcaption><strong>GRADE</strong>: <code>plot_grade()</code>.</figcaption>
 </figure>
 
 <figure>
   <img src="https://raw.githubusercontent.com/aurumz-rgb/Critiplot-Package/main/assets/screenshots/demo-robis.png" width="800" alt="R console running plot_robis() from the critiplotR R package, producing a ROBIS traffic-light plot" />
-  <figcaption><strong>ROBIS</strong> — <code>plot_robis()</code>.</figcaption>
+  <figcaption><strong>ROBIS</strong>: <code>plot_robis()</code>.</figcaption>
 </figure>
 
 <figure>
   <img src="https://raw.githubusercontent.com/aurumz-rgb/Critiplot-Package/main/assets/screenshots/demo-mmat.png" width="800" alt="R console running plot_mmat() from the critiplotR R package, producing one MMAT traffic-light plot per study category" />
-  <figcaption><strong>MMAT</strong> — <code>plot_mmat()</code>.</figcaption>
+  <figcaption><strong>MMAT</strong>: <code>plot_mmat()</code>.</figcaption>
 </figure>
 
 ---
@@ -166,7 +166,7 @@ For reproducibility and reference, example `.csv` and `.xlsx` files are included
 
 | Tool / Assessment Type           | Example Files                                                   |
 | -------------------------------- | --------------------------------------------------------------- |
-| **Newcastle–Ottawa Scale (NOS)** | `tests/sample_nos.csv`, `tests/sample_nos.xlsx`                 |
+| **Newcastle-Ottawa Scale (NOS)** | `tests/sample_nos.csv`, `tests/sample_nos.xlsx`                 |
 | **ROBIS**                        | `tests/sample_robis.csv`, `tests/sample_robis.xlsx`             |
 | **GRADE**                        | `tests/sample_grade.csv`, `tests/sample_grade.xlsx`             |
 | **JBI Case Report**              | `tests/sample_case_report.csv`, `tests/sample_case_report.xlsx` |
@@ -204,7 +204,7 @@ You can check it out here: [https://github.com/critiplot/Critiplot-Validation](h
 * GitHub: [https://github.com/aurumz-rgb/Critiplot-main](https://github.com/aurumz-rgb/Critiplot-main)
 * Web: [https://critiplot.github.io](https://critiplot.github.io)
 * conda-forge: [https://anaconda.org/conda-forge/critiplot](https://anaconda.org/conda-forge/critiplot)
-* **R version (critiplotR)**: GitHub — [github.com/critiplot/critiplotR](https://github.com/critiplot/critiplotR) · Website — [critiplot.github.io/critiplotR](https://critiplot.github.io/critiplotR/)
+* **R version (critiplotR)**: [GitHub](https://github.com/critiplot/critiplotR) | [Website](https://critiplot.github.io/critiplotR/)
 
 
 ---
